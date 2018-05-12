@@ -1,0 +1,167 @@
+
+
+Terminals which are not used:
+
+   DIGIT
+
+
+State 0 contains 1 reduce/reduce conflict.
+
+Grammar
+rule 1    htmlDocument ->		/* empty */
+rule 2    htmlDocument -> htmlComment
+rule 3    htmlComment ->		/* empty */
+rule 4    htmlComment -> HTML_COMMENT htmlComment
+rule 5    htmlComment -> HTML_CONDITIONAL_COMMENT htmlComment
+rule 6    htmlComment -> DOUBLE_QUOTE_STRING htmlComment
+rule 7    htmlComment -> SINGLE_QUOTE_STRING htmlComment
+
+Terminals, with rules where they appear
+
+$ (-1)
+error (256)
+HTML_COMMENT (258) 4
+HTML_CONDITIONAL_COMMENT (259) 5
+DIGIT (260)
+DOUBLE_QUOTE_STRING (261) 6
+SINGLE_QUOTE_STRING (262) 7
+
+Nonterminals, with rules where they appear
+
+htmlDocument (8)
+    on left: 1 2
+htmlComment (9)
+    on left: 3 4 5 6 7, on right: 2 4 5 6 7
+
+
+state 0
+
+    HTML_COMMENT	shift, and go to state 1
+    HTML_CONDITIONAL_COMMENT	shift, and go to state 2
+    DOUBLE_QUOTE_STRING	shift, and go to state 3
+    SINGLE_QUOTE_STRING	shift, and go to state 4
+
+    $   	reduce using rule 1 (htmlDocument)
+    $   	[reduce using rule 3 (htmlComment)]
+    $default	reduce using rule 1 (htmlDocument)
+
+    htmlDocument	go to state 10
+    htmlComment	go to state 5
+
+
+
+state 1
+
+    htmlComment  ->  HTML_COMMENT . htmlComment   (rule 4)
+
+    HTML_COMMENT	shift, and go to state 1
+    HTML_CONDITIONAL_COMMENT	shift, and go to state 2
+    DOUBLE_QUOTE_STRING	shift, and go to state 3
+    SINGLE_QUOTE_STRING	shift, and go to state 4
+
+    $default	reduce using rule 3 (htmlComment)
+
+    htmlComment	go to state 6
+
+
+
+state 2
+
+    htmlComment  ->  HTML_CONDITIONAL_COMMENT . htmlComment   (rule 5)
+
+    HTML_COMMENT	shift, and go to state 1
+    HTML_CONDITIONAL_COMMENT	shift, and go to state 2
+    DOUBLE_QUOTE_STRING	shift, and go to state 3
+    SINGLE_QUOTE_STRING	shift, and go to state 4
+
+    $default	reduce using rule 3 (htmlComment)
+
+    htmlComment	go to state 7
+
+
+
+state 3
+
+    htmlComment  ->  DOUBLE_QUOTE_STRING . htmlComment   (rule 6)
+
+    HTML_COMMENT	shift, and go to state 1
+    HTML_CONDITIONAL_COMMENT	shift, and go to state 2
+    DOUBLE_QUOTE_STRING	shift, and go to state 3
+    SINGLE_QUOTE_STRING	shift, and go to state 4
+
+    $default	reduce using rule 3 (htmlComment)
+
+    htmlComment	go to state 8
+
+
+
+state 4
+
+    htmlComment  ->  SINGLE_QUOTE_STRING . htmlComment   (rule 7)
+
+    HTML_COMMENT	shift, and go to state 1
+    HTML_CONDITIONAL_COMMENT	shift, and go to state 2
+    DOUBLE_QUOTE_STRING	shift, and go to state 3
+    SINGLE_QUOTE_STRING	shift, and go to state 4
+
+    $default	reduce using rule 3 (htmlComment)
+
+    htmlComment	go to state 9
+
+
+
+state 5
+
+    htmlDocument  ->  htmlComment .   (rule 2)
+
+    $default	reduce using rule 2 (htmlDocument)
+
+
+
+state 6
+
+    htmlComment  ->  HTML_COMMENT htmlComment .   (rule 4)
+
+    $default	reduce using rule 4 (htmlComment)
+
+
+
+state 7
+
+    htmlComment  ->  HTML_CONDITIONAL_COMMENT htmlComment .   (rule 5)
+
+    $default	reduce using rule 5 (htmlComment)
+
+
+
+state 8
+
+    htmlComment  ->  DOUBLE_QUOTE_STRING htmlComment .   (rule 6)
+
+    $default	reduce using rule 6 (htmlComment)
+
+
+
+state 9
+
+    htmlComment  ->  SINGLE_QUOTE_STRING htmlComment .   (rule 7)
+
+    $default	reduce using rule 7 (htmlComment)
+
+
+
+state 10
+
+    $   	go to state 11
+
+
+
+state 11
+
+    $   	go to state 12
+
+
+
+state 12
+
+    $default	accept
