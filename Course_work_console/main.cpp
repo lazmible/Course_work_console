@@ -23,16 +23,32 @@ int yyerror(const char * err)
 }
 
 extern FILE * yyin;
+htmlDocument doc("l", ATTR_DATABASE_HTML5, TEST);
+extern std::vector<std::string> strings;
+
 
 int main()
 {
-	htmlDocument("l", ATTR_DATABASE_HTML5, TEST);
+	strings.reserve(10000000);
 	yyin = fopen("input.txt", "r");
 	yyparse();
 	//std::string test("2м772сл12чб2ю2нг4жв';l32;'4l434of  32c23 4cu420 cu0qwpufasjr");
 	//std::regex re(".+");
 	//std::smatch kek;
 	//std::cout << std::regex_match(test, kek, re) << std::endl;
+
+	//doc.AddOpeningTag("html");
+	//doc.AddOpeningTag("a");
+	//doc.AddAttributeToLastTag("accesskey", "1");
+	//doc.AddClosingTag("html");
+
+
+	//doc.CheckEndState();
 	system("pause");
 	return 0;
 }
+
+
+// Ошибки: 
+// не распознает пустой контент (<kek> </kek>) --> Наверное из-за того, что он игнорирует пробелы
+// 

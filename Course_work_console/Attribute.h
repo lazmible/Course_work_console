@@ -10,8 +10,10 @@
 #include "error.h"
 
 typedef std::map<std::string, std::string>              db_attr_type;
-typedef std::map<std::string, std::vector<std::string>> db_tag_type;
+                /*attribute*/ /*value*/
 
+typedef std::map<std::string, std::vector<std::string>> db_tag_type;
+                /*^^tag^^^*/  /*^^^^^attributes^^^^^*/
 class htmlAttribute
 {
 private:
@@ -29,7 +31,10 @@ private:
 
 public:
 	htmlAttribute(std::string _name, std::map<std::string, std::string> val_db, std::string err, std::string val)
-		: name(_name), values_database(val_db), error_message(err), value(val) {}
+		: name(_name), values_database(val_db), error_message(err), value(val) 
+	{
+		 
+	}
 
 	std::vector<error> CheckState();
 	const std::string GetName() const { return (name); }

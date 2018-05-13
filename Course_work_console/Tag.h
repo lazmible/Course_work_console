@@ -18,6 +18,7 @@ private:
 	std::vector<error> check_attributes();
 	std::vector<error> check_precursory();
 	bool check_name();
+	bool check_attr_name(std::string name);
 
 public:
 	htmlTag
@@ -29,8 +30,8 @@ public:
 	);
 
 	std::string GetName() { return name; }
-	/*
-	std::vector<error> CheckState();
-	void AddAttribute();
-	*/
+	
+	//std::vector<error> CheckState();
+	void AddAttribute(std::string name, std::string val);
+	
 };
