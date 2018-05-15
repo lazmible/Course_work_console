@@ -42,6 +42,7 @@ public:
 
 
 	void AddOpeningTag(std::string tag_name);
+	void AddOpeningTag(std::string tag_name, std::vector<htmlAttribute> attrs);
 	void AddClosingTag(std::string tag_name);
 	void CheckEndState();
 	void AddAttributeToLastTag(std::string attr, std::string val);

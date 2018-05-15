@@ -3,23 +3,14 @@
 
 #include <iostream>
 #include <vector>
+#include "Document.h"
+#include "html_attr_val_db.h"
+#include "html_tag_db.h"
 
-std::vector<std::string> strings;
 
-void * GenNewStr(char * str)
-{
-	std::string _str;
-	_str = str;
-	strings.push_back(_str);
-	return (&(*(--strings.end())));
-}
-
-void * GenNewStrW(char * str)
-{
-	std::string _str;
-	_str = str;
-	_str.erase(_str.begin());
-	_str.erase(--_str.end());
-	strings.push_back(_str);
-	return (&(*(--strings.end())));
-}
+void * GenNewStr(char * str); // returns pointer to std::string
+void * GenNewStrW(char * str); // returns pointer to std::string
+void * GenNewAttr(std::string attr, std::string val); // returns pointer to htmlAttribute 
+void * GenNewAttr(std::string attr); // returns pointer to htmlAttribute
+void * GenNewAttrList(htmlAttribute * attr); // returns pointer to std::vector<htmlAttribute>
+void * AppendAttrInList(htmlAttribute * attr, std::vector<htmlAttribute> * lst); // returns pointer to std::vector<htmlAttribute>

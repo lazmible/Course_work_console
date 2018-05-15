@@ -6,6 +6,7 @@
 #include <map>
 #include <iostream>
 #include <regex>
+#include <list>
 
 #include "error.h"
 
@@ -37,6 +38,7 @@ public:
 	}
 
 	std::vector<error> CheckState();
-	const std::string GetName() const { return (name); }
+	const std::string GetName()  const { return (name); }
+	const std::string GetValue() const { return (value); }
 };
 

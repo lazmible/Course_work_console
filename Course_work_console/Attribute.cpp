@@ -30,7 +30,7 @@ std::vector<error> htmlAttribute::CheckState()
 	//if (!this->check_name())  { result.push_back(error(0, 0, 0, err_attr_name(this->name)));             }
 	//if (!this->check_value()) { result.push_back(error(0, 0, 0, err_attr_val(this->value, this->name))); }
 
-	if (!this->check_value()) { std::cout << "\t\t[AttributeError] Invalid Attribute value: <" << this->value << "> for attribute <" << this->name << ">" << std::endl; }
+	if (!this->check_value()) { std::cout << "[AttributeError] Invalid Attribute value: <" << this->value << "> for attribute <" << this->name << ">" << std::endl; }
 
 	return result;
 }

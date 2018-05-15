@@ -65,6 +65,6 @@ void htmlTag::AddAttribute(std::string name, std::string val)
 	}
 	else
 	{
-		std::cout << "\t\t[AttributeError] Invalid Attribute name: <" << name << ">" << "for tag <" << this->name << ">" << std::endl;
+		std::cout << "[AttributeError] Invalid Attribute name: <" << name << ">" << " for tag <" << this->name << ">" << std::endl;
 	}
 }

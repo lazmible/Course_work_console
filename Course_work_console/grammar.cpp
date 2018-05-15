@@ -23,6 +23,7 @@
 	#include <iostream>
     #include <string>
 	#include "Document.h"
+    #include "utils.h"
 
     #pragma warning( disable:4996 )
     #pragma warning( disable:5033 )
@@ -32,7 +33,7 @@
 	extern FILE  * yyin;
     extern htmlDocument doc;
 
-#line 15 "grammar.y"
+#line 16 "grammar.y"
 typedef union
 {
     void *  string_t     ;
@@ -120,9 +121,9 @@ static const short yyrhs[] = {    -1,
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    34,    35,    36,    37,    41,    42,    43,    44,    48,    49,
-    53,    57,    58,    62,    63,    67,    68,    72,    73,    77,
-    78
+    35,    36,    37,    38,    42,    43,    44,    45,    49,    50,
+    54,    58,    59,    63,    64,    68,    69,    73,    74,    78,
+    79
 };
 
 static const char * const yytname[] = {   "$","error","$undefined.","HTML_COMMENT",
@@ -676,32 +677,32 @@ yyreduce:
   switch (yyn) {
 
 case 9:
-#line 48 "grammar.y"
-{ std::cout << "\t[parser]: found opening tag - " << *((std::string*)(yyvsp[-2].string_t)) << std::endl; doc.AddOpeningTag(*((std::string*)(yyvsp[-2].string_t))); ;
+#line 49 "grammar.y"
+{ /*std::cout << "\t[parser]: found opening tag - " << *((std::string*)($2)) << std::endl;*/ doc.AddOpeningTag(*((std::string*)(yyvsp[-2].string_t)),*((std::vector<htmlAttribute>*)(yyvsp[-1].string_t))); ;
     break;}
 case 10:
-#line 49 "grammar.y"
-{ std::cout << "\t[parser]: found opening tag - " << *((std::string*)(yyvsp[-1].string_t)) << std::endl; doc.AddOpeningTag(*((std::string*)(yyvsp[-1].string_t))); ;
+#line 50 "grammar.y"
+{ /*std::cout << "\t[parser]: found opening tag - " << *((std::string*)($2)) << std::endl;*/ doc.AddOpeningTag(*((std::string*)(yyvsp[-1].string_t))); ;
     break;}
 case 11:
-#line 53 "grammar.y"
-{ std::cout << "\t[parser]: found closing tag - " << *((std::string*)(yyvsp[-1].string_t)) << std::endl; doc.AddClosingTag(*((std::string*)(yyvsp[-1].string_t))); ;
+#line 54 "grammar.y"
+{ /*std::cout << "\t[parser]: found closing tag - " << *((std::string*)($3)) << std::endl;*/ doc.AddClosingTag(*((std::string*)(yyvsp[-1].string_t))); ;
+    break;}
+case 16:
+#line 68 "grammar.y"
+{ (yyval.string_t) = GenNewAttrList(((htmlAttribute*)(yyvsp[0].string_t)));                                        ;
+    break;}
+case 17:
+#line 69 "grammar.y"
+{ (yyval.string_t) = AppendAttrInList(((htmlAttribute*)(yyvsp[0].string_t)), ((std::vector<htmlAttribute>*)(yyvsp[-1].string_t))); ;
     break;}
 case 18:
-#line 72 "grammar.y"
-{ std::cout << "\t[parser]: found attribute with value - " << *((std::string*)(yyvsp[-2].string_t)) << " = " << *((std::string*)(yyvsp[0].string_t)) << std::endl; ;
+#line 73 "grammar.y"
+{ /*std::cout << "\t[parser]: found attribute with value - " << *((std::string*)($1)) << " = " << *((std::string*)($3)) << std::endl;*/ (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[-2].string_t)), *((std::string*)(yyvsp[0].string_t))); ;
     break;}
 case 19:
-#line 73 "grammar.y"
-{ std::cout << "\t[parser]: found attribute - " << *((std::string*)(yyvsp[0].string_t)) << std::endl; ;
-    break;}
-case 20:
-#line 77 "grammar.y"
-{ std::cout << "\t[parser]: found single quote string - " << *((std::string*)(yyvsp[0].string_t)) << std::endl; ;
-    break;}
-case 21:
-#line 78 "grammar.y"
-{ std::cout << "\t[parser]: found double quote string - " << *((std::string*)(yyvsp[0].string_t)) << std::endl; ;
+#line 74 "grammar.y"
+{ /*std::cout << "\t[parser]: found attribute - " << *((std::string*)($1)) << std::endl;*/ (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[0].string_t))); ;
     break;}
 }
    /* the action file gets copied in in place of this dollarsign */
@@ -901,4 +902,4 @@ yyerrhandle:
   yystate = yyn;
   goto yynewstate;
 }
-#line 81 "grammar.y"
+#line 82 "grammar.y"

@@ -373,4 +373,4 @@
 
 #pragma endregion
 
-std::map<std::string, std::string> AttributeDatabase = ATTR_DATABASE_HTML5;
+//std::map<std::string, std::string> AttributeDatabase = ATTR_DATABASE_HTML5;

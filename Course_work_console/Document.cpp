@@ -1,10 +1,12 @@
 #include "Document.h"
 
+#include <list>
+
 void htmlDocument::AddOpeningTag(std::string tag_name)
 {
-	std::cout << "Adding tag: <" << tag_name << ">" << std::endl;
+	//std::cout << "Adding tag: <" << tag_name << ">" << std::endl;
 
-	if (!tag_name_is_correct(tag_name)) { std::cout << "\tTag name <" << tag_name << "> " << "does not exist\n"; }
+	if (!tag_name_is_correct(tag_name)) { std::cout << "[Tag Error] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; }
 
 	std::vector<std::string> names;
 	std::stack<std::string> state_before;
@@ -27,19 +29,27 @@ void htmlDocument::AddOpeningTag(std::string tag_name)
 	this->state_stack.push(tag);
 }
 
+void htmlDocument::AddOpeningTag(std::string tag_name, std::vector<htmlAttribute> attrs)
+{
+	this->AddOpeningTag(tag_name);
+	for (auto it : attrs)
+	{
+		this->AddAttributeToLastTag(it.GetName(), it.GetValue());
+	}
+}
+
 void htmlDocument::AddClosingTag(std::string tag_name)
 {
-	std::cout << "Removing tag: <" << tag_name << ">" << std::endl;
-
+	//std::cout << "Removing tag: <" << tag_name << ">" << std::endl;
 	std::string previous_tag_name = this->state_stack.top().GetName();
 
 	if (tag_name != previous_tag_name) 
 	{
-		std::cout << "Unequal closing tag <" << tag_name << "> for <" << previous_tag_name << ">" << std::endl;
+		std::cout << "[Tag Error] Unequal closing tag <" << tag_name << "> for <" << previous_tag_name << ">" << std::endl;
 	}
 
 	if (!state_stack.empty()) { this->state_stack.pop(); }
-	else { std::cout << "Unmatched closing tag: " << tag_name << std::endl; }
+	else { std::cout << "[Tag Error] Unclosed tag: <" << tag_name << ">" << std::endl; }
 }
 
 void htmlDocument::CheckEndState()
@@ -60,9 +70,7 @@ void htmlDocument::AddAttributeToLastTag(std::string attr, std::string val)
 	if (!state_stack.empty())
 	{
 		auto tag = state_stack.top();
-
-		std::cout << "\t Adding attribute to tag: <" << tag.GetName() << ">:\n";
-
+		//std::cout << "Adding attribute to tag: <" << tag.GetName() << ">: " << attr << " with value: " << val << std::endl;;
 		state_stack.pop();
 		tag.AddAttribute(attr, val);
 		state_stack.push(tag);

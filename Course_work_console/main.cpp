@@ -22,14 +22,18 @@ int yyerror(const char * err)
 	return -1;
 }
 
-extern FILE * yyin;
-htmlDocument doc("l", ATTR_DATABASE_HTML5, TEST);
-extern std::vector<std::string> strings;
+extern FILE *                                  yyin;
+extern std::vector<std::string>                strings;
+extern std::vector<std::vector<htmlAttribute>> attributes_lists;
+extern std::vector<htmlAttribute>              attributes;
 
+htmlDocument doc("l", ATTR_DATABASE_HTML5, TEST);
 
 int main()
 {
-	strings.reserve(10000000);
+	strings.reserve(1000000);
+	attributes_lists.reserve(1000000);
+	attributes.reserve(1000000);
 	yyin = fopen("input.txt", "r");
 	yyparse();
 	//std::string test("2ל772סכ12קב2‏2םד4זג';l32;'4l434of  32c23 4cu420 cu0qwpufasjr");
