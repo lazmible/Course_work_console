@@ -31,5 +31,6 @@ CLOSING_TAG             "</"[^<]+">"
 {SINGLE_QUOTE_STRING}  { /*printf("\t[lexer]: SINGLE_QUOTE_STRING: %s\n", yytext);*/  yylval.string_t = GenNewStrW(yytext);  return SINGLE_QUOTE_STRING;       }
 {DOUBLE_QUOTE_STRING}  { /*printf("\t[lexer]: DOUBLE_QUOTE_STRING: %s\n", yytext);*/  yylval.string_t = GenNewStrW(yytext);  return DOUBLE_QUOTE_STRING;       }
 {HEXCHARS}             { /*printf("\t[lexer]: HEXCHARS\n");*/                                                                return HEXCHARS;                  }
-[^<>/= ]*              { /*printf("\t[lexer]: TEXT\n");*/                             yylval.string_t = GenNewStr(yytext);   return TEXT;                      }
+[^<>/= ]*              { /*printf("\t[lexer]: TEXT - {%s}\n", yytext);*/              yylval.string_t = GenNewStr(yytext);   return TEXT;                      }
+">"(.|\n)*?"<" { printf("\t[lexer]: ANY_TEXT - {%s}\n", yytext);                 return ANY_TEXT;                      }
 %%

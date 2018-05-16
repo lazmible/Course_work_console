@@ -6,42 +6,41 @@
 #pragma region attribute_values
 // В куче атрибутов есть значения по умолчанию, надо видимо как-то учитывать их в классе
 
-
-#define ATTR_ACCESS_KEY_VALS       ("[0-9a-z]"               )  // numbers from 0 to 9 + little latinian letters
-#define ATTR_CLASS_VALS            ("[0-9a-zA-Z-_]+"         )  // numbers from 0 to 9 + latinian letters + "-" and "_"
-#define ATTR_CONTENTEDITABLE_VALS  ("(true|false|)"          )  // "true" , "false" or empty string
-#define ATTR_CONTEXTMENU_VALS      ("[a-zA-Z]+"              )  // !!!!! тут более сложная логика, чекни сайт
-#define ATTR_DIR_VALS              ("(ltr|rtl)"              )  // "ltr" or "rtl"
-#define ATTR_HIDDEN_VALS           ("(hidden|)"              )  // может вообще быть без строки, надо чекать выше по логике
-#define ATTR_ID_VALS               ("[a-zA-Z][a-zA-Z0-9-_]*" )
-#define ATTR_LANG_VALS             ("kek")                         // ебучий шаблон с кучей ебучих кодов языков, смотри на сайте, там много писать((((9
-#define ATTR_SPELLCHECK_VALS       ("(true|false|)"          )  // "true" , "false" or empty string
-#define ATTR_STYLE_VALS            ("[a-zA-Z0-9;:]+"         )  // CSS syntax
-#define ATTR_TABINDEX_VALS         ("[0-9]+"                 )  // positive integer value
-#define ATTR_TITLE_VALS            (".+"                     )  // any text
-#define ATTR_XMLLANG_VALS "kek"
-#define ATTR_ONBLUR_VARS     "kek"
-#define ATTR_ONCHANGE_VARS "kek"
-#define ATTR_ONCLICK_VALS "kek"
-#define ATTR_ONBLCLICK_VALS "kek"
-#define ATTR_ONFOCUS_VALS "kek"
-#define ATTR_ONKEYDOWN_VALS "kek"
-#define ATTR_ONKEYPRESS_VALS "kek"
-#define ATTR_ONKEYUP_VALS "kek"
-#define ATTR_ONLOAD_VALS "kek"
-#define ATTR_ONMOUSEDOWN_VALS "kek"
-#define ATTR_ONMOUSEMOVE_VALS "kek"
-#define ATTR_ONMOUSEOUT_VALS "kek"
-#define ATTR_ONMOUSEOVER_VALS "kek"
-#define ATTR_ONMOUSEUP_VALS "kek"
-#define ATTR_ONRESET_VALS "kek"
-#define ATTR_ONSELECT_VALS "kek"
-#define ATTR_ONSUBMIT_VALS "kek"
-#define ATTR_ONUNLOAD_VALS "kek"
-#define ATTR_ACCEPT_VALS "kek"
-#define ATTR_ACCEPTCHARSET_VALS "kek"
-#define ATTR_ACTION_VALS "kek"
-#define ATTR_ALIGN_VALS "kek"
+#define ATTR_ACCESS_KEY_VALS       ("[0-9a-z]"                      )  // Число от 0 до 9 или маленькая латинская буква
+#define ATTR_CLASS_VALS            ("[0-9a-zA-Z-_]+"                )  // ЧислА от 0 до 9, латинские буквЫ тире и _ повтор 1 и более раз
+#define ATTR_CONTENTEDITABLE_VALS  ("(true|false|)"                 )  // "true" , "false" или пустая строка
+#define ATTR_CONTEXTMENU_VALS      ("[a-zA-Z]+"                     )  // !!!!! тут более сложная логика, доделать похже
+#define ATTR_DIR_VALS              ("(ltr|rtl)"                     )  // "ltr" или "rtl"
+#define ATTR_HIDDEN_VALS           ("(hidden|)"                     )  // может вообще быть без строки, надо чекать выше по логике, доделать позже
+#define ATTR_ID_VALS               ("[a-zA-Z][a-zA-Z0-9-_]*"        )  // Начинается с буквы, дальше буква или цифра или тире или _
+#define ATTR_LANG_VALS             ("kek"                           )  // !!!!! БОЛЬШОЙ ШАБЛОН НА ЯЗЫКИ !!!!!
+#define ATTR_SPELLCHECK_VALS       ("(true|false|)"                 )  // "true" , "false" или пустая строка
+#define ATTR_STYLE_VALS            ("[a-zA-Z0-9;:]+"                )  // CSS syntax
+#define ATTR_TABINDEX_VALS         ("[0-9]+"                        )  // positive integer value
+#define ATTR_TITLE_VALS            (".+"                            )  // any text
+#define ATTR_XMLLANG_VALS          ("kek"                           )  // !!!!! БОЛЬШОЙ ШАБЛОН НА ЯЗЫКИ !!!!!
+#define ATTR_ONBLUR_VARS           (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONCHANGE_VARS         (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONCLICK_VALS          (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONBLCLICK_VALS        (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONFOCUS_VALS          (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONKEYDOWN_VALS        (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONKEYPRESS_VALS       (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONKEYUP_VALS          (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONLOAD_VALS           (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONMOUSEDOWN_VALS      (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONMOUSEMOVE_VALS      (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONMOUSEOUT_VALS       (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONMOUSEOVER_VALS      (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONMOUSEUP_VALS        (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONRESET_VALS          (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONSELECT_VALS         (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONSUBMIT_VALS         (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ONUNLOAD_VALS         (".+"                            )  // Значение скрипта, по идее надо создавать массив всех написанных скриптов, но лень
+#define ATTR_ACCEPT_VALS           ("[a-zA-Z/, ]*"                  )  // Имя MIME типа. Можно тупо перечислить, но задолбаешься 
+#define ATTR_ACCEPTCHARSET_VALS    ("[a-zA-Z-]*"                    )  // Значение кодировки
+#define ATTR_ACTION_VALS           ("[a-zA-Z/:;_1-9]*"              )  // URL 
+#define ATTR_ALIGN_VALS            ("(bottom|left|middle|right|top)")  // Перечисление слов
 #define ATTR_ALINK_VALS "kek"
 #define ATTR_ALLOWTRANSPARENCY_VALS "kek"
 #define ATTR_ALT_VALS "kek"
@@ -372,5 +371,3 @@
 }
 
 #pragma endregion
-
-//std::map<std::string, std::string> AttributeDatabase = ATTR_DATABASE_HTML5;

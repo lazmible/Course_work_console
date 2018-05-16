@@ -20,7 +20,7 @@
 
 
 %token HTML_COMMENT HTML_CONDITIONAL_COMMENT   HEXCHARS  
-OPENING_TAG_BRACKET CLOSING_TAG_BRACKET SLASH ASSIGNMENT OPENING_TAG CLOSING_TAG
+OPENING_TAG_BRACKET CLOSING_TAG_BRACKET SLASH ASSIGNMENT OPENING_TAG CLOSING_TAG ANY_TEXT
 
 
 %token<string_t> DOUBLE_QUOTE_STRING SINGLE_QUOTE_STRING TEXT TAG_NAME 
@@ -42,12 +42,16 @@ htmlElement
     : htmlTagOpen 
     | htmlTagClose                                
     | htmlTagSingle
-    | TEXT                        
+    | ANY_TEXT                        
     ;
 
 htmlTagOpen
-    : OPENING_TAG_BRACKET TEXT htmlAttributeList CLOSING_TAG_BRACKET { /*std::cout << "\t[parser]: found opening tag - " << *((std::string*)($2)) << std::endl;*/ doc.AddOpeningTag(*((std::string*)($2)),*((std::vector<htmlAttribute>*)($3))); }
-    | OPENING_TAG_BRACKET TEXT CLOSING_TAG_BRACKET                   { /*std::cout << "\t[parser]: found opening tag - " << *((std::string*)($2)) << std::endl;*/ doc.AddOpeningTag(*((std::string*)($2))); }
+    : OPENING_TAG_BRACKET TEXT htmlAttributeList CLOSING_TAG_BRACKET { std::cout << "\t[parser]: found opening tag - " << *((std::string*)($2)) << std::endl; doc.AddOpeningTag(*((std::string*)($2)),*((std::vector<htmlAttribute>*)($3))); }
+    | OPENING_TAG_BRACKET TEXT CLOSING_TAG_BRACKET                   { std::cout << "\t[parser]: found opening tag - " << *((std::string*)($2)) << std::endl; doc.AddOpeningTag(*((std::string*)($2))); }
+  //  | error TEXT htmlAttributeList CLOSING_TAG_BRACKET               { std::cout << "expected <" << std::endl; }
+  //  | error TEXT CLOSING_TAG_BRACKET                                 { std::cout << "expected <" << std::endl; }
+  //  | OPENING_TAG_BRACKET TEXT htmlAttributeList error               { std::cout << "expected >" << std::endl; }
+  //  | OPENING_TAG_BRACKET TEXT error                                 { std::cout << "expected >" << std::endl; }
     ;
 
 htmlTagClose
@@ -76,7 +80,8 @@ htmlAttribute
 
 htmlAttributeValue
     : SINGLE_QUOTE_STRING 
-    | DOUBLE_QUOTE_STRING 
+    | DOUBLE_QUOTE_STRING
+    | TEXT 
     ;
 
 %%

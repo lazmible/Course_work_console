@@ -11,10 +11,11 @@ typedef union
 #define	ASSIGNMENT	264
 #define	OPENING_TAG	265
 #define	CLOSING_TAG	266
-#define	DOUBLE_QUOTE_STRING	267
-#define	SINGLE_QUOTE_STRING	268
-#define	TEXT	269
-#define	TAG_NAME	270
+#define	ANY_TEXT	267
+#define	DOUBLE_QUOTE_STRING	268
+#define	SINGLE_QUOTE_STRING	269
+#define	TEXT	270
+#define	TAG_NAME	271
 
 
 extern YYSTYPE yylval;

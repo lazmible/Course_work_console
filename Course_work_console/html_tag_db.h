@@ -4,9 +4,9 @@
 #include <string>
 #include <map>
 
-#define  ATTR_UNIVERSAL              { "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang" }
-#define  ATTR_EVENTS                 { "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
-#define  ATTR_UNIVERSAL_AND_EVENTS   { "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define ATTR_UNIVERSAL              { "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang" }
+#define ATTR_EVENTS                 { "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define ATTR_UNIVERSAL_AND_EVENTS   { "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 
 #define TAG_A_ATTRS                  { "accesskey", "coords", "download", "href", "hreflang", "name", "rel", "shape", "tabindex", "target", "title", "type" }
 #define TAG_ABBR_ATTRS               { "title" }
@@ -153,7 +153,7 @@
 	{  "acronym"            , TAG_ACRONYM_ATTRS    },  \
 }
 
-/*
+
 #define TAG_DATABASE                                      \
 {                                                         \
 	{  "a"                  , TAG_A_ATTRS             },  \
@@ -167,7 +167,7 @@
 	{  "audio"              , TAG_AUDIO_ATTRS         },  \
 	{  "b"                  , TAG_B_ATTRS             },  \
 	{  "base"               , TAG_BASE_ATTRS          },  \
-	{  "basefont"           , TAG_BASEFONT_ATTRS      },  \  
+	{  "basefont"           , TAG_BASEFONT_ATTRS      },  \
 	{  "bdi"                , TAG_BDI_ATTRS           },  \
 	{  "bdo"                , TAG_BDO_ATTRS           },  \
 	{  "bgsound"            , TAG_BGSOUND_ATTRS       },  \
@@ -290,6 +290,6 @@
 	{  "wbr"                , TAG_WBR_ATTRS           },  \
 	{  "xmp"                , TAG_XMP_ATTRS           }   \
 }
-*/
 
-//std::map<std::string, std::vector<std::string>> TagDatabase = TEST;
+
+

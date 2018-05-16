@@ -27,10 +27,11 @@ extern std::vector<std::string>                strings;
 extern std::vector<std::vector<htmlAttribute>> attributes_lists;
 extern std::vector<htmlAttribute>              attributes;
 
-htmlDocument doc("l", ATTR_DATABASE_HTML5, TEST);
+htmlDocument doc("l", ATTR_DATABASE_HTML5, TAG_DATABASE);
 
 int main()
 {
+	std::map<std::string, std::vector<std::string>> kek = TAG_DATABASE;
 	strings.reserve(1000000);
 	attributes_lists.reserve(1000000);
 	attributes.reserve(1000000);
