@@ -21,16 +21,14 @@ CLOSING_TAG             "</"[^<]+">"
 
 %%
 
-[ \t\r\f\v\a\n]+       {                                                                                                                                       }
-"<!--"(.|\n)*?"-->"    { /*printf("\t[lexer]: HTML_COMMENT\n");*/                                                            return HTML_COMMENT;              }
-"<!["(.|\n)*?"]>"      { /*printf("\t[lexer]: HTML_CONDITIONAL_COMMENT\n");*/                                                return HTML_CONDITIONAL_COMMENT;  }
-"<"                    { /*printf("\t[lexer]: OPENING_TAG_BRACKET\n");*/                                                     return OPENING_TAG_BRACKET;       }
-">"                    { /*printf("\t[lexer]: CLOSING_TAG_BRACKET\n");*/                                                     return CLOSING_TAG_BRACKET;       }
-"="                    { /*printf("\t[lexer]: ASSIGNMENT\n");*/                                                              return ASSIGNMENT;                }
-"/"                    { /*printf("\t[lexer]: SLASH\n");*/                                                                   return SLASH;                     }
-{SINGLE_QUOTE_STRING}  { /*printf("\t[lexer]: SINGLE_QUOTE_STRING: %s\n", yytext);*/  yylval.string_t = GenNewStrW(yytext);  return SINGLE_QUOTE_STRING;       }
-{DOUBLE_QUOTE_STRING}  { /*printf("\t[lexer]: DOUBLE_QUOTE_STRING: %s\n", yytext);*/  yylval.string_t = GenNewStrW(yytext);  return DOUBLE_QUOTE_STRING;       }
-{HEXCHARS}             { /*printf("\t[lexer]: HEXCHARS\n");*/                                                                return HEXCHARS;                  }
-[^<>/= ]*              { /*printf("\t[lexer]: TEXT - {%s}\n", yytext);*/              yylval.string_t = GenNewStr(yytext);   return TEXT;                      }
-">"(.|\n)*?"<" { printf("\t[lexer]: ANY_TEXT - {%s}\n", yytext);                 return ANY_TEXT;                      }
+[ \t\r\f\v\a\n]+       {                                                                                                                                         }
+"<!--"(.|\n)*?"-->"    { DBG_PRINT("\t[lexer]: HTML_COMMENT", "", yylineno)                                                    return HTML_COMMENT;              }
+"<!["(.|\n)*?"]>"      { DBG_PRINT("\t[lexer]: HTML_CONDITIONAL_COMMENT", "", yylineno)                                        return HTML_CONDITIONAL_COMMENT;  }
+"<"                    { DBG_PRINT("\t[lexer]: OPENING_TAG_BRACKET", "", yylineno)                                             return OPENING_TAG_BRACKET;       }
+">"                    { DBG_PRINT("\t[lexer]: CLOSING_TAG_BRACKET", "", yylineno)                                             return CLOSING_TAG_BRACKET;       }
+"="                    { DBG_PRINT("\t[lexer]: ASSIGNMENT", "", yylineno)                                                      return ASSIGNMENT;                }
+"/"                    { DBG_PRINT("\t[lexer]: SLASH", "", yylineno)                                                           return SLASH;                     }
+{SINGLE_QUOTE_STRING}  { DBG_PRINT("\t[lexer]: SINGLE_QUOTE_STRING", yytext, yylineno)  yylval.string_t = GenNewStrW(yytext);  return SINGLE_QUOTE_STRING;       }
+{DOUBLE_QUOTE_STRING}  { DBG_PRINT("\t[lexer]: DOUBLE_QUOTE_STRING", yytext, yylineno)  yylval.string_t = GenNewStrW(yytext);  return DOUBLE_QUOTE_STRING;       }
+[^<>/= ]*              { DBG_PRINT("\t[lexer]: TEXT", yytext, yylineno)                 yylval.string_t = GenNewStr(yytext);   return TEXT;                      }
 %%

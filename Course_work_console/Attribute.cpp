@@ -1,15 +1,5 @@
 #include "Attribute.h"
 
-inline const std::string err_attr_name(std::string name)
-{
-	return ("Error invalid attribute name <" + name + ">");
-}
-
-inline const std::string err_attr_val(std::string val, std::string name)
-{
-	return ("Error invalid attribute value <" + val + "> for attribute <" + name + ">");
-}
-
 bool htmlAttribute::check_value()
 {
 	auto result = values_database.find(this->name);
@@ -23,14 +13,10 @@ bool htmlAttribute::check_value()
 	else { return false; }
 }
 
-std::vector<error> htmlAttribute::CheckState()
+void htmlAttribute::CheckState()
 {
-	std::vector<error> result;
-
-	//if (!this->check_name())  { result.push_back(error(0, 0, 0, err_attr_name(this->name)));             }
-	//if (!this->check_value()) { result.push_back(error(0, 0, 0, err_attr_val(this->value, this->name))); }
-
-	if (!this->check_value()) { std::cout << "[AttributeError] Invalid Attribute value: <" << this->value << "> for attribute <" << this->name << ">" << std::endl; }
-
-	return result;
+	if (!this->check_value()) 
+	{
+		std::cout << "[AttributeError] Unexpected Attribute value: <" << this->value << "> for attribute <" << this->name << ">" << std::endl; 
+	}
 }

@@ -8,12 +8,12 @@
 #define ATTR_EVENTS                 { "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define ATTR_UNIVERSAL_AND_EVENTS   { "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 
-#define TAG_A_ATTRS                  { "accesskey", "coords", "download", "href", "hreflang", "name", "rel", "shape", "tabindex", "target", "title", "type" }
-#define TAG_ABBR_ATTRS               { "title" }
+#define TAG_A_ATTRS                  { "accesskey", "coords", "download", "href", "hreflang", "name", "rel", "shape", "tabindex", "target", "title", "type", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
+#define TAG_ABBR_ATTRS               { "title", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_ACRONYM_ATTRS            ATTR_UNIVERSAL_AND_EVENTS
 #define TAG_ADDRESS_ATTRS	         ATTR_UNIVERSAL_AND_EVENTS
-#define TAG_APPLET_ATTRS    	     {"align", "alt", "archive", "code", "codebase", "height", "hspace", "vspace", "width"}
-#define TAG_AREA_ATTRS   		     {"accesskey", "alt", "coords", "href", "hreflang", "nohref", "shape", "tabindex", "target", "type"}
+#define TAG_APPLET_ATTRS    	     {"align", "alt", "archive", "code", "codebase", "height", "hspace", "vspace", "width", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
+#define TAG_AREA_ATTRS   		     {"accesskey", "alt", "coords", "href", "hreflang", "nohref", "shape", "tabindex", "target", "type", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
 #define	TAG_ARTICLE_ATTRS            {}
 #define TAG_ASIDE_ATTRS		         ATTR_UNIVERSAL
 #define TAG_AUDIO_ATTRS		         {"autoplay", "controls", "loop","muted", "preload", "src"}
@@ -25,12 +25,12 @@
 #define	TAG_BGSOUND_ATTRS	         {"balance", "loop", "src", "volume"}
 #define TAG_BIG_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS 
 #define TAG_BLINK_ATTRS              {}
-#define TAG_BLOCKQUOTE_ATTRS 	     {"cite"}
-#define TAG_BODY_ATTRS   		     {"alink", "background", "bgcolor", "bgcolor", "bgproperties", "bottommargin", "leftmargin", "link", "rightmargin", "scroll", "text", "topmargin", "vlink"}
+#define TAG_BLOCKQUOTE_ATTRS 	     {"cite", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_BODY_ATTRS   		     {"alink", "background", "bgcolor", "bgcolor", "bgproperties", "bottommargin", "leftmargin", "link", "rightmargin", "scroll", "text", "topmargin", "vlink", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_BR_ATTRS		         {"clear"}
-#define TAG_BUTTON_ATTRS    	     {"accesskey", "autofocus", "disabled", "from", "formaction", "formenctype", "formmethod", "formnovalidate", "formtarget", "name", "type", "value"}
-#define TAG_CANVAS_ATTRS    	     {"height", "width"}
-#define TAG_CAPTION_ATTRS   	     {"align", "valign"}
+#define TAG_BUTTON_ATTRS    	     {"accesskey", "autofocus", "disabled", "from", "formaction", "formenctype", "formmethod", "formnovalidate", "formtarget", "name", "type", "value", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_CANVAS_ATTRS    	     {"height", "width", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_CAPTION_ATTRS   	     {"align", "valign", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_CENTER_ATTRS             {}
 #define TAG_CITE_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS 
 #define TAG_CODE_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS 
@@ -40,46 +40,46 @@
 #define TAG_COMMENT_ATTRS            {}
 #define TAG_DATALIST_ATTRS	         {"id"}
 #define TAG_DD_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS 
-#define TAG_DEL_ATTRS   		     {"cite", "datetime"}
+#define TAG_DEL_ATTRS   		     {"cite", "datetime", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_DETAILS_ATTRS	         {"open"}
 #define TAG_DFN_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS 
 #define TAG_DIR_ATTRS                {}
-#define TAG_DIV_ATTRS   		     {"align", "title"}
+#define TAG_DIV_ATTRS   		     {"align", "title", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_DL_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS
 #define TAG_DT_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS
 #define TAG_EM_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS
 #define TAG_EMBED_ATTRS		         {"align", "height", "hidden", "hspace", "pluginspage", "src", "type", "vspace", "width"}
-#define TAG_FIELDSET_ATTRS   	     {"disabled", "form", "title"}
+#define TAG_FIELDSET_ATTRS   	     {"disabled", "form", "title", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_FIGCAPTION_ATTRS         {}
 #define TAG_FIGURE_ATTRS             {}
 #define TAG_FONT_ATTRS	       	     {"color", "face", "size"}
 #define TAG_FOOTER_ATTRS             {}
-#define TAG_FORM_ATTRS   		     {"accept-charset", "action", "autocomplete", "enctype", "method", "name", "novalidate", "target"}
+#define TAG_FORM_ATTRS   		     {"accept-charset", "action", "autocomplete", "enctype", "method", "name", "novalidate", "target", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_FRAME_ATTRS		         {"bordercolor", "frameborder", "name", "noresize", "scrolling", "src"}
 #define TAG_FRAMESET_ATTRS	         {"border", "bordercolor", "cols", "frameborder", "framespacing", "rows"}
-#define TAG_H1_ATTRS    		     {"align"}
-#define TAG_H2_ATTRS    		     {"align"}
-#define TAG_H3_ATTRS     		     {"align"}
-#define TAG_H4_ATTRS        	     {"align"}
-#define TAG_H5_ATTRS     		     {"align"}
-#define TAG_H6_ATTRS    		     {"align"}
+#define TAG_H1_ATTRS    		     {"align", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
+#define TAG_H2_ATTRS    		     {"align", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
+#define TAG_H3_ATTRS     		     {"align", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
+#define TAG_H4_ATTRS        	     {"align", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
+#define TAG_H5_ATTRS     		     {"align", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
+#define TAG_H6_ATTRS    		     {"align", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
 #define TAG_HEAD_ATTRS   		     {"profile"}
 #define TAG_HEADER_ATTRS             {}
 #define TAG_HGROUP_ATTRS             {}
-#define TAG_HR_ATTRS    		     {"align", "color", "noshade", "size", "width"}
-#define TAG_HTML_ATTRS   		     {"manifest", "title", "xmlns"}
+#define TAG_HR_ATTRS    		     {"align", "color", "noshade", "size", "width", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_HTML_ATTRS   		     {"manifest", "title", "xmlns",  "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang" }
 #define TAG_I_ATTRS			         ATTR_UNIVERSAL_AND_EVENTS
-#define TAG_IFRAME_ATTRS    	     {"align","allowtransparency","frameborder","height","hspace","marginheight","marginwidth","name","sandbox","scrolling","seamless","src","srcdoc","vspace","width"}
-#define TAG_IMG_ATTRS   		     {"align","alt","border","height","hspace","ismap","longdesc","lowsrc","src","usemap","vspace","width"}
-#define TAG_INPUT_ATTRS  		     {"accept","accesskey","align","alt","autocomplete","autofocus","border","checked","disabled","form","formaction","formenctype","formmethod","formnovalidate","formtarget","list","max","maxlength","min","multiple","name","pattern","placeholder","readonly","required","size","src","step","tabindex","type","value"}
-#define TAG_INS_ATTRS    		     {"cite", "datetime"}
+#define TAG_IFRAME_ATTRS    	     {"align","allowtransparency","frameborder","height","hspace","marginheight","marginwidth","name","sandbox","scrolling","seamless","src","srcdoc","vspace","width", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_IMG_ATTRS   		     {"align","alt","border","height","hspace","ismap","longdesc","lowsrc","src","usemap","vspace","width", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_INPUT_ATTRS  		     {"accept","accesskey","align","alt","autocomplete","autofocus","border","checked","disabled","form","formaction","formenctype","formmethod","formnovalidate","formtarget","list","max","maxlength","min","multiple","name","pattern","placeholder","readonly","required","size","src","step","tabindex","type","value", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_INS_ATTRS    		     {"cite", "datetime", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_ISINDEX_ATTRS	         {"action", "prompt"}
 #define TAG_KBD_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS
 #define TAG_KEYGEN_ATTRS	         {"autofocus", "challenge", "disabled", "form", "keytype", "name"}
 #define TAG_LABEL_ATTRS		         {"accesskey", "for"}
 #define TAG_LEGEND_ATTRS    	     {"accesskey", "align", "title"}
-#define TAG_LI_ATTRS    		     {"type", "value"}
-#define TAG_LINK_ATTRS   		     {"charset","href","media","rel","sizes","type"}
+#define TAG_LI_ATTRS    		     {"type", "value", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
+#define TAG_LINK_ATTRS   		     {"charset","href","media","rel","sizes","type", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang" }
 #define TAG_LISTING_ATTRS            {}
 #define TAG_MAIN_ATTRS			     ATTR_UNIVERSAL
 #define TAG_MAP_ATTRS			     {"name"}
@@ -94,16 +94,16 @@
 #define TAG_NOEMBED_ATTRS            {}
 #define TAG_NOFRAMES_ATTRS           {}
 #define TAG_OBJECT_ATTRS		     {"align","archive","classid","code","codebase","codetype","data","height","hspace","tabindex","type","vspace","width"}
-#define TAG_OL_ATTRS    		     {"reserved","start", "type"}
-#define TAG_OPTGROUP_ATTRS		     {"disabled", "label"}
-#define TAG_OPTION_ATTRS    	     {"disabled","label","selected","value"}
+#define TAG_OL_ATTRS    		     {"reserved","start", "type", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_OPTGROUP_ATTRS		     {"disabled", "label", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_OPTION_ATTRS    	     {"disabled","label","selected","value", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_OUTPUT_ATTRS		     {"for", "form", "name"}
-#define TAG_P_ATTRS				     {"align"}
+#define TAG_P_ATTRS				     {"align", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_PARAM_ATTRS			     {"name","type","value","valuetype"}
 #define TAG_PLAINTEXT_ATTRS          {}
 #define TAG_PRE_ATTRS	    	     ATTR_UNIVERSAL_AND_EVENTS 	
 #define TAG_PROGRESS_ATTRS		     {"value", "max"}
-#define TAG_Q_ATTRS				     {"cite"}
+#define TAG_Q_ATTRS				     {"cite", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_RP_ATTRS                 {}
 #define TAG_RT_ATTRS                 {}
 #define TAG_RUBY_ATTRS               {}
@@ -111,7 +111,7 @@
 #define TAG_SAMP_ATTRS	             ATTR_UNIVERSAL_AND_EVENTS 	
 #define TAG_SCRIPT_ATTRS		     {"async","defer","language","src","type"}
 #define TAG_SECTION_ATTRS	         ATTR_UNIVERSAL_AND_EVENTS 	
-#define TAG_SELECT_ATTRS		     {"accesskey","autofocus","disabled","form","multiple","name","required","size","tabindex"}
+#define TAG_SELECT_ATTRS		     {"accesskey","autofocus","disabled","form","multiple","name","required","size","tabindex", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_SMALL_ATTRS			     ATTR_UNIVERSAL_AND_EVENTS 
 #define	TAG_SOURCE_ATTRS		     {"media", "src", "type"}
 #define TAG_SPACER_ATTRS		     {"align", "height", "size", "type", "width"}
@@ -122,20 +122,20 @@
 #define TAG_SUB_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS 		
 #define TAG_SUMMARY_ATTRS		     {}
 #define TAG_SUP_ATTRS	    	     ATTR_UNIVERSAL_AND_EVENTS 		
-#define TAG_TABLE_ATTRS			     {"align","background","bgcolor","border","bordercolor","cellpadding","cellspacing","cols","frame","height","rules","summary","width"}
-#define TAG_TBODY_ATTRS  		     {"align","bgcolor","char","charoff","valign"}
-#define TAG_TD_ATTRS     		     {"abbr","align","axis","background","bgcolor","bordercolor","char","charoff","colspan","headers","height","nowrap","rowspan","scope","valign","width"}
-#define TAG_TEXTAREA_ATTRS  	     {"accesskey","autofocus","cols","disabled","form","maxlength","name","placeholder","readonly","required","rows","tabindex","wrap"}	
-#define TAG_TFOOT_ATTRS 		     {"align","bgcolor","char","charoff","valign"}
-#define TAG_TH_ATTRS     		     {"abbr","align","axis","background","bgcolor","bordercolor","char","charoff","colspan","headers","height","nowrap","rowspan","scope","valign","width"}
-#define TAG_THREAD_ATTRS    	     {"align","bgcolor","char","charoff","valign"}
+#define TAG_TABLE_ATTRS			     {"align","background","bgcolor","border","bordercolor","cellpadding","cellspacing","cols","frame","height","rules","summary","width", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_TBODY_ATTRS  		     {"align","bgcolor","char","charoff","valign", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_TD_ATTRS     		     {"abbr","align","axis","background","bgcolor","bordercolor","char","charoff","colspan","headers","height","nowrap","rowspan","scope","valign","width", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_TEXTAREA_ATTRS  	     {"accesskey","autofocus","cols","disabled","form","maxlength","name","placeholder","readonly","required","rows","tabindex","wrap", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }	
+#define TAG_TFOOT_ATTRS 		     {"align","bgcolor","char","charoff","valign", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_TH_ATTRS     		     {"abbr","align","axis","background","bgcolor","bordercolor","char","charoff","colspan","headers","height","nowrap","rowspan","scope","valign","width", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_THREAD_ATTRS    	     {"align","bgcolor","char","charoff","valign", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_TIME_ATTRS			     {"datetime", "pubdate"}
 #define TAG_TITLE_ATTRS              {}
-#define TAG_TR_ATTRS     		     {"align","bgcolor","bordercolor","char","charoff","valign"}
+#define TAG_TR_ATTRS     		     {"align","bgcolor","bordercolor","char","charoff","valign", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_TRACK_ATTRS			     {"kind", "src", "srclang", "label", "default"}
 #define TAG_TT_ATTRS                 {}
 #define TAG_U_ATTRS		             {}
-#define TAG_UL_ATTRS     	         {"type"}
+#define TAG_UL_ATTRS     	         {"type", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_VAR_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS 
 #define TAG_VIDEO_ATTRS		         {"autoplay","controls","height","loop","poster","preload","src","width"}
 #define TAG_WBR_ATTRS                {}
@@ -152,6 +152,7 @@
     { "kek"                 ,  {}                  },  \
 	{  "acronym"            , TAG_ACRONYM_ATTRS    },  \
 }
+
 
 
 #define TAG_DATABASE                                      \
@@ -277,7 +278,7 @@
 	{  "textarea"           , TAG_TEXTAREA_ATTRS      },  \
 	{  "tfoot"              , TAG_TFOOT_ATTRS         },  \
 	{  "th"                 , TAG_TH_ATTRS            },  \
-	{  "thread"             , TAG_THREAD_ATTRS        },  \
+	{  "thead"              , TAG_THREAD_ATTRS        },  \
 	{  "time"               , TAG_TIME_ATTRS          },  \
 	{  "title"              , TAG_TITLE_ATTRS         },  \
 	{  "tr"                 , TAG_TR_ATTRS            },  \
@@ -290,6 +291,8 @@
 	{  "wbr"                , TAG_WBR_ATTRS           },  \
 	{  "xmp"                , TAG_XMP_ATTRS           }   \
 }
+
+static std::map<std::string, std::vector<std::string>> m = TAG_DATABASE;
 
 
 

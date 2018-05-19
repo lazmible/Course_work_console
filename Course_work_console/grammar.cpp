@@ -32,9 +32,10 @@
     int  yyerror (const char * err);
     int  yylex   ();
 	extern FILE  * yyin;
+    extern int yylineno;
     extern htmlDocument doc;
 
-#line 16 "grammar.y"
+#line 17 "grammar.y"
 typedef union
 {
     void *  string_t     ;
@@ -66,11 +67,11 @@ typedef
 
 
 
-#define	YYFINAL		32
+#define	YYFINAL		38
 #define	YYFLAG		-32768
 #define	YYNTBASE	17
 
-#define YYTRANSLATE(x) ((unsigned)(x) <= 271 ? yytranslate[x] : 26)
+#define YYTRANSLATE(x) ((unsigned)(x) <= 271 ? yytranslate[x] : 27)
 
 static const char yytranslate[] = {     0,
      2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -107,26 +108,27 @@ static const char yytranslate[] = {     0,
 static const short yyprhs[] = {     0,
      0,     1,     3,     6,     8,    10,    12,    14,    16,    21,
     25,    30,    36,    41,    43,    45,    47,    50,    54,    56,
-    58,    60
+    58,    60,    62,    64,    66,    68,    70,    72,    74
 };
 
 static const short yyrhs[] = {    -1,
     18,     0,    17,    18,     0,    22,     0,    19,     0,    20,
-     0,    21,     0,    12,     0,     6,    15,    23,     7,     0,
+     0,    21,     0,    26,     0,     6,    15,    23,     7,     0,
      6,    15,     7,     0,     6,     8,    15,     7,     0,     6,
     15,    23,     8,     7,     0,     6,    15,     8,     7,     0,
      3,     0,     4,     0,    24,     0,    23,    24,     0,    15,
      9,    25,     0,    15,     0,    14,     0,    13,     0,    15,
-     0
+     0,    15,     0,     8,     0,     9,     0,    14,     0,    13,
+     0,     6,     0,     7,     0
 };
 
 #endif
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    35,    36,    37,    38,    42,    43,    44,    45,    49,    50,
-    58,    62,    63,    67,    68,    72,    73,    77,    78,    82,
-    83,    84
+    36,    37,    38,    39,    43,    44,    45,    46,    50,    51,
+    55,    59,    60,    64,    65,    69,    70,    74,    75,    79,
+    80,    81,    85,    86,    87,    88,    89,    90,    91
 };
 
 static const char * const yytname[] = {   "$","error","$undefined.","HTML_COMMENT",
@@ -134,58 +136,60 @@ static const char * const yytname[] = {   "$","error","$undefined.","HTML_COMMEN
 "SLASH","ASSIGNMENT","OPENING_TAG","CLOSING_TAG","ANY_TEXT","DOUBLE_QUOTE_STRING",
 "SINGLE_QUOTE_STRING","TEXT","TAG_NAME","htmlDocument","htmlElement","htmlTagOpen",
 "htmlTagClose","htmlTagSingle","htmlComment","htmlAttributeList","htmlAttribute",
-"htmlAttributeValue",""
+"htmlAttributeValue","htmlContent",""
 };
 #endif
 
 static const short yyr1[] = {     0,
     17,    17,    17,    17,    18,    18,    18,    18,    19,    19,
     20,    21,    21,    22,    22,    23,    23,    24,    24,    25,
-    25,    25
+    25,    25,    26,    26,    26,    26,    26,    26,    26
 };
 
 static const short yyr2[] = {     0,
      0,     1,     2,     1,     1,     1,     1,     1,     4,     3,
      4,     5,     4,     1,     1,     1,     2,     3,     1,     1,
-     1,     1
+     1,     1,     1,     1,     1,     1,     1,     1,     1
 };
 
 static const short yydefact[] = {     1,
-    14,    15,     0,     8,     0,     2,     5,     6,     7,     4,
-     0,     0,     3,     0,    10,     0,    19,     0,    16,    11,
-    13,     0,     9,     0,    17,    21,    20,    22,    18,    12,
-     0,     0
+    14,    15,    28,    29,    24,    25,    27,    26,    23,     0,
+     2,     5,     6,     7,     4,     8,     0,     0,     3,     0,
+    10,     0,    19,     0,    16,    11,    13,     0,     9,     0,
+    17,    21,    20,    22,    18,    12,     0,     0
 };
 
-static const short yydefgoto[] = {     5,
-     6,     7,     8,     9,    10,    18,    19,    29
+static const short yydefgoto[] = {    10,
+    11,    12,    13,    14,    15,    24,    25,    35,    16
 };
 
-static const short yypact[] = {    -2,
--32768,-32768,     3,-32768,     0,-32768,-32768,-32768,-32768,-32768,
-   -12,     1,-32768,     8,-32768,    10,    -4,     6,-32768,-32768,
--32768,     9,-32768,    12,-32768,-32768,-32768,-32768,-32768,-32768,
-     7,-32768
+static const short yypact[] = {    13,
+-32768,-32768,     3,-32768,-32768,-32768,-32768,-32768,-32768,     0,
+-32768,-32768,-32768,-32768,-32768,-32768,   -14,    -5,-32768,    22,
+-32768,    23,    24,    -3,-32768,-32768,-32768,    10,-32768,    25,
+-32768,-32768,-32768,-32768,-32768,-32768,    31,-32768
 };
 
 static const short yypgoto[] = {-32768,
-    15,-32768,-32768,-32768,-32768,-32768,    11,-32768
+    26,-32768,-32768,-32768,-32768,-32768,    11,-32768,-32768
 };
 
 
-#define	YYLAST		29
+#define	YYLAST		36
 
 
-static const short yytable[] = {    31,
-     1,     2,    14,     3,    22,     3,    32,    15,    16,     4,
-    11,     4,    23,    24,    20,    17,    21,    12,    30,    13,
-    17,    26,    27,    28,     0,     0,     0,     0,    25
+static const short yytable[] = {    37,
+    20,    21,    22,    29,    30,     3,     4,     5,     6,    23,
+    17,    23,     7,     8,     9,     1,     2,    18,     3,     4,
+     5,     6,    32,    33,    34,     7,     8,     9,    26,    27,
+    38,    36,    28,     0,    31,    19
 };
 
 static const short yycheck[] = {     0,
-     3,     4,    15,     6,     9,     6,     0,     7,     8,    12,
-     8,    12,     7,     8,     7,    15,     7,    15,     7,     5,
-    15,    13,    14,    15,    -1,    -1,    -1,    -1,    18
+    15,     7,     8,     7,     8,     6,     7,     8,     9,    15,
+     8,    15,    13,    14,    15,     3,     4,    15,     6,     7,
+     8,     9,    13,    14,    15,    13,    14,    15,     7,     7,
+     0,     7,     9,    -1,    24,    10
 };
 /* -*-C-*-  Note some compilers choke on comments on `#line' lines.  */
 #line 3 "bison.simple"
@@ -680,32 +684,36 @@ yyreduce:
   switch (yyn) {
 
 case 9:
-#line 49 "grammar.y"
-{ std::cout << "\t[parser]: found opening tag - " << *((std::string*)(yyvsp[-2].string_t)) << std::endl; doc.AddOpeningTag(*((std::string*)(yyvsp[-2].string_t)),*((std::vector<htmlAttribute>*)(yyvsp[-1].string_t))); ;
+#line 50 "grammar.y"
+{ DBG_PRINT("\t[parser]: found opening tag",*((std::string*)(yyvsp[-2].string_t)), yylineno); doc.AddOpeningTag(*((std::string*)(yyvsp[-2].string_t)),*((std::vector<htmlAttribute>*)(yyvsp[-1].string_t))); ;
     break;}
 case 10:
-#line 50 "grammar.y"
-{ std::cout << "\t[parser]: found opening tag - " << *((std::string*)(yyvsp[-1].string_t)) << std::endl; doc.AddOpeningTag(*((std::string*)(yyvsp[-1].string_t))); ;
+#line 51 "grammar.y"
+{ DBG_PRINT("\t[parser]: found opening tag",*((std::string*)(yyvsp[-1].string_t)), yylineno); doc.AddOpeningTag(*((std::string*)(yyvsp[-1].string_t)));                                      ;
     break;}
 case 11:
-#line 58 "grammar.y"
-{ /*std::cout << "\t[parser]: found closing tag - " << *((std::string*)($3)) << std::endl;*/ doc.AddClosingTag(*((std::string*)(yyvsp[-1].string_t))); ;
+#line 55 "grammar.y"
+{ DBG_PRINT("\t[parser]: found closing tag",*((std::string*)(yyvsp[-1].string_t)),yylineno); doc.AddClosingTag(*((std::string*)(yyvsp[-1].string_t))); ;
+    break;}
+case 12:
+#line 59 "grammar.y"
+{ DBG_PRINT("\t[parser]: found single tag",*((std::string*)(yyvsp[-3].string_t)),yylineno); doc.AddSingleTag(*((std::string*)(yyvsp[-3].string_t))); ;
     break;}
 case 16:
-#line 72 "grammar.y"
+#line 69 "grammar.y"
 { (yyval.string_t) = GenNewAttrList(((htmlAttribute*)(yyvsp[0].string_t)));                                        ;
     break;}
 case 17:
-#line 73 "grammar.y"
+#line 70 "grammar.y"
 { (yyval.string_t) = AppendAttrInList(((htmlAttribute*)(yyvsp[0].string_t)), ((std::vector<htmlAttribute>*)(yyvsp[-1].string_t))); ;
     break;}
 case 18:
-#line 77 "grammar.y"
-{ /*std::cout << "\t[parser]: found attribute with value - " << *((std::string*)($1)) << " = " << *((std::string*)($3)) << std::endl;*/ (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[-2].string_t)), *((std::string*)(yyvsp[0].string_t))); ;
+#line 74 "grammar.y"
+{ DBG_PRINT("\t[parser]: found attribute with value",*((std::string*)(yyvsp[-2].string_t)) + " = " + *((std::string*)(yyvsp[0].string_t)), yylineno); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[-2].string_t)), *((std::string*)(yyvsp[0].string_t))); ;
     break;}
 case 19:
-#line 78 "grammar.y"
-{ /*std::cout << "\t[parser]: found attribute - " << *((std::string*)($1)) << std::endl;*/ (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[0].string_t))); ;
+#line 75 "grammar.y"
+{ DBG_PRINT("\t[parser]: found attribute",*((std::string*)(yyvsp[0].string_t)), yylineno); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[0].string_t))); ;
     break;}
 }
    /* the action file gets copied in in place of this dollarsign */
@@ -905,4 +913,4 @@ yyerrhandle:
   yystate = yyn;
   goto yynewstate;
 }
-#line 87 "grammar.y"
+#line 93 "grammar.y"

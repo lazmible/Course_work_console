@@ -15,7 +15,6 @@ private:
 	const db_attr_type &  attribute_database;
 	const db_tag_type  &  tag_database;
 
-	std::vector<error> check_attributes();
 	std::vector<error> check_precursory();
 	bool check_name();
 	bool check_attr_name(std::string name);

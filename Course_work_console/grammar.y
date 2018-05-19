@@ -10,6 +10,7 @@
     int  yyerror (const char * err);
     int  yylex   ();
 	extern FILE  * yyin;
+    extern int yylineno;
     extern htmlDocument doc;
 %}
 
@@ -42,24 +43,20 @@ htmlElement
     : htmlTagOpen 
     | htmlTagClose                                
     | htmlTagSingle
-    | ANY_TEXT                        
+    | htmlContent                        
     ;
 
 htmlTagOpen
-    : OPENING_TAG_BRACKET TEXT htmlAttributeList CLOSING_TAG_BRACKET { std::cout << "\t[parser]: found opening tag - " << *((std::string*)($2)) << std::endl; doc.AddOpeningTag(*((std::string*)($2)),*((std::vector<htmlAttribute>*)($3))); }
-    | OPENING_TAG_BRACKET TEXT CLOSING_TAG_BRACKET                   { std::cout << "\t[parser]: found opening tag - " << *((std::string*)($2)) << std::endl; doc.AddOpeningTag(*((std::string*)($2))); }
-  //  | error TEXT htmlAttributeList CLOSING_TAG_BRACKET               { std::cout << "expected <" << std::endl; }
-  //  | error TEXT CLOSING_TAG_BRACKET                                 { std::cout << "expected <" << std::endl; }
-  //  | OPENING_TAG_BRACKET TEXT htmlAttributeList error               { std::cout << "expected >" << std::endl; }
-  //  | OPENING_TAG_BRACKET TEXT error                                 { std::cout << "expected >" << std::endl; }
+    : OPENING_TAG_BRACKET TEXT htmlAttributeList CLOSING_TAG_BRACKET { DBG_PRINT("\t[parser]: found opening tag",*((std::string*)($2)), yylineno); doc.AddOpeningTag(*((std::string*)($2)),*((std::vector<htmlAttribute>*)($3))); }
+    | OPENING_TAG_BRACKET TEXT CLOSING_TAG_BRACKET                   { DBG_PRINT("\t[parser]: found opening tag",*((std::string*)($2)), yylineno); doc.AddOpeningTag(*((std::string*)($2)));                                      }
     ;
 
 htmlTagClose
-    : OPENING_TAG_BRACKET SLASH TEXT CLOSING_TAG_BRACKET   { /*std::cout << "\t[parser]: found closing tag - " << *((std::string*)($3)) << std::endl;*/ doc.AddClosingTag(*((std::string*)($3))); }
+    : OPENING_TAG_BRACKET SLASH TEXT CLOSING_TAG_BRACKET   { DBG_PRINT("\t[parser]: found closing tag",*((std::string*)($3)),yylineno); doc.AddClosingTag(*((std::string*)($3))); }
     ;
 
 htmlTagSingle
-    : OPENING_TAG_BRACKET TEXT htmlAttributeList SLASH CLOSING_TAG_BRACKET 
+    : OPENING_TAG_BRACKET TEXT htmlAttributeList SLASH CLOSING_TAG_BRACKET { DBG_PRINT("\t[parser]: found single tag",*((std::string*)($2)),yylineno); doc.AddSingleTag(*((std::string*)($2))); } 
     | OPENING_TAG_BRACKET TEXT SLASH CLOSING_TAG_BRACKET
     ;
 
@@ -74,8 +71,8 @@ htmlAttributeList
     ;
 
 htmlAttribute 
-    : TEXT ASSIGNMENT htmlAttributeValue { /*std::cout << "\t[parser]: found attribute with value - " << *((std::string*)($1)) << " = " << *((std::string*)($3)) << std::endl;*/ ($$) = GenNewAttr(*((std::string*)($1)), *((std::string*)($3))); }
-    | TEXT                               { /*std::cout << "\t[parser]: found attribute - " << *((std::string*)($1)) << std::endl;*/ ($$) = GenNewAttr(*((std::string*)($1))); }
+    : TEXT ASSIGNMENT htmlAttributeValue { DBG_PRINT("\t[parser]: found attribute with value",*((std::string*)($1)) + " = " + *((std::string*)($3)), yylineno); ($$) = GenNewAttr(*((std::string*)($1)), *((std::string*)($3))); }
+    | TEXT                               { DBG_PRINT("\t[parser]: found attribute",*((std::string*)($1)), yylineno); ($$) = GenNewAttr(*((std::string*)($1))); }
     ;
 
 htmlAttributeValue
@@ -83,5 +80,14 @@ htmlAttributeValue
     | DOUBLE_QUOTE_STRING
     | TEXT 
     ;
+
+htmlContent
+    : TEXT
+    | SLASH
+    | ASSIGNMENT
+    | SINGLE_QUOTE_STRING
+    | DOUBLE_QUOTE_STRING
+    | OPENING_TAG_BRACKET
+    | CLOSING_TAG_BRACKET
 
 %%

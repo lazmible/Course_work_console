@@ -1,10 +1,5 @@
 #include "Tag.h"
 
-inline std::string attr_tag_err(std::string tag_name, std::string attr_name)
-{
-	return ("Error, invalid attribute <" + attr_name + "> pushed to tag <" + tag_name + ">");
-}
-
 htmlTag::htmlTag(std::string nm, std::stack<std::string> st, const db_attr_type & attr_db, const db_tag_type & tag_db)
 	: name(nm), state_before(st), attribute_database(attr_db), tag_database(tag_db)
 {
@@ -14,23 +9,8 @@ htmlTag::htmlTag(std::string nm, std::stack<std::string> st, const db_attr_type 
 	}
 	else
 	{
-	//	std::cout << "Tag: " << this->name << " does not exists in database" << std::endl;
+		std::cout << "[TagError] Unexpexted Tag name: <" << this->name << ">" << std::endl;
 	}
-}
-
-std::vector<error> htmlTag::check_attributes() 
-{
-	std::vector<error> result;
-	for (auto attr : attribute_list)
-	{
-		bool attr_found = false;
-		for (auto valid_attr : valid_attribute_names_list)
-		{
-			if (valid_attr == attr.GetName()) { break; attr_found = true; }
-		} 
-		if (!attr_found) { result.push_back(error(0, 0, 0, attr_tag_err(this->name, attr.GetName()))); }
-	}
-	return result;
 }
 
 std::vector<error> htmlTag::check_precursory()
@@ -58,6 +38,7 @@ bool htmlTag::check_attr_name(std::string name)
 
 void htmlTag::AddAttribute(std::string name, std::string val)
 {
+//	DBG()
 	if (check_attr_name(name))
 	{
 		htmlAttribute attribute(name, this->attribute_database, "", val);
@@ -65,6 +46,6 @@ void htmlTag::AddAttribute(std::string name, std::string val)
 	}
 	else
 	{
-		std::cout << "[AttributeError] Invalid Attribute name: <" << name << ">" << " for tag <" << this->name << ">" << std::endl;
+		std::cout << "[TagError] Unexpected Attribute name: <" << name << ">" << " for tag <" << this->name << ">" << std::endl;
 	}
 }

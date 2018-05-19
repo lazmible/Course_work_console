@@ -31,24 +31,31 @@ htmlDocument doc("l", ATTR_DATABASE_HTML5, TAG_DATABASE);
 
 int main()
 {
+	
 	std::map<std::string, std::vector<std::string>> kek = TAG_DATABASE;
 	strings.reserve(1000000);
 	attributes_lists.reserve(1000000);
 	attributes.reserve(1000000);
 	yyin = fopen("input.txt", "r");
 	yyparse();
-	//std::string test("2ל772סכ12קב2‏2םד4זג';l32;'4l434of  32c23 4cu420 cu0qwpufasjr");
-	//std::regex re(".+");
-	//std::smatch kek;
-	//std::cout << std::regex_match(test, kek, re) << std::endl;
-
-	//doc.AddOpeningTag("html");
-	//doc.AddOpeningTag("a");
-	//doc.AddAttributeToLastTag("accesskey", "1");
-	//doc.AddClosingTag("html");
-
-
-	//doc.CheckEndState();
+	
+	/*
+	std::map<std::string, std::string> test_db(ATTR_DATABASE_HTML5);
+	
+	for (auto [key, value] : test_db)
+	{
+		try
+		{
+			std::regex re(value);
+			std::smatch kek;
+			//std::cout << std::regex_match(test, kek, re) << std::endl;
+		}
+		catch (std::regex_error)
+		{
+			std::cout << "regex error on key: " << key << std::endl;
+		}
+	}
+	*/
 	system("pause");
 	return 0;
 }
