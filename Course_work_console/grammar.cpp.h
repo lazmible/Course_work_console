@@ -9,13 +9,10 @@ typedef union
 #define	SLASH	262
 #define	ASSIGNMENT	263
 #define	SCRIPT	264
-#define	IGNORE	265
-#define	COMMENT_START	266
-#define	COMMENT_END	267
-#define	DOUBLE_QUOTE_STRING	268
-#define	SINGLE_QUOTE_STRING	269
-#define	TEXT	270
-#define	TAG_NAME	271
+#define	DOUBLE_QUOTE_STRING	265
+#define	SINGLE_QUOTE_STRING	266
+#define	TEXT	267
+#define	TAG_NAME	268
 
 
 extern YYSTYPE yylval;

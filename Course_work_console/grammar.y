@@ -21,7 +21,7 @@
 
 
 %token HTML_COMMENT HTML_CONDITIONAL_COMMENT    
-OPENING_TAG_BRACKET CLOSING_TAG_BRACKET SLASH ASSIGNMENT SCRIPT IGNORE COMMENT_START COMMENT_END
+OPENING_TAG_BRACKET CLOSING_TAG_BRACKET SLASH ASSIGNMENT SCRIPT
 
 
 %token<string_t> DOUBLE_QUOTE_STRING SINGLE_QUOTE_STRING TEXT TAG_NAME
@@ -36,8 +36,6 @@ htmlDocument
     :  
     | htmlElement
     | htmlDocument htmlElement
-    | htmlComment
-    | htmlDocument htmlComment
     | htmlContent
     | htmlDocument htmlContent
     ;
@@ -78,23 +76,12 @@ htmlAttributeValue
     | TEXT 
     ;
 
-htmlComment
-    : COMMENT_START htmlContent COMMENT_END
-    | COMMENT_START COMMENT_END 
-    ;
-
 htmlContent
-    : OPENING_TAG_BRACKET
-    | CLOSING_TAG_BRACKET
-    | ASSIGNMENT
+    : ASSIGNMENT
     | SLASH
     | TEXT
-    | IGNORE
-    | htmlContent OPENING_TAG_BRACKET
-    | htmlContent CLOSING_TAG_BRACKET
     | htmlContent ASSIGNMENT
     | htmlContent SLASH
     | htmlContent TEXT
-    | htmlContent IGNORE
     ;
 %%

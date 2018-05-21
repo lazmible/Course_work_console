@@ -10,7 +10,7 @@
 
 #include "error.h"
 
-#define DEBUG_LEVEL_2
+//#define DEBUG_LEVEL_2
 
 #ifdef DEBUG_LEVEL_2 
     #define DBG(a, b) { std::cout << a << " : " << b << std::endl; }
