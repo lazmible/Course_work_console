@@ -44,6 +44,7 @@
     <None Include="lexer.l">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="input.html" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grammar.cpp.h">
@@ -76,10 +77,5 @@
     <ClInclude Include="utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="input.txt">
-      <Filter>Source Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>

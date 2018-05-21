@@ -1,13 +1,6 @@
 %option yylineno
 %option nounistd
 %option noyywrap
-
-DOUBLE_QUOTE_STRING     "\""[^<\"]*"\""
-SINGLE_QUOTE_STRING     "\'"[^<\']*"\'"
-HEXCHARS                "#"[a-f0-9A-F]+ 
-DECCHARS                [0-9]+"%"?
-OPENING_TAG             "<"[^<]+">"
-CLOSING_TAG             "</"[^<]+">"
     
 %{
     #include <stdio.h>
@@ -21,14 +14,14 @@ CLOSING_TAG             "</"[^<]+">"
 
 %%
 
-[ \t\r\f\v\a\n]+       {                                                                                                                                         }
-"<!--"(.|\n)*?"-->"    { DBG_PRINT("\t[lexer]: HTML_COMMENT", "", yylineno)                                                    return HTML_COMMENT;              }
-"<!["(.|\n)*?"]>"      { DBG_PRINT("\t[lexer]: HTML_CONDITIONAL_COMMENT", "", yylineno)                                        return HTML_CONDITIONAL_COMMENT;  }
-"<"                    { DBG_PRINT("\t[lexer]: OPENING_TAG_BRACKET", "", yylineno)                                             return OPENING_TAG_BRACKET;       }
-">"                    { DBG_PRINT("\t[lexer]: CLOSING_TAG_BRACKET", "", yylineno)                                             return CLOSING_TAG_BRACKET;       }
-"="                    { DBG_PRINT("\t[lexer]: ASSIGNMENT", "", yylineno)                                                      return ASSIGNMENT;                }
-"/"                    { DBG_PRINT("\t[lexer]: SLASH", "", yylineno)                                                           return SLASH;                     }
-{SINGLE_QUOTE_STRING}  { DBG_PRINT("\t[lexer]: SINGLE_QUOTE_STRING", yytext, yylineno)  yylval.string_t = GenNewStrW(yytext);  return SINGLE_QUOTE_STRING;       }
-{DOUBLE_QUOTE_STRING}  { DBG_PRINT("\t[lexer]: DOUBLE_QUOTE_STRING", yytext, yylineno)  yylval.string_t = GenNewStrW(yytext);  return DOUBLE_QUOTE_STRING;       }
-[^<>/= ]*              { DBG_PRINT("\t[lexer]: TEXT", yytext, yylineno)                 yylval.string_t = GenNewStr(yytext);   return TEXT;                      }
+[ \t\r\f\v\a\n]+                    { }
+"<!--"                              { DBG_PRINT("\t[lexer]: Comment Started", "", yylineno);          PushIgnore();                          return COMMENT_START;  }
+"-->"                               { DBG_PRINT("\t[lexer]: Comment Ended", "", yylineno);            PopIgnore();                           return COMMENT_END;    }
+"<"                                 { DBG_PRINT("\t[lexer]: OPENING_TAG_BRACKET", "", yylineno);                                             return OPENING_TAG_BRACKET;       }
+">"                                 { DBG_PRINT("\t[lexer]: CLOSING_TAG_BRACKET", "", yylineno);                                             return CLOSING_TAG_BRACKET;       }
+"="                                 { DBG_PRINT("\t[lexer]: ASSIGNMENT", "", yylineno);                                                      return IgnoreModeOn() ? IGNORE : ASSIGNMENT;                }
+"/"                                 { DBG_PRINT("\t[lexer]: SLASH", "", yylineno);                                                           return SLASH;                     }
+\'(?:[^\\']+|\\.)*\'                { DBG_PRINT("\t[lexer]: SINGLE_QUOTE_STRING", yytext, yylineno);  yylval.string_t = GenNewStrW(yytext);  return IgnoreModeOn() ? IGNORE : SINGLE_QUOTE_STRING;       }
+\"(?:[^\\"]+|\\.)*\"                { DBG_PRINT("\t[lexer]: DOUBLE_QUOTE_STRING", yytext, yylineno);  yylval.string_t = GenNewStrW(yytext);  return IgnoreModeOn() ? IGNORE : DOUBLE_QUOTE_STRING;       }
+[^<>/= ]*                           { DBG_PRINT("\t[lexer]: TEXT", yytext, yylineno);                 yylval.string_t = GenNewStr(yytext);   return TEXT;                      }
 %%

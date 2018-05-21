@@ -4,6 +4,68 @@ std::vector<std::string>                strings;
 std::vector<std::vector<htmlAttribute>> attributes_lists;
 std::vector<htmlAttribute>              attributes;
 
+static std::stack<char> g_IgnoreStack;
+static std::vector<std::string> g_IgnoreTags = { "script", "style", "xml", };
+
+void PushIgnore()
+{
+	std::cout << "******************************PUSH IGNORE******************************" << std::endl;
+	g_IgnoreStack.push(1);
+}
+
+void PopIgnore()
+{
+	std::cout << "******************************POP IGNORE******************************" << std::endl;
+	g_IgnoreStack.pop();
+}
+
+bool IgnoreModeOn()
+{
+	return (!g_IgnoreStack.empty());
+}
+
+int CheckOpeningTagNameForIgnore(std::string name)
+{
+	for (auto it : g_IgnoreTags)
+	{
+		if (name == it) 
+		{
+			if (IgnoreModeOn())
+			{
+				PushIgnore();
+				return TAG_IGNORE_BUT_MODE_ON; 
+			}
+			else                
+			{
+				PushIgnore();
+				return TAG_IGNORE;             
+			} 
+		}
+	}
+	return TAG_NOT_IGNORE;
+	
+}
+
+int CheckClosingTagNameForIgnore(std::string name)
+{
+	for (auto it : g_IgnoreTags)
+	{
+		if (name == it) 
+		{
+			PopIgnore(); 
+			if (IgnoreModeOn()) 
+			{ 
+				return TAG_IGNORE_BUT_MODE_ON; 
+			}
+			else 
+			{ 
+				return TAG_IGNORE; 
+			}
+		}
+	}
+	return TAG_NOT_IGNORE;
+}
+
 void * GenNewStr(char * str) // returns pointer to std::string
 {
 	std::string _str;

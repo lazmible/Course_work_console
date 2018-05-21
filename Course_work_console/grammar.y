@@ -20,11 +20,11 @@
 }
 
 
-%token HTML_COMMENT HTML_CONDITIONAL_COMMENT   HEXCHARS  
-OPENING_TAG_BRACKET CLOSING_TAG_BRACKET SLASH ASSIGNMENT OPENING_TAG CLOSING_TAG ANY_TEXT
+%token HTML_COMMENT HTML_CONDITIONAL_COMMENT    
+OPENING_TAG_BRACKET CLOSING_TAG_BRACKET SLASH ASSIGNMENT SCRIPT IGNORE COMMENT_START COMMENT_END
 
 
-%token<string_t> DOUBLE_QUOTE_STRING SINGLE_QUOTE_STRING TEXT TAG_NAME 
+%token<string_t> DOUBLE_QUOTE_STRING SINGLE_QUOTE_STRING TEXT TAG_NAME
 
 %type<string_t> htmlAttributeValue htmlAttribute htmlAttributeList  
 
@@ -37,13 +37,15 @@ htmlDocument
     | htmlElement
     | htmlDocument htmlElement
     | htmlComment
+    | htmlDocument htmlComment
+    | htmlContent
+    | htmlDocument htmlContent
     ;
 
 htmlElement
     : htmlTagOpen 
     | htmlTagClose                                
-    | htmlTagSingle
-    | htmlContent                        
+    | htmlTagSingle                      
     ;
 
 htmlTagOpen
@@ -58,11 +60,6 @@ htmlTagClose
 htmlTagSingle
     : OPENING_TAG_BRACKET TEXT htmlAttributeList SLASH CLOSING_TAG_BRACKET { DBG_PRINT("\t[parser]: found single tag",*((std::string*)($2)),yylineno); doc.AddSingleTag(*((std::string*)($2))); } 
     | OPENING_TAG_BRACKET TEXT SLASH CLOSING_TAG_BRACKET
-    ;
-
-htmlComment
-    : HTML_COMMENT
-    | HTML_CONDITIONAL_COMMENT 
     ;
 
 htmlAttributeList
@@ -81,13 +78,23 @@ htmlAttributeValue
     | TEXT 
     ;
 
-htmlContent
-    : TEXT
-    | SLASH
-    | ASSIGNMENT
-    | SINGLE_QUOTE_STRING
-    | DOUBLE_QUOTE_STRING
-    | OPENING_TAG_BRACKET
-    | CLOSING_TAG_BRACKET
+htmlComment
+    : COMMENT_START htmlContent COMMENT_END
+    | COMMENT_START COMMENT_END 
+    ;
 
+htmlContent
+    : OPENING_TAG_BRACKET
+    | CLOSING_TAG_BRACKET
+    | ASSIGNMENT
+    | SLASH
+    | TEXT
+    | IGNORE
+    | htmlContent OPENING_TAG_BRACKET
+    | htmlContent CLOSING_TAG_BRACKET
+    | htmlContent ASSIGNMENT
+    | htmlContent SLASH
+    | htmlContent TEXT
+    | htmlContent IGNORE
+    ;
 %%

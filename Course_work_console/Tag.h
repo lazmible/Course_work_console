@@ -12,8 +12,8 @@ private:
 	std::vector<std::string> valid_attribute_names_list;
 	std::stack<std::string> state_before;
 
-	const db_attr_type &  attribute_database;
-	const db_tag_type  &  tag_database;
+	const /*db_attr_type*/ std::map<std::string, std::string> &  attribute_database;
+	const /*db_tag_type*/  std::map<std::string, std::vector<std::string>>&  tag_database;
 
 	std::vector<error> check_precursory();
 	bool check_name();

@@ -218,9 +218,9 @@ multipart/x-zip)"
 #define ATTR_DIR_VALS                 ("(ltr|rtl)"                     )  // +++++ "ltr" или "rtl"
 #define ATTR_HIDDEN_VALS              ("(hidden|)"                     )  // может вообще быть без строки, надо чекать выше по логике, доделать позже
 #define ATTR_ID_VALS                  ("[a-zA-Z][a-zA-Z0-9-_]*"        )  // +++++ Начинается с буквы, дальше буква или цифра или тире или _
-#define ATTR_LANG_VALS                ("kek"                           )  // !!!!! БОЛЬШОЙ ШАБЛОН НА ЯЗЫКИ !!!!!
+#define ATTR_LANG_VALS                LANGUAGE_CODE
 #define ATTR_SPELLCHECK_VALS          ("(true|false|)"                 )  // "true" , "false" или пустая строка
-#define ATTR_STYLE_VALS               ("[a-zA-Z0-9;:]+"                )  // CSS syntax
+#define ATTR_STYLE_VALS               ("[a-zA-Z0-9;: -]+"               )  // CSS syntax
 #define ATTR_TABINDEX_VALS            ("[0-9]+"                        )  // positive integer value
 #define ATTR_TITLE_VALS               ANY_TEXT
 #define ATTR_XMLLANG_VALS             LANGUAGE_CODE                       

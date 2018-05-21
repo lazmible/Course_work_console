@@ -7,11 +7,9 @@
 #include "html_attr_val_db.h"
 #include "html_tag_db.h"
 
-#ifdef _DEBUG
-#define DBG_PRINT(a,b,c) { std::cout << a << " : " << b << " line: " << c << std::endl; }
-#else
-#define DBG_PRINT(a,b,c)
-#endif
+#define TAG_NOT_IGNORE         1
+#define TAG_IGNORE             2
+#define TAG_IGNORE_BUT_MODE_ON 3
 
 void * GenNewStr(char * str);                                                     // returns pointer to std::string
 void * GenNewStrW(char * str);                                                    // returns pointer to std::string
@@ -19,3 +17,15 @@ void * GenNewAttr(std::string attr, std::string val);                           
 void * GenNewAttr(std::string attr);                                              // returns pointer to htmlAttribute
 void * GenNewAttrList(htmlAttribute * attr);                                      // returns pointer to std::vector<htmlAttribute>
 void * AppendAttrInList(htmlAttribute * attr, std::vector<htmlAttribute> * lst);  // returns pointer to std::vector<htmlAttribute>
+void   PushIgnore();
+void   PopIgnore();
+int    CheckOpeningTagNameForIgnore(std::string name);
+int    CheckClosingTagNameForIgnore(std::string name);
+bool   IgnoreModeOn();
+
+inline void DBG_PRINT(std::string message, std::string value, int line)
+{
+#ifdef _DEBUG
+	std::cout << (IgnoreModeOn() ? "IGNORE" : message) << " : " << value << " line: " << line << std::endl;
+#endif
+}

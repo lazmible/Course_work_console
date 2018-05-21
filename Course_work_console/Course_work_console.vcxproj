@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="grammar.y" />
+    <None Include="input.html" />
     <None Include="lexer.l" />
   </ItemGroup>
   <ItemGroup>
@@ -146,9 +147,6 @@
     <ClInclude Include="html5_tags.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="utils.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="input.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

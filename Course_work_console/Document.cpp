@@ -1,85 +1,106 @@
 #include "Document.h"
+#include "utils.h"
 
 #include <list>
+extern int yylineno;
 
 void htmlDocument::AddOpeningTag(std::string tag_name)
 {
-	if (!tag_name_is_correct(tag_name)) { std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; }
-
-	std::vector<std::string> names;
-	std::stack<std::string> state_before;
-
-	std::stack<htmlTag> tag_st(this->state_stack);
-
-	while (!tag_st.empty())
+	if (CheckOpeningTagNameForIgnore(tag_name) == TAG_IGNORE || !IgnoreModeOn())
 	{
-		names.push_back(tag_st.top().GetName());
-		tag_st.pop();
-	}
-	
-	for (auto it = names.rbegin(); it != names.rend(); it++)
-	{
-		state_before.push(*it);
-	}
+		DBG("[Engine] Processing opening tag", tag_name);
+		if (!tag_name_is_correct(tag_name)) { std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; }
 
-	htmlTag tag(tag_name, state_before, this->available_attributes, this->available_tags);
+		std::vector<std::string> names;
+		std::stack<std::string> state_before;
 
-	this->state_stack.push(tag);
+		std::stack<htmlTag> tag_st(this->state_stack);
+
+		while (!tag_st.empty())
+		{
+			names.push_back(tag_st.top().GetName());
+			tag_st.pop();
+		}
+
+		for (auto it = names.rbegin(); it != names.rend(); it++)
+		{
+			state_before.push(*it);
+		}
+
+		htmlTag tag(tag_name, state_before, this->available_attributes, this->available_tags);
+
+		this->state_stack.push(tag);
+	}
 }
 
 void htmlDocument::AddOpeningTag(std::string tag_name, std::vector<htmlAttribute> attrs)
 {
-	this->AddOpeningTag(tag_name);
-	for (auto it : attrs)
+	if (CheckOpeningTagNameForIgnore(tag_name) == TAG_IGNORE || !IgnoreModeOn())
 	{
-		this->AddAttributeToLastTag(it.GetName(), it.GetValue());
+		DBG("[Engine] Processing opening tag", tag_name);
+		this->AddOpeningTag(tag_name);
+		for (auto it : attrs)
+		{
+			this->AddAttributeToLastTag(it.GetName(), it.GetValue());
+		}
 	}
 }
 
 void htmlDocument::AddClosingTag(std::string tag_name)
 {
-	//std::cout << "Removing tag: <" << tag_name << ">" << std::endl;
-	std::string previous_tag_name = this->state_stack.top().GetName();
-
-	if (tag_name != previous_tag_name) 
+	if (CheckClosingTagNameForIgnore(tag_name) == TAG_IGNORE || !IgnoreModeOn())
 	{
-		std::cout << "[Tag Error] Unequal closing tag <" << tag_name << "> for <" << previous_tag_name << ">" << std::endl;
-	}
+		DBG("[Engine] Processing closing tag", tag_name);
+		std::string previous_tag_name = this->state_stack.top().GetName();
 
-	if (!state_stack.empty()) { this->state_stack.pop(); }
-	else { std::cout << "[Tag Error] Unclosed tag: <" << tag_name << ">" << std::endl; }
+		if (tag_name != previous_tag_name)
+		{
+			std::cout << "[Tag Error] Unequal closing tag <" << tag_name << "> for <" << previous_tag_name << ">" << std::endl;
+		}
+
+		if (!state_stack.empty()) { this->state_stack.pop(); }
+		else { std::cout << "[Tag Error] Unclosed tag: <" << tag_name << ">" << std::endl; }
+	}
 }
 
 void htmlDocument::AddSingleTag(std::string tag_name)
 {
-	if (!tag_name_is_correct(tag_name)) { std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; }
-
-	std::vector<std::string> names;
-	std::stack<std::string> state_before;
-
-	std::stack<htmlTag> tag_st(this->state_stack);
-
-	while (!tag_st.empty())
+	if (!IgnoreModeOn())
 	{
-		names.push_back(tag_st.top().GetName());
-		tag_st.pop();
-	}
+		DBG("[Engine] Processing single tag", tag_name);
+		if (!tag_name_is_correct(tag_name)) { std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; }
 
-	for (auto it = names.rbegin(); it != names.rend(); it++)
-	{
-		state_before.push(*it);
-	}
+		std::vector<std::string> names;
+		std::stack<std::string> state_before;
 
-	htmlTag tag(tag_name, state_before, this->available_attributes, this->available_tags);
+		std::stack<htmlTag> tag_st(this->state_stack);
+
+		while (!tag_st.empty())
+		{
+			names.push_back(tag_st.top().GetName());
+			tag_st.pop();
+		}
+
+		for (auto it = names.rbegin(); it != names.rend(); it++)
+		{
+			state_before.push(*it);
+		}
+
+		htmlTag tag(tag_name, state_before, this->available_attributes, this->available_tags);
+	}
 }
 
 void htmlDocument::AddSingleTag(std::string tag_name, std::vector<htmlAttribute> attrs)
 {
-	this->AddSingleTag(tag_name);
-	//for (auto it : attrs)
-	//{
-	//	this->AddAttributeToLastTag(it.GetName(), it.GetValue());
-	//}
+	if (!IgnoreModeOn())
+	{
+		DBG("[Engine] Processing single tag", tag_name);
+		this->AddSingleTag(tag_name);
+		//for (auto it : attrs)
+		//{
+		//	this->AddAttributeToLastTag(it.GetName(), it.GetValue());
+		//}
+	}
 }
 
 void htmlDocument::CheckEndState()

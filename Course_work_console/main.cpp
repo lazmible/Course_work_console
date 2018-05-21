@@ -36,7 +36,8 @@ int main()
 	strings.reserve(1000000);
 	attributes_lists.reserve(1000000);
 	attributes.reserve(1000000);
-	yyin = fopen("input.txt", "r");
+	yyin = fopen("input.html", "r");
+	if (!yyin) { std::cout << "Error opening file." << std::endl; }
 	yyparse();
 	
 	/*

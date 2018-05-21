@@ -18,11 +18,9 @@
     #define DBG(a, b)
 #endif
 
-typedef std::map<std::string, std::string>              db_attr_type;
-                /*attribute*/ /*value*/
-
+typedef std::map<std::string, std::string> db_attr_type;
 typedef std::map<std::string, std::vector<std::string>> db_tag_type;
-                /*^^tag^^^*/  /*^^^^^attributes^^^^^*/
+
 class htmlAttribute
 {
 private:
