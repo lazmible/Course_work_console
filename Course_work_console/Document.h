@@ -42,10 +42,10 @@ public:
 
 
 	void AddOpeningTag(std::string tag_name);
-	void AddOpeningTag(std::string tag_name, std::vector<htmlAttribute> attrs);
+	void AddOpeningTag(std::string tag_name, std::list<htmlAttribute> attrs);
 	void AddClosingTag(std::string tag_name);
 	void AddSingleTag(std::string tag_name);
-	void AddSingleTag(std::string tag_name, std::vector<htmlAttribute> attrs);
+	void AddSingleTag(std::string tag_name, std::list<htmlAttribute> attrs);
 	void CheckEndState();
 	void AddAttributeToLastTag(std::string attr, std::string val);
 };

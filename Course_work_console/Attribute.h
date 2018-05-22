@@ -7,6 +7,7 @@
 #include <iostream>
 #include <regex>
 #include <list>
+#include <initializer_list>
 
 #include "error.h"
 
@@ -29,16 +30,25 @@ private:
 	std::string error_message;
 
 	std::vector<std::string> names_database;
-
-	// «аменить на вектор, который передаетс€ из htmlTag???
 	std::map<std::string, std::string> values_database;
 
 	bool check_value();
 	bool check_name();
 
 public:
-	htmlAttribute(std::string _name, std::map<std::string, std::string> val_db, std::string err, std::string val)
-		: name(_name), values_database(val_db), error_message(err), value(val) {}
+	htmlAttribute(std::string _name, const std::initializer_list<std::pair<std::string, std::string>> & val_db, std::string err, std::string val)
+		: name(_name), values_database(val_db.begin(), val_db.end()), error_message(err), value(val) 
+	{
+
+	}
+
+	htmlAttribute(std::string _name, const std::map<std::string, std::string> & val_db, std::string err, std::string val)
+		: name(_name), values_database(val_db), error_message(err), value(val)
+	{
+
+	}
+
+	htmlAttribute(const htmlAttribute & other) {}
 
 	void CheckState();
 	const std::string GetName()  const { return (name); }

@@ -10,6 +10,8 @@
     #include "grammar.cpp.h"
     #pragma warning( disable:4996 )
     #pragma warning( disable:5033 )
+
+    extern int yyerror(const char * err);
 %}
 
 %x comment
@@ -19,29 +21,29 @@
 
 <comment>
 {
-"-->"		{  BEGIN(INITIAL);                                             }
-\n			{ DBG_PRINT("\t[lexer]: Ignoring new line", "", yylineno);     }
-<<EOF>>		{ DBG_PRINT("\t[lexer]: Unclosed comment line", "", yylineno); }
-.			{ DBG_PRINT("\t[lexer]: Ignoring smth", "", yylineno);         }
+"-->"		{  BEGIN(INITIAL);                                                                        }
+\n			{ std::cout << "\t[lexer]: Ignoring new line" << "| on line: " << yylineno << std::endl;  }
+<<EOF>>		{ std::cout << "\t[lexer]: Unclosed comment line\n"; system("pause"); exit(0);            }
+.			{ std::cout << "\t[lexer]: Ignoring smth" << "| on line: " << yylineno << std::endl;      }
 }
 
 <script>
 {
-"</script>"	{  BEGIN(INITIAL);                                           }
-\n			{ DBG_PRINT("\t[lexer]: Ignoring new line", "", yylineno);   }
-<<EOF>>		{ DBG_PRINT("\t[lexer]: Unclosed script tag", "", yylineno); }
-.			{ DBG_PRINT("\t[lexer]: Ignoring smth", "", yylineno);       }
+"</script>"	{  BEGIN(INITIAL);                                                                        }
+\n			{ DBG_PRINT("\t[lexer]: Ignoring new line", "", yylineno);                                }
+<<EOF>>		{  std::cout << "\t[lexer]: Unclosed script tag\n"; system("pause"); exit(0);             }
+.			{ DBG_PRINT("\t[lexer]: Ignoring smth", "", yylineno);                                    }
 }
 
 
 [ \t\r\f\v\a\n]+                    { }
-"<!--"                              { DBG_PRINT("\t[lexer]: Comment Started", "", yylineno);          BEGIN(comment);  }
-"<script".*?">"                     { DBG_PRINT("\t[lexer]: Script Started", "", yylineno);          BEGIN(script);  }
-"<"                                 { DBG_PRINT("\t[lexer]: OPENING_TAG_BRACKET", "", yylineno);                                             return OPENING_TAG_BRACKET;       }
-">"                                 { DBG_PRINT("\t[lexer]: CLOSING_TAG_BRACKET", "", yylineno);                                             return CLOSING_TAG_BRACKET;       }
-"="                                 { DBG_PRINT("\t[lexer]: ASSIGNMENT", "", yylineno);                                                      return ASSIGNMENT;                }
-"/"                                 { DBG_PRINT("\t[lexer]: SLASH", "", yylineno);                                                           return SLASH;                     }
-\'(?:[^\\']+|\\.)*\'                { DBG_PRINT("\t[lexer]: SINGLE_QUOTE_STRING", yytext, yylineno);  yylval.string_t = GenNewStrW(yytext);  return SINGLE_QUOTE_STRING;       }
-\"(?:[^\\"]+|\\.)*\"                { DBG_PRINT("\t[lexer]: DOUBLE_QUOTE_STRING", yytext, yylineno);  yylval.string_t = GenNewStrW(yytext);  return DOUBLE_QUOTE_STRING;       }
-[^<>/= ]*                           { DBG_PRINT("\t[lexer]: TEXT", yytext, yylineno);                 yylval.string_t = GenNewStr(yytext);   return TEXT;                      }
+"<!--"                              { DBG_PRINT("\t[lexer]: Comment Started", "", yylineno);         BEGIN(comment);                                     }
+"<script".*?">"                     { DBG_PRINT("\t[lexer]: Script Started", "", yylineno);          BEGIN(script);                                      }
+"<"                                 { DBG_PRINT("\t[lexer]: OPENING_TAG_BRACKET", "", yylineno);     return Token(yylval.string_t, OPENING_TAG_BRACKET); }
+">"                                 { DBG_PRINT("\t[lexer]: CLOSING_TAG_BRACKET", "", yylineno);     return Token(yylval.string_t, CLOSING_TAG_BRACKET); }
+"="                                 { DBG_PRINT("\t[lexer]: ASSIGNMENT", "", yylineno);              return Token(yylval.string_t, ASSIGNMENT);          }
+"/"                                 { DBG_PRINT("\t[lexer]: SLASH", "", yylineno);                   return Token(yylval.string_t, SLASH);               }
+\'(?:[^\\']+|\\.)*\'                { DBG_PRINT("\t[lexer]: SINGLE_QUOTE_STRING", yytext, yylineno); return Token(yylval.string_t, SINGLE_QUOTE_STRING); }
+\"(?:[^\\"]+|\\.)*\"                { DBG_PRINT("\t[lexer]: DOUBLE_QUOTE_STRING", yytext, yylineno); return Token(yylval.string_t, DOUBLE_QUOTE_STRING); }
+[^<>/= ]*                           { DBG_PRINT("\t[lexer]: TEXT", yytext, yylineno);                return Token(yylval.string_t, TEXT);                }
 %%

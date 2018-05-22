@@ -531,9 +531,11 @@ char *yytext;
     #include "grammar.cpp.h"
     #pragma warning( disable:4996 )
     #pragma warning( disable:5033 )
-#line 534 "lexer.cpp"
 
+    extern int yyerror(const char * err);
 #line 536 "lexer.cpp"
+
+#line 538 "lexer.cpp"
 
 #define INITIAL 0
 #define comment 1
@@ -752,10 +754,10 @@ YY_DECL
 		}
 
 	{
-#line 18 "lexer.l"
+#line 20 "lexer.l"
 
 
-#line 758 "lexer.cpp"
+#line 760 "lexer.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -824,108 +826,108 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 22 "lexer.l"
-{  BEGIN(INITIAL);                                             }
+#line 24 "lexer.l"
+{  BEGIN(INITIAL);                                                                        }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 23 "lexer.l"
-{ DBG_PRINT("\t[lexer]: Ignoring new line", "", yylineno);     }
+#line 25 "lexer.l"
+{ std::cout << "\t[lexer]: Ignoring new line" << "| on line: " << yylineno << std::endl;  }
 	YY_BREAK
 case YY_STATE_EOF(comment):
-#line 24 "lexer.l"
-{ DBG_PRINT("\t[lexer]: Unclosed comment line", "", yylineno); }
+#line 26 "lexer.l"
+{ std::cout << "\t[lexer]: Unclosed comment line\n"; system("pause"); exit(0);            }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 25 "lexer.l"
-{ DBG_PRINT("\t[lexer]: Ignoring smth", "", yylineno);         }
+#line 27 "lexer.l"
+{ std::cout << "\t[lexer]: Ignoring smth" << "| on line: " << yylineno << std::endl;      }
 	YY_BREAK
 
 
 
 case 4:
 YY_RULE_SETUP
-#line 30 "lexer.l"
-{  BEGIN(INITIAL);                                           }
+#line 32 "lexer.l"
+{  BEGIN(INITIAL);                                                                        }
 	YY_BREAK
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 31 "lexer.l"
-{ DBG_PRINT("\t[lexer]: Ignoring new line", "", yylineno);   }
+#line 33 "lexer.l"
+{ DBG_PRINT("\t[lexer]: Ignoring new line", "", yylineno);                                }
 	YY_BREAK
 case YY_STATE_EOF(script):
-#line 32 "lexer.l"
-{ DBG_PRINT("\t[lexer]: Unclosed script tag", "", yylineno); }
+#line 34 "lexer.l"
+{  std::cout << "\t[lexer]: Unclosed script tag\n"; system("pause"); exit(0);             }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 33 "lexer.l"
-{ DBG_PRINT("\t[lexer]: Ignoring smth", "", yylineno);       }
+#line 35 "lexer.l"
+{ DBG_PRINT("\t[lexer]: Ignoring smth", "", yylineno);                                    }
 	YY_BREAK
 
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 37 "lexer.l"
+#line 39 "lexer.l"
 { }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 38 "lexer.l"
-{ DBG_PRINT("\t[lexer]: Comment Started", "", yylineno);          BEGIN(comment);  }
+#line 40 "lexer.l"
+{ DBG_PRINT("\t[lexer]: Comment Started", "", yylineno);         BEGIN(comment);                                     }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 39 "lexer.l"
-{ DBG_PRINT("\t[lexer]: Script Started", "", yylineno);          BEGIN(script);  }
+#line 41 "lexer.l"
+{ DBG_PRINT("\t[lexer]: Script Started", "", yylineno);          BEGIN(script);                                      }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 40 "lexer.l"
-{ DBG_PRINT("\t[lexer]: OPENING_TAG_BRACKET", "", yylineno);                                             return OPENING_TAG_BRACKET;       }
+#line 42 "lexer.l"
+{ DBG_PRINT("\t[lexer]: OPENING_TAG_BRACKET", "", yylineno);     return Token(yylval.string_t, OPENING_TAG_BRACKET); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 41 "lexer.l"
-{ DBG_PRINT("\t[lexer]: CLOSING_TAG_BRACKET", "", yylineno);                                             return CLOSING_TAG_BRACKET;       }
+#line 43 "lexer.l"
+{ DBG_PRINT("\t[lexer]: CLOSING_TAG_BRACKET", "", yylineno);     return Token(yylval.string_t, CLOSING_TAG_BRACKET); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 42 "lexer.l"
-{ DBG_PRINT("\t[lexer]: ASSIGNMENT", "", yylineno);                                                      return ASSIGNMENT;                }
+#line 44 "lexer.l"
+{ DBG_PRINT("\t[lexer]: ASSIGNMENT", "", yylineno);              return Token(yylval.string_t, ASSIGNMENT);          }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 43 "lexer.l"
-{ DBG_PRINT("\t[lexer]: SLASH", "", yylineno);                                                           return SLASH;                     }
+#line 45 "lexer.l"
+{ DBG_PRINT("\t[lexer]: SLASH", "", yylineno);                   return Token(yylval.string_t, SLASH);               }
 	YY_BREAK
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 44 "lexer.l"
-{ DBG_PRINT("\t[lexer]: SINGLE_QUOTE_STRING", yytext, yylineno);  yylval.string_t = GenNewStrW(yytext);  return SINGLE_QUOTE_STRING;       }
+#line 46 "lexer.l"
+{ DBG_PRINT("\t[lexer]: SINGLE_QUOTE_STRING", yytext, yylineno); return Token(yylval.string_t, SINGLE_QUOTE_STRING); }
 	YY_BREAK
 case 15:
 /* rule 15 can match eol */
 YY_RULE_SETUP
-#line 45 "lexer.l"
-{ DBG_PRINT("\t[lexer]: DOUBLE_QUOTE_STRING", yytext, yylineno);  yylval.string_t = GenNewStrW(yytext);  return DOUBLE_QUOTE_STRING;       }
+#line 47 "lexer.l"
+{ DBG_PRINT("\t[lexer]: DOUBLE_QUOTE_STRING", yytext, yylineno); return Token(yylval.string_t, DOUBLE_QUOTE_STRING); }
 	YY_BREAK
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 46 "lexer.l"
-{ DBG_PRINT("\t[lexer]: TEXT", yytext, yylineno);                 yylval.string_t = GenNewStr(yytext);   return TEXT;                      }
+#line 48 "lexer.l"
+{ DBG_PRINT("\t[lexer]: TEXT", yytext, yylineno);                return Token(yylval.string_t, TEXT);                }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 47 "lexer.l"
+#line 49 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 928 "lexer.cpp"
+#line 930 "lexer.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1942,5 +1944,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 47 "lexer.l"
+#line 49 "lexer.l"
 

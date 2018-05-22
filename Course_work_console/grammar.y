@@ -28,9 +28,13 @@ OPENING_TAG_BRACKET CLOSING_TAG_BRACKET SLASH ASSIGNMENT SCRIPT
 
 %type<string_t> htmlAttributeValue htmlAttribute htmlAttributeList  
 
-%start htmlDocument
+%start begin
 
 %%
+
+begin
+    : htmlDocument
+    ;
 
 htmlDocument
     :  
@@ -47,7 +51,7 @@ htmlElement
     ;
 
 htmlTagOpen
-    : OPENING_TAG_BRACKET TEXT htmlAttributeList CLOSING_TAG_BRACKET { DBG_PRINT("\t[parser]: found opening tag",*((std::string*)($2)), yylineno); doc.AddOpeningTag(*((std::string*)($2)),*((std::vector<htmlAttribute>*)($3))); }
+    : OPENING_TAG_BRACKET TEXT htmlAttributeList CLOSING_TAG_BRACKET { DBG_PRINT("\t[parser]: found opening tag",*((std::string*)($2)), yylineno); doc.AddOpeningTag(*((std::string*)($2)),*((std::list<htmlAttribute>*)($3))); }
     | OPENING_TAG_BRACKET TEXT CLOSING_TAG_BRACKET                   { DBG_PRINT("\t[parser]: found opening tag",*((std::string*)($2)), yylineno); doc.AddOpeningTag(*((std::string*)($2)));                                      }
     ;
 
@@ -61,8 +65,8 @@ htmlTagSingle
     ;
 
 htmlAttributeList
-    : htmlAttribute                           { ($$) = GenNewAttrList(((htmlAttribute*)($1)));                                        }
-    | htmlAttributeList htmlAttribute         { ($$) = AppendAttrInList(((htmlAttribute*)($2)), ((std::vector<htmlAttribute>*)($1))); }
+    : htmlAttribute                           { ($$) = GenNewAttrList(((htmlAttribute*)($1)));                                       }
+    | htmlAttributeList htmlAttribute         { ($$) = AppendAttrInList(((htmlAttribute*)($2)), ((std::list<htmlAttribute>*)($1)));  }
     ;
 
 htmlAttribute 
@@ -80,6 +84,10 @@ htmlContent
     : ASSIGNMENT
     | SLASH
     | TEXT
+    | SINGLE_QUOTE_STRING
+    | DOUBLE_QUOTE_STRING
+    | htmlContent SINGLE_QUOTE_STRING
+    | htmlContent DOUBLE_QUOTE_STRING
     | htmlContent ASSIGNMENT
     | htmlContent SLASH
     | htmlContent TEXT
