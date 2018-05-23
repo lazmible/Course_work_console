@@ -9,27 +9,25 @@ std::list<htmlAttribute>              attributes;
 
 int Token(void * text, int value)
 {
-	//switch (value)
-	//{
-	//    case (SINGLE_QUOTE_STRING): { yylval.string_t = GenNewStrW((char*)text); break; }
-	//    case (DOUBLE_QUOTE_STRING): { yylval.string_t = GenNewStrW((char*)text); break; }
-	//    case (TEXT):                { yylval.string_t = GenNewStr((char*)text);  break; }
-	//}
+	switch (value)
+	{
+	    case (SINGLE_QUOTE_STRING): { yylval.string_t = GenNewStrW((char*)text); break; }
+	    case (DOUBLE_QUOTE_STRING): { yylval.string_t = GenNewStrW((char*)text); break; }
+	    case (TEXT):                { yylval.string_t = GenNewStr((char*)text);  break; }
+	}
 	return (value);
 }
 
 void * GenNewStr(char * str) // returns pointer to std::string
 {
-	std::string _str;
-	_str = str;
+	std::string _str = str;
 	strings.push_back(_str);
 	return (&(*(--strings.end())));
 }
 
 void * GenNewStrW(char * str) // returns pointer to std::string 
 {
-	std::string _str;
-	_str = str;
+	std::string _str = str;
 	_str.erase(_str.begin());
 	_str.erase(--_str.end());
 	strings.push_back(_str);
@@ -38,16 +36,15 @@ void * GenNewStrW(char * str) // returns pointer to std::string
 
 void * GenNewAttr(std::string attr, std::string val) // returns pointer to htmlAttribute 
 {
-	//std::initializer_list<std::pair<std::string, std::string>> a = ATTR_DATABASE_HTML5;
-	htmlAttribute instance(attr, { {"a", "a" }, {"a", "a"} }, "", val);
+	htmlAttribute instance(attr, ATTR_DATABASE, "", val);
 	attributes.push_back(instance);
+
 	return (&(*(--attributes.end())));
 }
 
 void * GenNewAttr(std::string attr) // returns pointer to htmlAttribute 
 {
-
-	htmlAttribute instance(attr, ATTR_DATABASE_HTML5, "", "");
+	htmlAttribute instance(attr, ATTR_DATABASE, "", "");
 	attributes.push_back(instance);
 	return (&(*(--attributes.end())));
 }

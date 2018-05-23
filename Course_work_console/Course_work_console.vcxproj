@@ -145,6 +145,7 @@
     <ClInclude Include="html_tag_db.h" />
     <ClInclude Include="lexer.h" />
     <ClInclude Include="html5_tags.h" />
+    <ClInclude Include="precedence.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>

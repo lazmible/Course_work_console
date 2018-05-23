@@ -1,4 +1,13 @@
 #include "Tag.h"
+#include "precedence.h"
+
+static bool is_user_defined_attribute(std::string name)
+{
+	if (name.length() < 6) { return false; }
+	std::string templ = name.substr(0, 5);
+	if (templ == "data-")  { return true;  }
+	else                   { return false; }
+}
 
 htmlTag::htmlTag(std::string nm, std::stack<std::string> st, const db_attr_type & attr_db, const db_tag_type & tag_db)
 	: name(nm), state_before(st), attribute_database(attr_db), tag_database(tag_db)
@@ -6,6 +15,10 @@ htmlTag::htmlTag(std::string nm, std::stack<std::string> st, const db_attr_type 
 	if (tag_database.find(this->name) != tag_database.end())
 	{
 		valid_attribute_names_list = tag_database.find(this->name)->second;
+		if (PrecedenceTags.find(this->name) != PrecedenceTags.end())
+		{
+
+		}
 	}
 	else
 	{
@@ -38,8 +51,7 @@ bool htmlTag::check_attr_name(std::string name)
 
 void htmlTag::AddAttribute(std::string name, std::string val)
 {
-//	DBG()
-	if (check_attr_name(name))
+	if (check_attr_name(name) || is_user_defined_attribute(name))
 	{
 		htmlAttribute attribute(name, this->attribute_database, "", val);
 		attribute.CheckState();

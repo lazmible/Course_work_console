@@ -292,7 +292,7 @@
 	{  "xmp"                , TAG_XMP_ATTRS           }   \
 }
 
-static std::map<std::string, std::vector<std::string>> m = TAG_DATABASE;
+static std::map<std::string, std::vector<std::string>> TAG_DB = TAG_DATABASE;
 
 
 

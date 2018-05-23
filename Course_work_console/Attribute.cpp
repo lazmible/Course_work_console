@@ -1,5 +1,13 @@
 #include "Attribute.h"
 
+static bool is_user_defined_attribute(std::string name)
+{
+	if (name.length() < 6)   { return false; }
+	std::string templ = name.substr(0, 5);
+	if (templ == "data-")    { return true;  }
+	else                     { return false; }
+}
+
 bool htmlAttribute::check_value()
 {
 	auto result = values_database.find(this->name);
@@ -15,7 +23,7 @@ bool htmlAttribute::check_value()
 
 void htmlAttribute::CheckState()
 {
-	if (!this->check_value()) 
+	if (!this->check_value() && !is_user_defined_attribute(this->name)) 
 	{
 		std::cout << "[AttributeError] Unexpected Attribute value: <" << this->value << "> for attribute <" << this->name << ">" << std::endl; 
 	}

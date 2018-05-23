@@ -203,16 +203,12 @@ multipart/x-zip)"
 
 #pragma region attribute_values
 // В куче атрибутов есть значения по умолчанию, надо видимо как-то учитывать их в классе
-// Проверь, там где написано путь, на самом деле либо 1 путь, либо несколько путей через запятую должны быть.
-// После кучи !!! ты уже осознал и начал делать нормально
-// Всякая хуйня, которая перечисляется через запятую
 
 // Допридумать:
-// 1) Аттрибуты без значений вообще (в XHTML их можно сами себе присваивать)
 // 2) Аттрибуты, для которых обязательны кавычки
 
 #define ATTR_ACCESS_KEY_VALS          ("[0-9a-z]"                      )  // +++++ Число от 0 до 9 или маленькая латинская буква
-#define ATTR_CLASS_VALS               ("[0-9a-zA-Z-_]+"                )  // +++++ ЧислА от 0 до 9, латинские буквЫ тире и _ повтор 1 и более раз
+#define ATTR_CLASS_VALS               ("([0-9a-zA-Z-_]+|)"             )  
 #define ATTR_CONTENTEDITABLE_VALS     ("(true|false|)"                 )  // +++++ "true" , "false" или пустая строка
 #define ATTR_CONTEXTMENU_VALS         ("[a-zA-Z]+"                     )  // !!!!! тут более сложная логика, доделать похже
 #define ATTR_DIR_VALS                 ("(ltr|rtl)"                     )  // +++++ "ltr" или "rtl"
@@ -576,3 +572,5 @@ multipart/x-zip)"
 }
 
 #pragma endregion
+
+static std::map<std::string, std::string> ATTR_DATABASE = ATTR_DATABASE_HTML5;

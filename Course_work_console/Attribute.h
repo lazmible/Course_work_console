@@ -11,7 +11,7 @@
 
 #include "error.h"
 
-//#define DEBUG_LEVEL_2
+#define DEBUG_LEVEL_2
 
 #ifdef DEBUG_LEVEL_2 
     #define DBG(a, b) { std::cout << a << " : " << b << std::endl; }
@@ -36,11 +36,11 @@ private:
 	bool check_name();
 
 public:
-	htmlAttribute(std::string _name, const std::initializer_list<std::pair<std::string, std::string>> & val_db, std::string err, std::string val)
-		: name(_name), values_database(val_db.begin(), val_db.end()), error_message(err), value(val) 
-	{
+	//htmlAttribute(std::string _name, const std::initializer_list<std::pair<std::string, std::string>> & val_db, std::string err, std::string val)
+	//	: name(_name), values_database(val_db.begin(), val_db.end()), error_message(err), value(val) 
+	//{
 
-	}
+	//}
 
 	htmlAttribute(std::string _name, const std::map<std::string, std::string> & val_db, std::string err, std::string val)
 		: name(_name), values_database(val_db), error_message(err), value(val)
@@ -48,10 +48,12 @@ public:
 
 	}
 
-	htmlAttribute(const htmlAttribute & other) {}
+	/*htmlAttribute(const htmlAttribute & other) {}*/
 
 	void CheckState();
 	const std::string GetName()  const { return (name); }
 	const std::string GetValue() const { return (value); }
+	void SetName(std::string _name) { name = _name; }
+	void SetValue(std::string _value) { value = _value; }
 };
 
