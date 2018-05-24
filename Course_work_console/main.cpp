@@ -25,7 +25,7 @@ int yyerror(const char * err)
 extern FILE *                                  yyin;
 
 
-htmlDocument doc("l", ATTR_DATABASE_HTML5, TAG_DB);
+htmlDocument doc("l", ATTR_DATABASE, TAG_DB);
 
 int main()
 {
