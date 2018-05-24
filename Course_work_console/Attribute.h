@@ -11,7 +11,7 @@
 
 #include "error.h"
 
-#define DEBUG_LEVEL_2
+//#define DEBUG_LEVEL_2
 
 #ifdef DEBUG_LEVEL_2 
     #define DBG(a, b) { std::cout << a << " : " << b << std::endl; }
@@ -28,6 +28,7 @@ private:
 	std::string name;
 	std::string value;
 	std::string error_message;
+	std::size_t line;
 
 	std::vector<std::string> names_database;
 	std::map<std::string, std::string> values_database;
@@ -36,19 +37,12 @@ private:
 	bool check_name();
 
 public:
-	//htmlAttribute(std::string _name, const std::initializer_list<std::pair<std::string, std::string>> & val_db, std::string err, std::string val)
-	//	: name(_name), values_database(val_db.begin(), val_db.end()), error_message(err), value(val) 
-	//{
 
-	//}
-
-	htmlAttribute(std::string _name, const std::map<std::string, std::string> & val_db, std::string err, std::string val)
-		: name(_name), values_database(val_db), error_message(err), value(val)
+	htmlAttribute(std::string _name, const std::map<std::string, std::string> & val_db, std::string err, std::string val, int _line)
+		: name(_name), values_database(val_db), error_message(err), value(val), line(_line)
 	{
 
 	}
-
-	/*htmlAttribute(const htmlAttribute & other) {}*/
 
 	void CheckState();
 	const std::string GetName()  const { return (name); }

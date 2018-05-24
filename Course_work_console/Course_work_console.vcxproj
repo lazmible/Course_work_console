@@ -133,7 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="grammar.y" />
-    <None Include="input.html" />
     <None Include="lexer.l" />
   </ItemGroup>
   <ItemGroup>

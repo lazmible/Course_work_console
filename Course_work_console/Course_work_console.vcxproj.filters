@@ -44,7 +44,6 @@
     <None Include="lexer.l">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="input.html" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grammar.cpp.h">

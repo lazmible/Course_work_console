@@ -25,12 +25,12 @@ int yyerror(const char * err)
 extern FILE *                                  yyin;
 
 
-htmlDocument doc("l", ATTR_DATABASE_HTML5, TAG_DATABASE);
+htmlDocument doc("l", ATTR_DATABASE_HTML5, TAG_DB);
 
 int main()
 {
 	
-	std::map<std::string, std::vector<std::string>> kek = TAG_DATABASE;
+	std::map<std::string, std::vector<std::string>> kek = TAG_DB;
 
 	yyin = fopen("input.html", "r");
 	if (!yyin) { std::cout << "Error opening file." << std::endl; }

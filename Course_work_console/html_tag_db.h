@@ -8,7 +8,7 @@
 #define ATTR_EVENTS                 { "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define ATTR_UNIVERSAL_AND_EVENTS   { "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 
-#define TAG_A_ATTRS                  { "accesskey", "coords", "download", "href", "hreflang", "name", "rel", "shape", "tabindex", "target", "title", "type", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload"}
+#define TAG_A_ATTRS                  { "accesskey", "coords", "download", "href", "hreflang", "name", "rel", "shape", "tabindex", "target", "title", "type", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload", "aria-label", "aria-haspopup" }
 #define TAG_ABBR_ATTRS               { "title", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_ACRONYM_ATTRS            ATTR_UNIVERSAL_AND_EVENTS
 #define TAG_ADDRESS_ATTRS	         ATTR_UNIVERSAL_AND_EVENTS
@@ -28,7 +28,7 @@
 #define TAG_BLOCKQUOTE_ATTRS 	     {"cite", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_BODY_ATTRS   		     {"alink", "background", "bgcolor", "bgcolor", "bgproperties", "bottommargin", "leftmargin", "link", "rightmargin", "scroll", "text", "topmargin", "vlink", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_BR_ATTRS		         {"clear"}
-#define TAG_BUTTON_ATTRS    	     {"accesskey", "autofocus", "disabled", "from", "formaction", "formenctype", "formmethod", "formnovalidate", "formtarget", "name", "type", "value", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_BUTTON_ATTRS    	     {"accesskey", "autofocus", "disabled", "from", "formaction", "formenctype", "formmethod", "formnovalidate", "formtarget", "name", "type", "value", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload", "aria-label" }
 #define TAG_CANVAS_ATTRS    	     {"height", "width", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_CAPTION_ATTRS   	     {"align", "valign", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
 #define TAG_CENTER_ATTRS             {}
@@ -44,7 +44,7 @@
 #define TAG_DETAILS_ATTRS	         {"open"}
 #define TAG_DFN_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS 
 #define TAG_DIR_ATTRS                {}
-#define TAG_DIV_ATTRS   		     {"align", "title", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload" }
+#define TAG_DIV_ATTRS   		     {"align", "title", "accesskey", "class", "contenteditable", "contextmenu","dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset","onselect", "onsubmit", "onunload", "onmouseleave", "ontouchstart", "aria-label" }
 #define TAG_DL_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS
 #define TAG_DT_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS
 #define TAG_EM_ATTRS		         ATTR_UNIVERSAL_AND_EVENTS
@@ -86,7 +86,7 @@
 #define TAG_MARK_ATTRS		         {}	
 #define TAG_MARQUEE_ATTRS		     {"behavior","bgcolor","direction","height","hspace","loop","scrollamount","scrolldelay","truespeed","vspace","width"}
 #define TAG_MENU_ATTRS			     {"label", "type"}
-#define TAG_META_ATTRS			     {"charset","content","http - equiv","name"}
+#define TAG_META_ATTRS			     {"charset","content","http-equiv","name"}
 #define TAG_METER_ATTRS			     {"high","low","max","min","optimum","value"}
 #define TAG_MULTICOL_ATTRS		     {"cols", "gutter", "width"}
 #define TAG_NAV_ATTRS			     {}
@@ -142,157 +142,144 @@
 #define TAG_XMP_ATTRS                {}
 
 
-// basefront trouble
+static std::map<std::string, std::vector<std::string>> TAG_DB =                                
+{                                                         
+	{  "a"                  , TAG_A_ATTRS             },  
+	{  "abbr"               , TAG_ABBR_ATTRS          },  
+	{  "acronym"            , TAG_ACRONYM_ATTRS       },  
+	{  "address"            , TAG_ADDRESS_ATTRS       },  
+	{  "applet"             , TAG_APPLET_ATTRS        },  
+	{  "area"               , TAG_AREA_ATTRS          },  
+	{  "article"            , TAG_ARTICLE_ATTRS       },  
+	{  "aside"              , TAG_ASIDE_ATTRS         },  
+	{  "audio"              , TAG_AUDIO_ATTRS         },  
+	{  "b"                  , TAG_B_ATTRS             },  
+	{  "base"               , TAG_BASE_ATTRS          },  
+	{  "basefont"           , TAG_BASEFONT_ATTRS      },  
+	{  "bdi"                , TAG_BDI_ATTRS           },  
+	{  "bdo"                , TAG_BDO_ATTRS           },  
+	{  "bgsound"            , TAG_BGSOUND_ATTRS       },  
+	{  "big"                , TAG_BIG_ATTRS           },  
+	{  "blink"              , TAG_BLINK_ATTRS         },  
+	{  "blockquote"         , TAG_BLOCKQUOTE_ATTRS    },  
+	{  "body"               , TAG_BODY_ATTRS          },  
+	{  "br"                 , TAG_BR_ATTRS            },  
+	{  "button"             , TAG_BUTTON_ATTRS        },  
+	{  "canvas"             , TAG_CANVAS_ATTRS        },  
+	{  "caption"            , TAG_CAPTION_ATTRS       },  
+	{  "center"             , TAG_CENTER_ATTRS        },  
+	{  "cite"               , TAG_CITE_ATTRS          },  
+	{  "code"               , TAG_CODE_ATTRS          },  
+	{  "col"                , TAG_COL_ATTRS           },  
+	{  "colgroup"           , TAG_COLGROUP_ATTRS      },  
+	{  "command"            , TAG_COMMAND_ATTRS       },  
+	{  "comment"            , TAG_COMMENT_ATTRS       },  
+	{  "datalist"           , TAG_DATALIST_ATTRS      },  
+	{  "dd"                 , TAG_DD_ATTRS            },  
+	{  "del"                , TAG_DEL_ATTRS           },  
+	{  "details"            , TAG_DETAILS_ATTRS       },  
+	{  "dfn"                , TAG_DFN_ATTRS           },  
+	{  "dir"                , TAG_DIR_ATTRS           },  
+	{  "div"                , TAG_DIV_ATTRS           },  
+	{  "dl"                 , TAG_DL_ATTRS            },  
+	{  "dt"                 , TAG_DT_ATTRS            },  
+	{  "em"                 , TAG_EM_ATTRS            },  
+	{  "embed"              , TAG_EMBED_ATTRS         },  
+	{  "fieldset"           , TAG_FIELDSET_ATTRS      },  
+	{  "figcaption"         , TAG_FIGCAPTION_ATTRS    },  
+	{  "figure"             , TAG_FIGURE_ATTRS        },  
+	{  "font"               , TAG_FONT_ATTRS          },  
+	{  "footer"             , TAG_FOOTER_ATTRS        },  
+	{  "form"               , TAG_FORM_ATTRS          },  
+	{  "frame"              , TAG_FRAME_ATTRS         },  
+	{  "frameset"           , TAG_FRAMESET_ATTRS      },  
+	{  "h1"                 , TAG_H1_ATTRS            },  
+	{  "h2"                 , TAG_H2_ATTRS            },  
+	{  "h3"                 , TAG_H3_ATTRS            },  
+	{  "h4"                 , TAG_H4_ATTRS            },  
+	{  "h5"                 , TAG_H5_ATTRS            },  
+	{  "h6"                 , TAG_H6_ATTRS            },  
+	{  "head"               , TAG_HEAD_ATTRS          },  
+	{  "header"             , TAG_HEADER_ATTRS        },  
+	{  "hgroup"             , TAG_HGROUP_ATTRS        },  
+	{  "hr"                 , TAG_HR_ATTRS            },  
+	{  "html"               , TAG_HTML_ATTRS          },  
+	{  "i"                  , TAG_I_ATTRS             },  
+	{  "iframe"             , TAG_IFRAME_ATTRS        },  
+	{  "img"                , TAG_IMG_ATTRS           },  
+	{  "input"              , TAG_INPUT_ATTRS         },  
+	{  "ins"                , TAG_INS_ATTRS           },  
+	{  "isindex"            , TAG_ISINDEX_ATTRS       },  
+	{  "kbd"                , TAG_KBD_ATTRS           },  
+	{  "keygen"             , TAG_KEYGEN_ATTRS        },  
+	{  "label"              , TAG_LABEL_ATTRS         },  
+	{  "legend"             , TAG_LEGEND_ATTRS        },  
+	{  "li"                 , TAG_LI_ATTRS            },  
+	{  "link"               , TAG_LINK_ATTRS          },  
+	{  "listing"            , TAG_LISTING_ATTRS       },  
+	{  "main"               , TAG_MAIN_ATTRS          },  
+	{  "map"                , TAG_MAP_ATTRS           },  
+	{  "mark"               , TAG_MARK_ATTRS          },  
+	{  "marquee"            , TAG_MARQUEE_ATTRS       },  
+	{  "menu"               , TAG_MENU_ATTRS          },  
+	{  "meta"               , TAG_META_ATTRS          },  
+	{  "meter"              , TAG_METER_ATTRS         },  
+	{  "multicol"           , TAG_MULTICOL_ATTRS      },  
+	{  "nav"                , TAG_NAV_ATTRS           },  
+	{  "nobr"               , TAG_NOBR_ATTRS          },  
+	{  "noembed"            , TAG_NOEMBED_ATTRS       },  
+	{  "noframes"           , TAG_NOFRAMES_ATTRS      },  
+	{  "noscript"           , TAG_NOFRAMES_ATTRS      },  
+	{  "object"             , TAG_OBJECT_ATTRS        },  
+	{  "ol"                 , TAG_OL_ATTRS            },  
+	{  "optgroup"           , TAG_OPTGROUP_ATTRS      },  
+	{  "option"             , TAG_OPTION_ATTRS        },  
+	{  "output"             , TAG_OUTPUT_ATTRS        },  
+	{  "p"                  , TAG_P_ATTRS             },  
+	{  "param"              , TAG_PARAM_ATTRS         },  
+	{  "plaintext"          , TAG_PLAINTEXT_ATTRS     },  
+	{  "pre"                , TAG_PRE_ATTRS           },  
+	{  "progress"           , TAG_PROGRESS_ATTRS      },  
+	{  "q"                  , TAG_P_ATTRS             },  
+	{  "rp"                 , TAG_RP_ATTRS            },  
+	{  "rt"                 , TAG_RT_ATTRS            },  
+	{  "ruby"               , TAG_RUBY_ATTRS          },  
+	{  "s"                  , TAG_S_ATTRS             },  
+	{  "samp"               , TAG_SAMP_ATTRS          },  
+	{  "script"             , TAG_SCRIPT_ATTRS        },  
+	{  "section"            , TAG_SECTION_ATTRS       },  
+	{  "select"             , TAG_SELECT_ATTRS        },  
+	{  "small"              , TAG_SMALL_ATTRS         },  
+	{  "source"             , TAG_SOURCE_ATTRS        },  
+	{  "spacer"             , TAG_SPACER_ATTRS        },  
+	{  "span"               , TAG_SPAN_ATTRS          },  
+	{  "strike"             , TAG_STRIKE_ATTRS        },  
+	{  "strong"             , TAG_STRONG_ATTRS        },  
+	{  "style"              , TAG_STYLE_ATTRS         },  
+	{  "sub"                , TAG_SUB_ATTRS           },  
+	{  "summary"            , TAG_SUMMARY_ATTRS       },  
+	{  "sup"                , TAG_SUP_ATTRS           },  
+	{  "table"              , TAG_TABLE_ATTRS         },  
+	{  "tbody"              , TAG_TBODY_ATTRS         },  
+	{  "td"                 , TAG_TD_ATTRS            },  
+	{  "textarea"           , TAG_TEXTAREA_ATTRS      },  
+	{  "tfoot"              , TAG_TFOOT_ATTRS         },  
+	{  "th"                 , TAG_TH_ATTRS            },  
+	{  "thead"              , TAG_THREAD_ATTRS        },  
+	{  "time"               , TAG_TIME_ATTRS          },  
+	{  "title"              , TAG_TITLE_ATTRS         },  
+	{  "tr"                 , TAG_TR_ATTRS            },  
+	{  "track"              , TAG_TRACK_ATTRS         },  
+	{  "tt"                 , TAG_TT_ATTRS            },  
+	{  "u"                  , TAG_U_ATTRS             },  
+	{  "ul"                 , TAG_UL_ATTRS            },  
+	{  "var"                , TAG_VAR_ATTRS           },  
+	{  "video"              , TAG_VIDEO_ATTRS         },  
+	{  "wbr"                , TAG_WBR_ATTRS           },  
+	{  "xmp"                , TAG_XMP_ATTRS           }   
+};
 
-#define TEST \
-{\
-    {  "html"               , TAG_HTML_ATTRS       },  \
-	{  "a"                  , TAG_A_ATTRS          },  \
-	{  "abbr"               , TAG_ABBR_ATTRS       },  \
-    { "kek"                 ,  {}                  },  \
-	{  "acronym"            , TAG_ACRONYM_ATTRS    },  \
-}
 
-
-
-#define TAG_DATABASE                                      \
-{                                                         \
-	{  "a"                  , TAG_A_ATTRS             },  \
-	{  "abbr"               , TAG_ABBR_ATTRS          },  \
-	{  "acronym"            , TAG_ACRONYM_ATTRS       },  \
-	{  "address"            , TAG_ADDRESS_ATTRS       },  \
-	{  "applet"             , TAG_APPLET_ATTRS        },  \
-	{  "area"               , TAG_AREA_ATTRS          },  \
-	{  "article"            , TAG_ARTICLE_ATTRS       },  \
-	{  "aside"              , TAG_ASIDE_ATTRS         },  \
-	{  "audio"              , TAG_AUDIO_ATTRS         },  \
-	{  "b"                  , TAG_B_ATTRS             },  \
-	{  "base"               , TAG_BASE_ATTRS          },  \
-	{  "basefont"           , TAG_BASEFONT_ATTRS      },  \
-	{  "bdi"                , TAG_BDI_ATTRS           },  \
-	{  "bdo"                , TAG_BDO_ATTRS           },  \
-	{  "bgsound"            , TAG_BGSOUND_ATTRS       },  \
-	{  "big"                , TAG_BIG_ATTRS           },  \
-	{  "blink"              , TAG_BLINK_ATTRS         },  \
-	{  "blockquote"         , TAG_BLOCKQUOTE_ATTRS    },  \
-	{  "body"               , TAG_BODY_ATTRS          },  \
-	{  "br"                 , TAG_BR_ATTRS            },  \
-	{  "button"             , TAG_BUTTON_ATTRS        },  \
-	{  "canvas"             , TAG_CANVAS_ATTRS        },  \
-	{  "caption"            , TAG_CAPTION_ATTRS       },  \
-	{  "center"             , TAG_CENTER_ATTRS        },  \
-	{  "cite"               , TAG_CITE_ATTRS          },  \
-	{  "code"               , TAG_CODE_ATTRS          },  \
-	{  "col"                , TAG_COL_ATTRS           },  \
-	{  "colgroup"           , TAG_COLGROUP_ATTRS      },  \
-	{  "command"            , TAG_COMMAND_ATTRS       },  \
-	{  "comment"            , TAG_COMMENT_ATTRS       },  \
-	{  "datalist"           , TAG_DATALIST_ATTRS      },  \
-	{  "dd"                 , TAG_DD_ATTRS            },  \
-	{  "del"                , TAG_DEL_ATTRS           },  \
-	{  "details"            , TAG_DETAILS_ATTRS       },  \
-	{  "dfn"                , TAG_DFN_ATTRS           },  \
-	{  "dir"                , TAG_DIR_ATTRS           },  \
-	{  "div"                , TAG_DIV_ATTRS           },  \
-	{  "dl"                 , TAG_DL_ATTRS            },  \
-	{  "dt"                 , TAG_DT_ATTRS            },  \
-	{  "em"                 , TAG_EM_ATTRS            },  \
-	{  "embed"              , TAG_EMBED_ATTRS         },  \
-	{  "fieldset"           , TAG_FIELDSET_ATTRS      },  \
-	{  "figcaption"         , TAG_FIGCAPTION_ATTRS    },  \
-	{  "figure"             , TAG_FIGURE_ATTRS        },  \
-	{  "font"               , TAG_FONT_ATTRS          },  \
-	{  "footer"             , TAG_FOOTER_ATTRS        },  \
-	{  "form"               , TAG_FORM_ATTRS          },  \
-	{  "frame"              , TAG_FRAME_ATTRS         },  \
-	{  "frameset"           , TAG_FRAMESET_ATTRS      },  \
-	{  "h1"                 , TAG_H1_ATTRS            },  \
-	{  "h2"                 , TAG_H2_ATTRS            },  \
-	{  "h3"                 , TAG_H3_ATTRS            },  \
-	{  "h4"                 , TAG_H4_ATTRS            },  \
-	{  "h5"                 , TAG_H5_ATTRS            },  \
-	{  "h6"                 , TAG_H6_ATTRS            },  \
-	{  "head"               , TAG_HEAD_ATTRS          },  \
-	{  "header"             , TAG_HEADER_ATTRS        },  \
-	{  "hgroup"             , TAG_HGROUP_ATTRS        },  \
-	{  "hr"                 , TAG_HR_ATTRS            },  \
-	{  "html"               , TAG_HTML_ATTRS          },  \
-	{  "i"                  , TAG_I_ATTRS             },  \
-	{  "iframe"             , TAG_IFRAME_ATTRS        },  \
-	{  "img"                , TAG_IMG_ATTRS           },  \
-	{  "input"              , TAG_INPUT_ATTRS         },  \
-	{  "ins"                , TAG_INS_ATTRS           },  \
-	{  "isindex"            , TAG_ISINDEX_ATTRS       },  \
-	{  "kbd"                , TAG_KBD_ATTRS           },  \
-	{  "keygen"             , TAG_KEYGEN_ATTRS        },  \
-	{  "label"              , TAG_LABEL_ATTRS         },  \
-	{  "legend"             , TAG_LEGEND_ATTRS        },  \
-	{  "li"                 , TAG_LI_ATTRS            },  \
-	{  "link"               , TAG_LINK_ATTRS          },  \
-	{  "listing"            , TAG_LISTING_ATTRS       },  \
-	{  "main"               , TAG_MAIN_ATTRS          },  \
-	{  "map"                , TAG_MAP_ATTRS           },  \
-	{  "mark"               , TAG_MARK_ATTRS          },  \
-	{  "marquee"            , TAG_MARQUEE_ATTRS       },  \
-	{  "menu"               , TAG_MENU_ATTRS          },  \
-	{  "meta"               , TAG_META_ATTRS          },  \
-	{  "meter"              , TAG_METER_ATTRS         },  \
-	{  "multicol"           , TAG_MULTICOL_ATTRS      },  \
-	{  "nav"                , TAG_NAV_ATTRS           },  \
-	{  "nobr"               , TAG_NOBR_ATTRS          },  \
-	{  "noembed"            , TAG_NOEMBED_ATTRS       },  \
-	{  "noframes"           , TAG_NOFRAMES_ATTRS      },  \
-	{  "noscript"           , TAG_NOFRAMES_ATTRS      },  \
-	{  "object"             , TAG_OBJECT_ATTRS        },  \
-	{  "ol"                 , TAG_OL_ATTRS            },  \
-	{  "optgroup"           , TAG_OPTGROUP_ATTRS      },  \
-	{  "option"             , TAG_OPTION_ATTRS        },  \
-	{  "output"             , TAG_OUTPUT_ATTRS        },  \
-	{  "p"                  , TAG_P_ATTRS             },  \
-	{  "param"              , TAG_PARAM_ATTRS         },  \
-	{  "plaintext"          , TAG_PLAINTEXT_ATTRS     },  \
-	{  "pre"                , TAG_PRE_ATTRS           },  \
-	{  "progress"           , TAG_PROGRESS_ATTRS      },  \
-	{  "q"                  , TAG_P_ATTRS             },  \
-	{  "rp"                 , TAG_RP_ATTRS            },  \
-	{  "rt"                 , TAG_RT_ATTRS            },  \
-	{  "ruby"               , TAG_RUBY_ATTRS          },  \
-	{  "s"                  , TAG_S_ATTRS             },  \
-	{  "samp"               , TAG_SAMP_ATTRS          },  \
-	{  "script"             , TAG_SCRIPT_ATTRS        },  \
-	{  "section"            , TAG_SECTION_ATTRS       },  \
-	{  "select"             , TAG_SELECT_ATTRS        },  \
-	{  "small"              , TAG_SMALL_ATTRS         },  \
-	{  "source"             , TAG_SOURCE_ATTRS        },  \
-	{  "spacer"             , TAG_SPACER_ATTRS        },  \
-	{  "span"               , TAG_SPAN_ATTRS          },  \
-	{  "strike"             , TAG_STRIKE_ATTRS        },  \
-	{  "strong"             , TAG_STRONG_ATTRS        },  \
-	{  "style"              , TAG_STYLE_ATTRS         },  \
-	{  "sub"                , TAG_SUB_ATTRS           },  \
-	{  "summary"            , TAG_SUMMARY_ATTRS       },  \
-	{  "sup"                , TAG_SUP_ATTRS           },  \
-	{  "table"              , TAG_TABLE_ATTRS         },  \
-	{  "tbody"              , TAG_TBODY_ATTRS         },  \
-	{  "td"                 , TAG_TD_ATTRS            },  \
-	{  "textarea"           , TAG_TEXTAREA_ATTRS      },  \
-	{  "tfoot"              , TAG_TFOOT_ATTRS         },  \
-	{  "th"                 , TAG_TH_ATTRS            },  \
-	{  "thead"              , TAG_THREAD_ATTRS        },  \
-	{  "time"               , TAG_TIME_ATTRS          },  \
-	{  "title"              , TAG_TITLE_ATTRS         },  \
-	{  "tr"                 , TAG_TR_ATTRS            },  \
-	{  "track"              , TAG_TRACK_ATTRS         },  \
-	{  "tt"                 , TAG_TT_ATTRS            },  \
-	{  "u"                  , TAG_U_ATTRS             },  \
-	{  "ul"                 , TAG_UL_ATTRS            },  \
-	{  "var"                , TAG_VAR_ATTRS           },  \
-	{  "video"              , TAG_VIDEO_ATTRS         },  \
-	{  "wbr"                , TAG_WBR_ATTRS           },  \
-	{  "xmp"                , TAG_XMP_ATTRS           }   \
-}
-
-static std::map<std::string, std::vector<std::string>> TAG_DB = TAG_DATABASE;
 
 
 

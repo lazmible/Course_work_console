@@ -7,6 +7,15 @@ std::list<std::string>                strings;
 std::list<std::list<htmlAttribute>>   attributes_lists;
 std::list<htmlAttribute>              attributes;
 
+extern int yylineno;
+
+void CleanUpUtilsStructures()
+{
+	strings.clear();
+	attributes_lists.clear();
+	attributes.clear();
+}
+
 int Token(void * text, int value)
 {
 	switch (value)
@@ -36,7 +45,7 @@ void * GenNewStrW(char * str) // returns pointer to std::string
 
 void * GenNewAttr(std::string attr, std::string val) // returns pointer to htmlAttribute 
 {
-	htmlAttribute instance(attr, ATTR_DATABASE, "", val);
+	htmlAttribute instance(attr, ATTR_DATABASE, "", val, yylineno);
 	attributes.push_back(instance);
 
 	return (&(*(--attributes.end())));
@@ -44,7 +53,7 @@ void * GenNewAttr(std::string attr, std::string val) // returns pointer to htmlA
 
 void * GenNewAttr(std::string attr) // returns pointer to htmlAttribute 
 {
-	htmlAttribute instance(attr, ATTR_DATABASE, "", "");
+	htmlAttribute instance(attr, ATTR_DATABASE, "", "", yylineno);
 	attributes.push_back(instance);
 	return (&(*(--attributes.end())));
 }

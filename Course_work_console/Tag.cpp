@@ -9,29 +9,16 @@ static bool is_user_defined_attribute(std::string name)
 	else                   { return false; }
 }
 
-htmlTag::htmlTag(std::string nm, std::stack<std::string> st, const db_attr_type & attr_db, const db_tag_type & tag_db)
-	: name(nm), state_before(st), attribute_database(attr_db), tag_database(tag_db)
+void htmlTag::init()
 {
 	if (tag_database.find(this->name) != tag_database.end())
 	{
 		valid_attribute_names_list = tag_database.find(this->name)->second;
-		if (PrecedenceTags.find(this->name) != PrecedenceTags.end())
-		{
-
-		}
 	}
 	else
 	{
-		std::cout << "[TagError] Unexpexted Tag name: <" << this->name << ">" << std::endl;
+		std::cout << "[TagError line: " << this->line << "] Unexpexted Tag name: <" << this->name << ">" << std::endl;
 	}
-}
-
-std::vector<error> htmlTag::check_precursory()
-{
-	std::stack<std::string> valid_state;
-	for (auto it : precursory_tags) { valid_state.push(it); }
-
-	return {};
 }
 
 bool htmlTag::check_name()
@@ -53,11 +40,11 @@ void htmlTag::AddAttribute(std::string name, std::string val)
 {
 	if (check_attr_name(name) || is_user_defined_attribute(name))
 	{
-		htmlAttribute attribute(name, this->attribute_database, "", val);
+		htmlAttribute attribute(name, this->attribute_database, "", val, this->line);
 		attribute.CheckState();
 	}
 	else
 	{
-		std::cout << "[TagError] Unexpected Attribute name: <" << name << ">" << " for tag <" << this->name << ">" << std::endl;
+		std::cout << "[TagError line: " << this->line << " ] Unexpected Attribute name <" << name << ">" << " for tag <" << this->name << ">" << std::endl;
 	}
 }

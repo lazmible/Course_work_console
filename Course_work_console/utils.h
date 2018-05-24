@@ -14,6 +14,7 @@ void * GenNewAttr(std::string attr);                                            
 void * GenNewAttrList(htmlAttribute * attr);                                      // returns pointer to std::vector<htmlAttribute>
 void * AppendAttrInList(htmlAttribute * attr, std::list<htmlAttribute> * lst);   // returns pointer to std::vector<htmlAttribute>
 int    Token(void * text, int value);
+void   CleanUpUtilsStructures();
 
 inline void DBG_PRINT(std::string message, std::string value, int line)
 {

@@ -19,22 +19,13 @@
 
 %%
 
-<comment>
-{
-"-->"		{  BEGIN(INITIAL);                                                                        }
-\n			{ std::cout << "\t[lexer]: Ignoring new line" << "| on line: " << yylineno << std::endl;  }
-<<EOF>>		{ std::cout << "\t[lexer]: Unclosed comment line\n"; system("pause"); exit(0);            }
-.			{ std::cout << "\t[lexer]: Ignoring smth" << "| on line: " << yylineno << std::endl;      }
-}
-
 <script>
 {
-"</script>"	{  BEGIN(INITIAL);                                                                        }
+"</script>"	{  DBG_PRINT("\t[lexer]: Script ended", "", yylineno); BEGIN(INITIAL);                    }
 \n			{ DBG_PRINT("\t[lexer]: Ignoring new line", "", yylineno);                                }
 <<EOF>>		{  std::cout << "\t[lexer]: Unclosed script tag\n"; system("pause"); exit(0);             }
 .			{ DBG_PRINT("\t[lexer]: Ignoring smth", "", yylineno);                                    }
 }
-
 
 [ \t\r\f\v\a\n]+                             { }
 "!DOCTYPE html"                              { DBG_PRINT("\t[lexer]: DOCTYPE5", "", yylineno);                return Token(yytext, DOCTYPE5);            }
@@ -44,7 +35,7 @@
 "\"-//W3C//DTD HTML 4.01 Transitional//EN"\" { DBG_PRINT("\t[lexer]: DOCTYPEPART4", "", yylineno);            return Token(yytext, DOCTYPEPART4);        }
 "\"http://www.w3.org/TR/html4/loose.dtd"\"   { DBG_PRINT("\t[lexer]: DOCTYPEPART5", "", yylineno);            return Token(yytext, DOCTYPEPART5);        }
 "<!--"                                       { DBG_PRINT("\t[lexer]: Comment Started", "", yylineno);         BEGIN(comment);                            }
-"<script".*?">"                              { DBG_PRINT("\t[lexer]: Script Started", "", yylineno);          BEGIN(script);                             }
+"<[".*?"]"                                   { DBG_PRINT("\t[lexer]: Comment Started", "", yylineno);         BEGIN(comment);                            }
 "<"                                          { DBG_PRINT("\t[lexer]: OPENING_TAG_BRACKET", "", yylineno);     return Token(yytext, OPENING_TAG_BRACKET); }
 ">"                                          { DBG_PRINT("\t[lexer]: CLOSING_TAG_BRACKET", "", yylineno);     return Token(yytext, CLOSING_TAG_BRACKET); }
 "="                                          { DBG_PRINT("\t[lexer]: ASSIGNMENT", "", yylineno);              return Token(yytext, ASSIGNMENT);          }

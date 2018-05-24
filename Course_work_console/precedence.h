@@ -4,8 +4,10 @@
 #include <string>
 #include <map>
 
-static std::vector<std::string> HeadTagsAllowded = { "base" , "basefont" , "bgsound", "link", "meta", "script", "style", "title" };
-static std::map<std::string, std::pair<std::string, bool>> PrecedenceTags =                  
+static std::vector<std::string> HeadTagsAllowded                           = { "base" , "basefont" , "bgsound", "link", "meta", "script", "style", "title" };
+static std::vector<std::string> TagsWithNoClosing                          = { "area", "base", "br", "col", "command", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr" };
+static std::vector<std::string> TagsToIgnore                               = { "script", "style", "xml" };
+static std::map<std::string, std::pair<std::string, bool>> PrecedenceTags  =                  
 {                                              
   { "area"      , { "map"      , false }   }, 
   { "base"      , { "head"     , false }   }, 
@@ -41,4 +43,4 @@ static std::map<std::string, std::pair<std::string, bool>> PrecedenceTags =
   { "thead"     , { "table"    , true  }   }, 
   { "title"     , { "head"     , false }   }, 
   { "tr"        , { "table"    , false }   }  
-}
+};

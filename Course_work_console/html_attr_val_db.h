@@ -9,7 +9,7 @@
 nl|el|ka|gn|da|zu|iw|ji|in|ia|ga|is|es|it|kk|km|ca|ks|qu|ky|\
 zh|ko|co|ku|lo|lv|la|lt|mg|ms|mt|mi|mk|mo|mn|na|de|ne|no|pa|\
 fa|pl|ps|rm|ro|ru|sm|sa|sr|sk|sl|so|sw|su|tl|tg|th|ta|tt|bo|\
-to|tr|tk|uz|uk|ur|fj|fi|fr|fy|ha|hi|hr|cs|sv|eo|et|jw|ja)"
+to|tr|tk|uz|uk|ur|fj|fi|fr|fy|ha|hi|hr|cs|sv|eo|et|jw|ja|en-au)"
 #pragma endregion
 
 #pragma region Mime type regex definition
@@ -193,30 +193,26 @@ multipart/x-zip)"
 #define CHAR_SET            "(iso 646|ISO 646|ascii|ASCII|bcdic||BCDIC|ebcdic|EBCDIC|windows-125[0-8]|WINDOWS-125[0-8]|koi8|KOI8|iscii|ISCII|viscii|VISCII|big5|utf-8|UTF-8|utf-16|UTF-16|utf-32|UTF-32|unicode|UNICODE)"
 #define PATH                "^(.*/)?(?:$|(.+?)(?:(\.[^.]*$)|$))" 
 #define COLOR               "(#[a-f0-9A-F]{1,6}|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow)"
-#define SCRIPT              "[a-zA-Z]+:[a-zA-Z][a-zA-Z0-9_]*"
 #define INTEGER             "-?[0-9]+"
 #define POSITIVE_INTEGER    "[0-9]+"
 #define URL                 R"(^(([^:\/?#]+):)?(//([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?)" 
-#define IDENTIFIER          "[a-zA-Z][a-zA-Z0-9_]*"         
-#define ANY_TEXT            ".+"
+#define IDENTIFIER          "[a-zA-Z][a-zA-Z0-9_-]*"         
+#define ANY_TEXT            ".*"
 #define INTEGER_OR_PERCENT  "[0-9%]+"
+#define SCRIPT              ANY_TEXT //"[a-zA-Z]+:[a-zA-Z][a-zA-Z0-9_]*"
 
 #pragma region attribute_values
-// В куче атрибутов есть значения по умолчанию, надо видимо как-то учитывать их в классе
-
-// Допридумать:
-// 2) Аттрибуты, для которых обязательны кавычки
 
 #define ATTR_ACCESS_KEY_VALS          ("[0-9a-z]"                      )  // +++++ Число от 0 до 9 или маленькая латинская буква
-#define ATTR_CLASS_VALS               ("([0-9a-zA-Z-_]+|)"             )  
+#define ATTR_CLASS_VALS               ("([0-9a-zA-Z-_ ]+|)"            )  
 #define ATTR_CONTENTEDITABLE_VALS     ("(true|false|)"                 )  // +++++ "true" , "false" или пустая строка
 #define ATTR_CONTEXTMENU_VALS         ("[a-zA-Z]+"                     )  // !!!!! тут более сложная логика, доделать похже
 #define ATTR_DIR_VALS                 ("(ltr|rtl)"                     )  // +++++ "ltr" или "rtl"
 #define ATTR_HIDDEN_VALS              ("(hidden|)"                     )  // может вообще быть без строки, надо чекать выше по логике, доделать позже
-#define ATTR_ID_VALS                  ("[a-zA-Z][a-zA-Z0-9-_]*"        )  // +++++ Начинается с буквы, дальше буква или цифра или тире или _
+#define ATTR_ID_VALS                  ("([a-zA-Z][a-zA-Z0-9-_]*|)"     )  // +++++ Начинается с буквы, дальше буква или цифра или тире или _
 #define ATTR_LANG_VALS                LANGUAGE_CODE
 #define ATTR_SPELLCHECK_VALS          ("(true|false|)"                 )  // "true" , "false" или пустая строка
-#define ATTR_STYLE_VALS               ("[a-zA-Z0-9;: -]+"               )  // CSS syntax
+#define ATTR_STYLE_VALS               ANY_TEXT
 #define ATTR_TABINDEX_VALS            ("[0-9]+"                        )  // positive integer value
 #define ATTR_TITLE_VALS               ANY_TEXT
 #define ATTR_XMLLANG_VALS             LANGUAGE_CODE                       
@@ -234,6 +230,7 @@ multipart/x-zip)"
 #define ATTR_ONMOUSEOUT_VALS          SCRIPT
 #define ATTR_ONMOUSEOVER_VALS         SCRIPT
 #define ATTR_ONMOUSEUP_VALS           SCRIPT
+#define ATTR_ONMOUSELEAVE_VALS        SCRIPT
 #define ATTR_ONRESET_VALS             SCRIPT
 #define ATTR_ONSELECT_VALS            SCRIPT
 #define ATTR_ONSUBMIT_VALS            SCRIPT
@@ -243,12 +240,12 @@ multipart/x-zip)"
 #define ATTR_ACTION_VALS              URL 
 #define ATTR_ALIGN_VALS               ("(bottom|left|middle|right|top)")  
 #define ATTR_ALINK_VALS               COLOR
-#define ATTR_ALLOWTRANSPARENCY_VALS   (""                              ) // Значений вообще никаких не должно быть
+#define ATTR_ALLOWTRANSPARENCY_VALS   ("(allowtransparency|)"          ) 
 #define ATTR_ALT_VALS                 ("[a-zA-Z ]+"                    ) // Обязательно должно прийти в двойных кавычках
-#define ATTR_ARCHIVE_VALS             PATH                               // Здесь путь или несколько путей должны быть 
-#define ATTR_ASYNC_VALS               (""                              ) // Значения вообще не должно быть
+#define ATTR_ARCHIVE_VALS             PATH                               
+#define ATTR_ASYNC_VALS               ("(async|)"                      ) 
 #define ATTR_AUTOCOMPLETE_VALS        ("(on|off)"                      )
-#define ATTR_AUTOFOCUS_VALS           (""                              ) // Значения вообще не должно быть
+#define ATTR_AUTOFOCUS_VALS           ("(autofocus|)"                  ) 
 #define ATTR_AUTOPLAY_VALS            ("(autoplay|)"                   ) 
 #define ATTR_AXIS_VALS                ("[a-zA-Z]*"                     )
 #define ATTR_BACKGROUND_VALS          URL
@@ -266,8 +263,8 @@ multipart/x-zip)"
 #define ATTR_CHECKED_VALS             ("(checked|)"                    )
 #define ATTR_CELLPADDING_VALS         INTEGER_OR_PERCENT
 #define ATTR_CELLSPACING_VALS         POSITIVE_INTEGER
-#define ATTR_CITE_VALS                PATH                                // Здесь путь или несколько путей должны быть
-#define ATTR_CLASSID_VALS             PATH                                // Здесь путь или несколько путей должны быть
+#define ATTR_CITE_VALS                PATH                                
+#define ATTR_CLASSID_VALS             PATH                                
 #define ATTR_CLEAR_VALS               ("(all|left|right|none)"         )
 #define ATTR_CODE_VALS                ANY_TEXT
 #define ATTR_CODEBASE_VALS            PATH
@@ -277,13 +274,13 @@ multipart/x-zip)"
 #define ATTR_COLOR_VALS               COLOR
 #define ATTR_COLS_VALS                POSITIVE_INTEGER
 #define ATTR_CLOSPAN_VALS             POSITIVE_INTEGER
-#define ATTR_COORDS_VALS              ("[0-9,]+"                       )  // числа, разделенные запятыми. ПРОВЕРИТЬ
+#define ATTR_COORDS_VALS              ("[0-9,]+"                       )  
 #define ATTR_DATA_VALS                ANY_TEXT
 #define ATTR_DATETIME_VALS            DATE_TIME
-#define ATTR_DEFAULT_VALS             ("") // без значения
-#define ATTR_DEFER_VALS               ("") // без значения
+#define ATTR_DEFAULT_VALS             ("(default|)") 
+#define ATTR_DEFER_VALS               ("(defer|)") 
 #define ATTR_DIRECTION_VALS           ("(down|left|right|up|)")
-#define ATTR_DISABLED_VALS            ("") // без значения
+#define ATTR_DISABLED_VALS            ("(disabled|)") 
 #define ATTR_DOWNLOAD_VALS            ("") // вообще нет и присвоить себе нельзя
 #define ATTR_ENCTYPE_VALS             ("(application/x-www-form-urlencoded|multipart/form-data|text/plain|)")
 #define ATTR_FACE_VALS                ANY_TEXT
@@ -295,17 +292,17 @@ multipart/x-zip)"
 #define ATTR_FORMACTION_VALS          URL
 #define ATTR_FORMENCTYPE_VALS         ("(application/x-www-form-urlencoded|multipart/form-data|text/plain|)")
 #define ATTR_FORMMETHOD_VALS          ("(get|post)")
-#define ATTR_FORMOVALIDATE_VALS       ANY_TEXT // не нашел
+#define ATTR_FORMOVALIDATE_VALS       ANY_TEXT 
 #define ATTR_FORMTARGET_VALS          ("([a-zA-Z]|_blank|_self|_parent|_top)")
-#define ATTR_GUTTER_VALS              ANY_TEXT // не нашел
-#define ATTR_HEADERS_VALS             IDENTIFIER  // имя идентификатора, возможно несколько через пробел
-#define ATTR_HEIGHT_VALS              POSITIVE_INTEGER
+#define ATTR_GUTTER_VALS              ANY_TEXT 
+#define ATTR_HEADERS_VALS             IDENTIFIER  
+#define ATTR_HEIGHT_VALS              ("[0-9]+[px]?")
 #define ATTR_HREF_VALS                URL
 #define ATTR_HREFLANG_VALS            LANGUAGE_CODE
 #define ATTR_HSPACE_VALS              POSITIVE_INTEGER
 #define ATTR_HTTPEQUIV_VALS           IDENTIFIER
-#define ATTR_ICON_VALS                ANY_TEXT // не нашел
-#define ATTR_ISMAP_VALS               ("") // нет значения
+#define ATTR_ICON_VALS                ANY_TEXT 
+#define ATTR_ISMAP_VALS               ("(ismap|)") 
 #define ATTR_KEYTYPE_VALS             IDENTIFIER
 #define ATTR_KIND_VALS                IDENTIFIER
 #define ATTR_LABEL_VALS               ("[a-zA-Z]*") // кавычки обязательно
@@ -315,7 +312,7 @@ multipart/x-zip)"
 #define ATTR_LIST_VALS                IDENTIFIER
 #define ATTR_LONGDESC_VALS            PATH
 #define ATTR_LOOP_VALS                ("(loop|)")
-#define ATTR_LOW_VALS                 ("\-?\d+(\.\d{0,})?"             )  // целое или дробное число
+#define ATTR_LOW_VALS                 ("\-?\d+(\.\d{0,})?"             )  
 #define ATTR_LOWSRC_VALS              PATH 
 #define ATTR_MANIFEST_VALS            URL
 #define ATTR_MARGINHEIGHT_VALS        POSITIVE_INTEGER
@@ -325,28 +322,28 @@ multipart/x-zip)"
 #define ATTR_MEDIA_VALS               ("(all|braille|handheld|print|screen|speech|projection|tty|tv|)")
 #define ATTR_METHOD_VALS              ("(get|post|)")
 #define ATTR_MIN_VALS                 POSITIVE_INTEGER
-#define ATTR_MULTIPLE_VALS            ("") // нет значения
+#define ATTR_MULTIPLE_VALS            ("(multiple|)") 
 #define ATTR_MUTED_VALS               ("(muted|)")
-#define ATTR_NAME_VALS                ("[a-zA-Z]+")
+#define ATTR_NAME_VALS                ("[a-zA-Z0-9]+")
 #define ATTR_NOHREF_VALS              ("(nohref|)")
 #define ATTR_NORESIZE_VALS            ("(noresize|)")
 #define ATTR_NOSHADE_VALS             ("(noshade|)")
 #define ATTR_NOVALIDATE_VALS          ("(novalidate|)")
 #define ATTR_NOWRAP_VALS              ("(nowrap|)")
-#define ATTR_OPEN_VALS                ("") // нет
-#define ATTR_OPTIMUM_VALS             ("") // нет
-#define ATTR_PATTERN_VALS             ANY_TEXT  // некоторые регулярки из их таблицы   
+#define ATTR_OPEN_VALS                ("(open|)") 
+#define ATTR_OPTIMUM_VALS             ("(optimum|)") 
+#define ATTR_PATTERN_VALS             ANY_TEXT   
 #define ATTR_PLACEHOLDER_VALS         ANY_TEXT
 #define ATTR_PLUGINSPAGE_VALS         URL
 #define ATTR_POSTER_VALS              PATH
 #define ATTR_PRELOAD_VALS             ("(none|metadata|auto|)")
 #define ATTR_PROMPT_VALS              ANY_TEXT
-#define ATTR_PUBDATE_VALS             ("") // нет
-#define ATTR_RADIOGROUP_VALS          ANY_TEXT  // какой-то там текст  
-#define ATTR_READONLY_VALS            ("") // нет
-#define ATTR_REL_VALS                 ("(answer|chapter|co-worker|colleague|contact|details|edit|friend|question|archives|author|bookmark|first|help|index|last|license|me|next|nofollow|noreferrer|prefetch|prev|search|sidebar|tag|up)")		      
-#define ATTR_REQUIRED_VALS            ("") // нет
-#define ATTR_RESERVED_VALS            ("") // нет
+#define ATTR_PUBDATE_VALS             ("(pubdate|)") 
+#define ATTR_RADIOGROUP_VALS          ANY_TEXT  
+#define ATTR_READONLY_VALS            ("(readonly|)") 
+#define ATTR_REL_VALS                 ("(answer|chapter|co-worker|colleague|contact|details|edit|friend|question|archives|author|bookmark|first|help|index|last|license|me|next|nofollow|noreferrer|prefetch|prev|search|sidebar|tag|up|apple-touch-icon|stylesheet)")		      
+#define ATTR_REQUIRED_VALS            ("(required|)") 
+#define ATTR_RESERVED_VALS            ("(reserved|)") 
 #define ATTR_RIGHTMARGIN_VALS         POSITIVE_INTEGER
 #define ATTR_ROWS_VALS                ANY_TEXT	      
 #define ATTR_ROWSPAN_VALS             POSITIVE_INTEGER     
@@ -358,8 +355,8 @@ multipart/x-zip)"
 #define ATTR_SCROLLDELAY_VALS         POSITIVE_INTEGER
 #define ATTR_SCROLLING_VALS           ("(auto|no|yes)")
 #define ATTR_SHAPE_VALS               ("(circle|default|poly|rect)")
-#define ATTR_SEAMLESS_VALS            ("") // нет
-#define ATTR_SELECTED_VALS            ("") // нет
+#define ATTR_SEAMLESS_VALS            ("(seamless|)") 
+#define ATTR_SELECTED_VALS            ("(selected|)") 
 #define ATTR_SIZE_VALS                POSITIVE_INTEGER     
 #define ATTR_SIZES_VALS               ("([0-9]+x[0-9]+)+")   
 #define ATTR_SPAN_VALS                POSITIVE_INTEGER
@@ -368,12 +365,12 @@ multipart/x-zip)"
 #define ATTR_SRCDOC_VALS              ANY_TEXT // html код        
 #define ATTR_START_VALS               POSITIVE_INTEGER
 #define ATTR_STEP_VALS                INTEGER // целое или дробное!!        
-#define ATTR_SUMMARY_VALS             ("")  // нет
+#define ATTR_SUMMARY_VALS             ("(summary|)")  
 #define ATTR_TARGET_VALS              ("(_blank|_self|_parent|_top)")
 #define ATTR_TEXT_VALS                COLOR
 #define ATTR_TOPMARGIN_VALS           POSITIVE_INTEGER
-#define ATTR_TRUESPEED_VALS           ("") // нет
-#define ATTR_TYPE_VALS                ("(button|checkbox|file|hidden|image|password|radio|reset|submit|text|color|date|datetime|datetime|email|number|range|search|tel|time|url|month|week|text/javascript)")
+#define ATTR_TRUESPEED_VALS           ("(truespeed|)") 
+#define ATTR_TYPE_VALS                ("(button|checkbox|file|hidden|image|password|radio|reset|submit|text|color|date|datetime|datetime|email|number|range|search|tel|time|url|month|week|internal/link|text/javascript|text/css)")
 #define ATTR_USEMAP_VALS              ("#[a-zA-Z]+")
 #define ATTR_VALIGN_VALS              ("(top|middle|bottom|baseline)")
 #define ATTR_VALUE_VALS               ANY_TEXT
@@ -381,10 +378,13 @@ multipart/x-zip)"
 #define ATTR_VLINK_VALS               COLOR
 #define ATTR_VOLUME_VALS              INTEGER	      
 #define ATTR_VSPACE_VALS              INTEGER
-#define ATTR_WIDTH_VALS               INTEGER_OR_PERCENT	      
+#define ATTR_WIDTH_VALS               ("[0-9]+[px]*")	      
 #define ATTR_WRAP_VALS                ("(soft|hard|off|)")
 #define ATTR_XMLNS_VALS               URL
 #define ATTR_ABBR_VALS                ANY_TEXT
+#define ATTR_ARIA_LABEL_VALS          ANY_TEXT
+#define ATTR_ARIA_HASPOPUP_VALS       ANY_TEXT
+#define ATTR_ONTOUCHSTART_VALS        ANY_TEXT
 #pragma endregion
 
 #pragma region database_definition
@@ -568,7 +568,11 @@ multipart/x-zip)"
 	{  "vspace"             , ATTR_VSPACE_VALS               },  \
 	{  "width"              , ATTR_WIDTH_VALS                },  \
 	{  "wrap"               , ATTR_WRAP_VALS                 },  \
-	{  "xmlns"              , ATTR_XMLNS_VALS                }   \
+	{  "xmlns"              , ATTR_XMLNS_VALS                },  \
+    {  "aria-label"         , ATTR_ARIA_LABEL_VALS           },  \
+    {  "aria-haspopup"      , ATTR_ARIA_HASPOPUP_VALS        },  \
+    {  "onmouseleave"       , ATTR_ONMOUSELEAVE_VALS         },  \
+    {  "ontouchstart"       , ATTR_ONTOUCHSTART_VALS         }   \
 }
 
 #pragma endregion

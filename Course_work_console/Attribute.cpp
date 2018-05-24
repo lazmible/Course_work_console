@@ -25,6 +25,6 @@ void htmlAttribute::CheckState()
 {
 	if (!this->check_value() && !is_user_defined_attribute(this->name)) 
 	{
-		std::cout << "[AttributeError] Unexpected Attribute value: <" << this->value << "> for attribute <" << this->name << ">" << std::endl; 
+		std::cout << "[AttributeError line: " << this->line << "] Unexpected Attribute value <" << this->value << "> for attribute <" << this->name << ">" << std::endl; 
 	}
 }
