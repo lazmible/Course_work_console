@@ -103,10 +103,5 @@ htmlContent
     | TEXT
     | SINGLE_QUOTE_STRING
     | DOUBLE_QUOTE_STRING
-    | htmlContent SINGLE_QUOTE_STRING
-    | htmlContent DOUBLE_QUOTE_STRING
-    | htmlContent ASSIGNMENT
-    | htmlContent SLASH
-    | htmlContent TEXT
     ;
 %%
