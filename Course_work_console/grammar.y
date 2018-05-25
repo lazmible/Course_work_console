@@ -25,7 +25,6 @@ OPENING_TAG_BRACKET
 CLOSING_TAG_BRACKET
 SLASH 
 ASSIGNMENT 
-SCRIPT
 DOCTYPE
 DOCTYPEPART2
 DOCTYPEPART3
@@ -33,9 +32,15 @@ DOCTYPEPART4
 DOCTYPEPART5
 DOCTYPE5
 
-%token<string_t> DOUBLE_QUOTE_STRING SINGLE_QUOTE_STRING TEXT TAG_NAME
+%token<string_t> 
+DOUBLE_QUOTE_STRING 
+SINGLE_QUOTE_STRING 
+TEXT 
 
-%type<string_t> htmlAttributeValue htmlAttribute htmlAttributeList  
+%type<string_t> 
+htmlAttributeValue 
+htmlAttribute 
+htmlAttributeList  
 
 %start begin
 
@@ -45,6 +50,7 @@ begin
     : 
     | htmlDoctype htmlDocument
     | htmlDocument
+    | error htmlDocument { return yyerror("Invalid doctype"); }
     ;
 
 htmlDoctype 

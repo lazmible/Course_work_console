@@ -8,6 +8,7 @@
 #include <regex>
 #include <list>
 #include <initializer_list>
+#include <cctype>
 
 #include "error.h"
 
@@ -27,7 +28,6 @@ class htmlAttribute
 private:
 	std::string name;
 	std::string value;
-	std::string error_message;
 	std::size_t line;
 
 	std::vector<std::string> names_database;
@@ -38,11 +38,10 @@ private:
 
 public:
 
-	htmlAttribute(std::string _name, const std::map<std::string, std::string> & val_db, std::string err, std::string val, int _line)
-		: name(_name), values_database(val_db), error_message(err), value(val), line(_line)
-	{
-
-	}
+	htmlAttribute(std::string _name, const std::map<std::string, std::string> & val_db,
+		std::string err, std::string val, int _line)
+		: name(_name), values_database(val_db), value(val), line(_line)
+	{}
 
 	void CheckState();
 	const std::string GetName()  const { return (name); }

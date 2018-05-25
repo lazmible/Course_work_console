@@ -22,24 +22,14 @@ public:
 	(
 		std::string              nm,
 		const db_attr_type &     attr_db,
-		const db_tag_type  &     tag_db
-	) : name(nm), attribute_database(attr_db), tag_database(tag_db), line(0)
-	
-	{ init(); }
-
-
-	htmlTag
-	(
-		std::string              nm,
-		const db_attr_type &     attr_db,
 		const db_tag_type  &     tag_db,
 		std::size_t              _line
 	) : name(nm), attribute_database(attr_db), tag_database(tag_db), line(_line)
 
 	{ init(); }
 
-	std::string                GetName()         { return name; }
-	std::size_t                GetLine() { return line; }
+	std::string GetName() { return name; }
+	std::size_t GetLine() { return line; }
 	void AddAttribute(std::string name, std::string val);
 	
 };

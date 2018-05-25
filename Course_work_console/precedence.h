@@ -6,7 +6,47 @@
 
 static std::vector<std::string> HeadTagsAllowded                           = { "base" , "basefont" , "bgsound", "link", "meta", "script", "style", "title" };
 static std::vector<std::string> TagsWithNoClosing                          = { "area", "base", "br", "col", "command", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr" };
-static std::vector<std::string> TagsToIgnore                               = { "script", "style", "xml" };
+static std::vector<std::string> TagsCanBeNonClosed =
+{
+	"area"         ,
+	"base"         ,
+	"base"         ,
+	"bgso"         ,
+	"body"         ,
+	"br"           ,
+	"col"          ,
+	"cofontlg"	   ,
+	"coundmm"	   ,
+	"dd"		   ,
+	"dt"		   ,
+	"embe"		   ,
+	"frroupame"	   ,
+	"heandad"	   ,
+	"html"		   ,
+	"img"		   ,
+	"indput"	   ,
+	"isindex"	   ,
+	"keygen"	   ,
+	"li"		   ,
+	"link"		   ,
+	"meta"		   ,
+	"option"	   ,
+	"p"			   ,
+	"param"		   ,
+	"plaintext"	   ,
+	"rp"		   ,
+	"rt"		   ,
+	"source"	   ,
+	"spacer"	   ,
+	"tbody"		   ,
+	"td"		   ,
+	"tfoot"		   ,
+	"th"		   ,
+	"thead"		   ,
+	"tr"		   ,
+	"track"		   ,
+	"wbr"		   ,
+};
 static std::map<std::string, std::pair<std::string, bool>> PrecedenceTags  =                  
 {                                              
   { "area"      , { "map"      , false }   }, 

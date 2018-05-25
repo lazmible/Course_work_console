@@ -92,8 +92,8 @@
 "<script"                                    { DBG_PRINT("\t[lexer]: Script Started", "", yylineno);          BEGIN(script);                             }
 "<style"                                     { DBG_PRINT("\t[lexer]: Style Started", "", yylineno);           BEGIN(style);                              }
 "<xml"                                       { DBG_PRINT("\t[lexer]: Xml Started", "", yylineno);             BEGIN(xml);                                }
+"<!--["                                      { DBG_PRINT("\t[lexer]: Cond. comment Started", "", yylineno);   BEGIN(comment);                            }
 "<!--"                                       { DBG_PRINT("\t[lexer]: Comment Started", "", yylineno);         BEGIN(comment);                            }
-"<[".*?"]"                                   { DBG_PRINT("\t[lexer]: Comment Started", "", yylineno);         BEGIN(comment);                            }
 "<"                                          { DBG_PRINT("\t[lexer]: OPENING_TAG_BRACKET", "", yylineno);     return Token(yytext, OPENING_TAG_BRACKET); }
 ">"                                          { DBG_PRINT("\t[lexer]: CLOSING_TAG_BRACKET", "", yylineno);     return Token(yytext, CLOSING_TAG_BRACKET); }
 "="                                          { DBG_PRINT("\t[lexer]: ASSIGNMENT", "", yylineno);              return Token(yytext, ASSIGNMENT);          }

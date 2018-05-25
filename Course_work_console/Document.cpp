@@ -5,131 +5,119 @@
 
 extern int yylineno;
 
+std::string str_tolower(std::string s)
+{
+	std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return std::tolower(c); });
+	return s;
+}
+
+bool tag_can_not_be_closed(std::string name)
+{
+	return (std::find(TagsCanBeNonClosed.begin(), TagsCanBeNonClosed.end(), name) != TagsCanBeNonClosed.end());
+}
+
 void htmlDocument::AddOpeningTag(std::string tag_name, int line)
-{	
-	if (!this->ignore_mode_on)
+{
+	tag_name = str_tolower(tag_name);
+	DBG("[Engine] Processing opening tag", tag_name);
+	if (!tag_name_is_correct(tag_name)) 
 	{
-		DBG("[Engine] Processing opening tag", tag_name);
-		if (!tag_name_is_correct(tag_name)) 
-		{
-			std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; 
-		}
-		htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
-		check_previous_state(tag);
-		if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) == TagsWithNoClosing.end())
-		{
-			this->state_stack.push(tag);
-		}
+		std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; 
 	}
-	else
+	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
+	check_previous_state(tag);
+	if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) == TagsWithNoClosing.end())
 	{
-		DBG("[Engine] Ignoring opening tag", tag_name);
+		this->state_stack.push(tag);
 	}
 	CleanUpUtilsStructures();
 }
 
 void htmlDocument::AddOpeningTag(std::string tag_name, std::list<htmlAttribute> attrs, int line)
 {
-	if (!this->ignore_mode_on)
+	tag_name = str_tolower(tag_name);
+	DBG("[Engine] Processing opening tag", tag_name);
+	if (!tag_name_is_correct(tag_name)) 
 	{
-		DBG("[Engine] Processing opening tag", tag_name);
-		if (!tag_name_is_correct(tag_name)) 
-		{
-			std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; 
-		}
-		htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
-		for (auto it : attrs)
-		{
-			tag.AddAttribute(it.GetName(), it.GetValue());
-		}
-		check_previous_state(tag);
-		if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) == TagsWithNoClosing.end())
-		{
-			this->state_stack.push(tag);
-		}
+		std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; 
 	}
-	else
+	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
+	for (auto it : attrs)
 	{
-		DBG("[Engine] Ignoring opening tag", tag_name);
+		tag.AddAttribute(it.GetName(), it.GetValue());
+	}
+	check_previous_state(tag);
+	if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) == TagsWithNoClosing.end())
+	{
+		this->state_stack.push(tag);
 	}
 	CleanUpUtilsStructures();
 }
 
 void htmlDocument::AddClosingTag(std::string tag_name, int line)
 {
-	if (!this->ignore_mode_on)
+	tag_name = str_tolower(tag_name);
+	DBG("[Engine] Processing closing tag", tag_name);
+	if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) != TagsWithNoClosing.end())
 	{
-		DBG("[Engine] Processing closing tag", tag_name);
-		if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) != TagsWithNoClosing.end())
+		std::cout << "[TagWarning " << " line: " << line << "]"
+			<< " Found closing tag for element, that shuold not have it <" << tag_name << ">" << std::endl;
+		return;
+	}
+	std::string previous_tag_name;
+	while (true)
+	{
+		if (!state_stack.empty())
 		{
-			std::cout << "[TagWarning " << " line: " << line << "]"
-				<< " Found closing tag for element, that shuold not have it <" << tag_name << ">" << std::endl;
-			return;
-		}
-
-		std::string previous_tag_name = this->state_stack.top().GetName();
-
-		if (tag_name != previous_tag_name)
-		{
-			std::cout << "[TagError " << " line: " << line << "] Unequal closing tag <" 
-				<< tag_name << "> for <" << previous_tag_name << ">" << std::endl;
-		}
-
-		if (!this->state_stack.empty())
-		{
-			this->state_stack.pop();
+			previous_tag_name = this->state_stack.top().GetName();
+			if (tag_name != previous_tag_name && !tag_can_not_be_closed(previous_tag_name))
+			{
+				std::cout << "[TagError " << " line: " << line << "] Unequal closing tag <"
+					<< tag_name << "> for <" << previous_tag_name << ">" << std::endl;
+				break;
+			}
+			else
+			{
+				this->state_stack.pop();
+				break;
+			}
 		}
 		else
 		{
 			std::cout << "[TagError " << " line: " << line << "] Unclosed tag: <" << tag_name << ">" << std::endl;
+			break;
 		}
-	}
-	else
-	{
-		DBG("[Engine] Ignoring opening tag", tag_name);
 	}
 	CleanUpUtilsStructures();
 }
 
 void htmlDocument::AddSingleTag(std::string tag_name, int line)
 {
-	if (!this->ignore_mode_on)
+	tag_name = str_tolower(tag_name);
+	DBG("[Engine] Processing single tag", tag_name);
+	if (!tag_name_is_correct(tag_name))
 	{
-		DBG("[Engine] Processing single tag", tag_name);
-		if (!tag_name_is_correct(tag_name))
-		{
-			std::cout << "[DocumentError " << " line: " << line << " ] Tag with name <" << tag_name << "> " << "does not exist" << std::endl;
-		}
-		htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
-		check_previous_state(tag);
+		std::cout << "[DocumentError " << " line: " << line << " ] Tag with name <" << tag_name << "> " << "does not exist" << std::endl;
 	}
-	else
-	{
-		DBG("[Engine] Ignoring single tag", tag_name);
-	}
+	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
+	check_previous_state(tag);
 	CleanUpUtilsStructures();
 }
 
 void htmlDocument::AddSingleTag(std::string tag_name, std::list<htmlAttribute> attrs, int line)
 {
-	if (!this->ignore_mode_on)
+	tag_name = str_tolower(tag_name);
+	DBG("[Engine] Processing single tag", tag_name);
+	if (!tag_name_is_correct(tag_name))
 	{
-		DBG("[Engine] Processing single tag", tag_name);
-		if (!tag_name_is_correct(tag_name))
-		{
-			std::cout << "[DocumentError" << " line: " << line << " ] Tag with name <" << tag_name << "> " << "does not exist" << std::endl;
-		}
-		htmlTag tag(tag_name, this->available_attributes, this->available_tags);
-		for (auto it : attrs)
-		{
-			tag.AddAttribute(it.GetName(), it.GetValue());
-		}
-		check_previous_state(tag);
+		std::cout << "[DocumentError" << " line: " << line << " ] Tag with name <" << tag_name << "> " << "does not exist" << std::endl;
 	}
-	else
+	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
+	for (auto it : attrs)
 	{
-		DBG("[Engine] Ignoring single tag", tag_name);
+		tag.AddAttribute(it.GetName(), it.GetValue());
 	}
+	check_previous_state(tag);	
 	CleanUpUtilsStructures();
 }
 
@@ -186,7 +174,7 @@ void htmlDocument::check_previous_state(htmlTag tag)
 			std::cout << "[DocumentError" << " line: " << tag.GetLine() << " ] Tag  <" << tag.GetName() << "> "
 				<< "must be inside element <" << precedence_tag << ">" << std::endl;
 		}
-		if (!html_found)
+		if (!html_found && tag.GetName() != "html")
 		{
 			std::cout << "[DocumentError" << " line: " << tag.GetLine() << " ] Tag  <" << tag.GetName() << "> "
 				<< "must be inside element <html>" << std::endl;

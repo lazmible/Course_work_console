@@ -22,42 +22,34 @@ int yyerror(const char * err)
 	return -1;
 }
 
-extern FILE *                                  yyin;
-
+extern FILE * yyin;
 
 htmlDocument doc("l", ATTR_DATABASE, TAG_DB);
 
 int main()
 {
-	
 	std::map<std::string, std::vector<std::string>> kek = TAG_DB;
 
 	yyin = fopen("input.html", "r");
 	if (!yyin) { std::cout << "Error opening file." << std::endl; }
 	yyparse();
 	
-	/*
-	std::map<std::string, std::string> test_db(ATTR_DATABASE_HTML5);
+	//std::map<std::string, std::string> test_db(ATTR_DATABASE);
 	
-	for (auto [key, value] : test_db)
-	{
-		try
-		{
-			std::regex re(value);
-			std::smatch kek;
-			//std::cout << std::regex_match(test, kek, re) << std::endl;
-		}
-		catch (std::regex_error)
-		{
-			std::cout << "regex error on key: " << key << std::endl;
-		}
-	}
-	*/
+	//for (auto & [key, value] : test_db)
+	//{
+	//	try
+	//	{
+	//		std::regex re(value);
+	//		std::smatch kek;
+	//		//std::cout << std::regex_match(test, kek, re) << std::endl;
+	//	}
+	//	catch (std::regex_error)
+	//	{
+	//		std::cout << "regex error on key: " << key << std::endl;
+	//	}
+	//}
+	
 	system("pause");
 	return 0;
 }
-
-
-// Ошибки: 
-// не распознает пустой контент (<kek> </kek>) --> Наверное из-за того, что он игнорирует пробелы
-// 
