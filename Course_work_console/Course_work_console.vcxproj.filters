@@ -61,9 +61,6 @@
     <ClInclude Include="html_attr_val_db.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="error.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Attribute.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -77,6 +74,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="precedence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

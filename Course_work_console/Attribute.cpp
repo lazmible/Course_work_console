@@ -1,4 +1,5 @@
 #include "Attribute.h"
+#include "debug.h"
 
 static bool is_user_defined_attribute(std::string name)
 {
@@ -25,6 +26,6 @@ void htmlAttribute::CheckState()
 {
 	if (!this->check_value() && !is_user_defined_attribute(this->name)) 
 	{
-		std::cout << "[AttributeError line: " << this->line << "] Unexpected Attribute value <" << this->value << "> for attribute <" << this->name << ">" << std::endl; 
+		ERROR_MESSAGE("Unexpected Attribute value <" + this->value + "> for attribute <" + this->name + ">", ERROR_CODE_ATTRIBUTE, this->line);
 	}
 }

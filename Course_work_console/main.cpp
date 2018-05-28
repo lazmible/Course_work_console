@@ -26,14 +26,19 @@ extern FILE * yyin;
 
 htmlDocument doc("l", ATTR_DATABASE, TAG_DB);
 
-int main()
+int main(int argc, char * argv[])
 {
-	std::map<std::string, std::vector<std::string>> kek = TAG_DB;
+	setlocale(LC_ALL, "Russian");
+	if (argc < 2)
+	{
+		std::cout << "Invalid arguments. Usage:\n" << argv[0] << "<filename>" << std::endl;
+	}
 
-	yyin = fopen("input.html", "r");
+	yyin = fopen(argv[1], "r");
 	if (!yyin) { std::cout << "Error opening file." << std::endl; }
 	yyparse();
 	
+	doc.end();
 	//std::map<std::string, std::string> test_db(ATTR_DATABASE);
 	
 	//for (auto & [key, value] : test_db)

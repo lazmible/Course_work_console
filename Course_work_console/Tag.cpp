@@ -1,4 +1,5 @@
 #include "Tag.h"
+#include "debug.h"
 #include "precedence.h"
 
 static bool is_user_defined_attribute(std::string name)
@@ -17,7 +18,7 @@ void htmlTag::init()
 	}
 	else
 	{
-		std::cout << "[TagError line: " << this->line << "] Unexpexted Tag name: <" << this->name << ">" << std::endl;
+		ERROR_MESSAGE("Unexpexted Tag name + " + this->name + ">", ERROR_CODE_TAG, this->line);
 	}
 }
 
@@ -45,6 +46,6 @@ void htmlTag::AddAttribute(std::string name, std::string val)
 	}
 	else
 	{
-		std::cout << "[TagError line: " << this->line << " ] Unexpected Attribute name <" << name << ">" << " for tag <" << this->name << ">" << std::endl;
+		ERROR_MESSAGE("Unexpected Attribute name <" + name + ">" + " for tag <" + this->name + ">", ERROR_CODE_ATTRIBUTE, this->line);
 	}
 }

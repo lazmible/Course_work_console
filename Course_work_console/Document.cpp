@@ -1,6 +1,7 @@
 #include "Document.h"
 #include "utils.h"
 #include "precedence.h"
+#include "debug.h"
 #include <list>
 
 extern int yylineno;
@@ -19,13 +20,17 @@ bool tag_can_not_be_closed(std::string name)
 void htmlDocument::AddOpeningTag(std::string tag_name, int line)
 {
 	tag_name = str_tolower(tag_name);
-	DBG("[Engine] Processing opening tag", tag_name);
+	if (tag_name == "html") { this->html_was = true; }
+	if (tag_name == "title") { this->title_was = true; }
+
+	DEBUG_MESSAGE("Processing opening tag - " + tag_name, DEBUG_CODE_ENGINE, line);
+
 	if (!tag_name_is_correct(tag_name)) 
 	{
-		std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; 
+		ERROR_MESSAGE("Tag with name <" + tag_name + "> does not exist", ERROR_CODE_DOCUMENT, line);
 	}
 	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
-	check_previous_state(tag);
+	check_previous_state(tag, line);
 	if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) == TagsWithNoClosing.end())
 	{
 		this->state_stack.push(tag);
@@ -36,17 +41,22 @@ void htmlDocument::AddOpeningTag(std::string tag_name, int line)
 void htmlDocument::AddOpeningTag(std::string tag_name, std::list<htmlAttribute> attrs, int line)
 {
 	tag_name = str_tolower(tag_name);
-	DBG("[Engine] Processing opening tag", tag_name);
+	if (tag_name == "html") { this->html_was = true; }
+	if (tag_name == "title") { this->title_was = true; }
+
+	DEBUG_MESSAGE("Processing opening tag - " + tag_name, DEBUG_CODE_ENGINE, line);
+
 	if (!tag_name_is_correct(tag_name)) 
 	{
-		std::cout << "[DocumentError] Tag with name <" << tag_name << "> " << "does not exist" << std::endl; 
+		ERROR_MESSAGE("Tag with name <" + tag_name + "> does not exist", ERROR_CODE_DOCUMENT, line);
 	}
+
 	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
 	for (auto it : attrs)
 	{
 		tag.AddAttribute(it.GetName(), it.GetValue());
 	}
-	check_previous_state(tag);
+	check_previous_state(tag, line);
 	if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) == TagsWithNoClosing.end())
 	{
 		this->state_stack.push(tag);
@@ -57,11 +67,12 @@ void htmlDocument::AddOpeningTag(std::string tag_name, std::list<htmlAttribute> 
 void htmlDocument::AddClosingTag(std::string tag_name, int line)
 {
 	tag_name = str_tolower(tag_name);
-	DBG("[Engine] Processing closing tag", tag_name);
+
+	DEBUG_MESSAGE("Processing closing tag - " + tag_name, DEBUG_CODE_ENGINE, line);
+
 	if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) != TagsWithNoClosing.end())
 	{
-		std::cout << "[TagWarning " << " line: " << line << "]"
-			<< " Found closing tag for element, that shuold not have it <" << tag_name << ">" << std::endl;
+		WARNING_MESSAGE("Found closing tag for element, that should not have it <" + tag_name + ">", WARNING_CODE_TAG, line);
 		return;
 	}
 	std::string previous_tag_name;
@@ -72,8 +83,7 @@ void htmlDocument::AddClosingTag(std::string tag_name, int line)
 			previous_tag_name = this->state_stack.top().GetName();
 			if (tag_name != previous_tag_name && !tag_can_not_be_closed(previous_tag_name))
 			{
-				std::cout << "[TagError " << " line: " << line << "] Unequal closing tag <"
-					<< tag_name << "> for <" << previous_tag_name << ">" << std::endl;
+				ERROR_MESSAGE("Unequal closing tag <" + tag_name + "> for <" + previous_tag_name + ">", ERROR_CODE_TAG, line);
 				break;
 			}
 			else
@@ -84,7 +94,7 @@ void htmlDocument::AddClosingTag(std::string tag_name, int line)
 		}
 		else
 		{
-			std::cout << "[TagError " << " line: " << line << "] Unclosed tag: <" << tag_name << ">" << std::endl;
+			ERROR_MESSAGE("Unclosed tag : <" + tag_name + ">", ERROR_CODE_TAG, line);
 			break;
 		}
 	}
@@ -94,30 +104,36 @@ void htmlDocument::AddClosingTag(std::string tag_name, int line)
 void htmlDocument::AddSingleTag(std::string tag_name, int line)
 {
 	tag_name = str_tolower(tag_name);
-	DBG("[Engine] Processing single tag", tag_name);
+	if (tag_name == "html") { this->html_was = true; }
+	if (tag_name == "title") { this->title_was = true; }
+
+	DEBUG_MESSAGE("Processing single tag - " + tag_name, DEBUG_CODE_ENGINE, line);
+
 	if (!tag_name_is_correct(tag_name))
 	{
-		std::cout << "[DocumentError " << " line: " << line << " ] Tag with name <" << tag_name << "> " << "does not exist" << std::endl;
+		ERROR_MESSAGE("Unexpected tag name: <" + tag_name + ">", ERROR_CODE_DOCUMENT, line);
 	}
 	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
-	check_previous_state(tag);
+	check_previous_state(tag, line);
 	CleanUpUtilsStructures();
 }
 
 void htmlDocument::AddSingleTag(std::string tag_name, std::list<htmlAttribute> attrs, int line)
 {
 	tag_name = str_tolower(tag_name);
-	DBG("[Engine] Processing single tag", tag_name);
+
+	DEBUG_MESSAGE("Processing single tag - " + tag_name, DEBUG_CODE_ENGINE, line);
+
 	if (!tag_name_is_correct(tag_name))
 	{
-		std::cout << "[DocumentError" << " line: " << line << " ] Tag with name <" << tag_name << "> " << "does not exist" << std::endl;
+		ERROR_MESSAGE("Unexpected tag name: <" + tag_name + ">", ERROR_CODE_DOCUMENT, line);
 	}
 	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
 	for (auto it : attrs)
 	{
 		tag.AddAttribute(it.GetName(), it.GetValue());
 	}
-	check_previous_state(tag);	
+	check_previous_state(tag, line);	
 	CleanUpUtilsStructures();
 }
 
@@ -126,7 +142,7 @@ bool htmlDocument::tag_name_is_correct(std::string name)
 	return (this->available_tags.find(name) != available_tags.end());
 }
 
-void htmlDocument::check_previous_state(htmlTag tag)
+void htmlDocument::check_previous_state(htmlTag tag, int line)
 {
 	std::stack<htmlTag> current_state_of_doc(this->state_stack);
 
@@ -154,8 +170,7 @@ void htmlDocument::check_previous_state(htmlTag tag)
 
 	if (precedence_is_strict && precedence_tag != current_state_of_doc.top().GetName()) 
 	{
-		std::cout << "[DocumentError" << " line: " << tag.GetLine() << " ] Tag  <" << tag.GetName() << "> " 
-			<< "must be strictly inside element <" << precedence_tag << ">" << std::endl;
+		ERROR_MESSAGE("Tag <" + tag.GetName() + "> " + "must be strictly inside element <" + precedence_tag + ">", ERROR_CODE_DOCUMENT, line);
 	}
 	else
 	{
@@ -171,18 +186,15 @@ void htmlDocument::check_previous_state(htmlTag tag)
 		}
 		if (!precedence_correct && precedence_is_required_to_check)
 		{
-			std::cout << "[DocumentError" << " line: " << tag.GetLine() << " ] Tag  <" << tag.GetName() << "> "
-				<< "must be inside element <" << precedence_tag << ">" << std::endl;
+			ERROR_MESSAGE("Tag <" + tag.GetName() + "> " + "must be strictly inside element <" + precedence_tag + ">", ERROR_CODE_DOCUMENT, line);
 		}
 		if (!html_found && tag.GetName() != "html")
 		{
-			std::cout << "[DocumentError" << " line: " << tag.GetLine() << " ] Tag  <" << tag.GetName() << "> "
-				<< "must be inside element <html>" << std::endl;
+			ERROR_MESSAGE("Tag <" + tag.GetName() + "> " + "must be strictly inside element <html>", ERROR_CODE_DOCUMENT, line);
 		}
 		if (bad_head_found)
 		{
-			std::cout << "[DocumentError" << " line: " << tag.GetLine() << " ] Tag  <" << tag.GetName() << "> "
-				<< "cannot be inside element <head>" << std::endl;
+			ERROR_MESSAGE("Tag <" + tag.GetName() + "> " + "must be strictly inside element <head>", ERROR_CODE_DOCUMENT, line);
 		}
 		return;
 	}

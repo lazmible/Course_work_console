@@ -196,7 +196,7 @@ multipart/x-zip)"
 #define INTEGER             "-?[0-9]+"
 #define POSITIVE_INTEGER    "[0-9]+"
 #define URL                 R"(^(([^:\/?#]+):)?(//([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?)" 
-#define IDENTIFIER          "[a-zA-Z][a-zA-Z0-9_-]*"         
+#define IDENTIFIER          "[a-zA-Z][a-zA-Zà-ÿÀ-ß0-9_-]*"         
 #define ANY_TEXT            ".*"
 #define INTEGER_OR_PERCENT  "[0-9%]+"
 #define SCRIPT              ANY_TEXT //"[a-zA-Z]+:[a-zA-Z][a-zA-Z0-9_]*"
@@ -324,7 +324,7 @@ multipart/x-zip)"
 #define ATTR_MIN_VALS                 POSITIVE_INTEGER
 #define ATTR_MULTIPLE_VALS            ("(multiple|)") 
 #define ATTR_MUTED_VALS               ("(muted|)")
-#define ATTR_NAME_VALS                ("[a-zA-Z0-9]+")
+#define ATTR_NAME_VALS                ANY_TEXT
 #define ATTR_NOHREF_VALS              ("(nohref|)")
 #define ATTR_NORESIZE_VALS            ("(noresize|)")
 #define ATTR_NOSHADE_VALS             ("(noshade|)")

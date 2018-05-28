@@ -10,17 +10,8 @@
 #include <initializer_list>
 #include <cctype>
 
-#include "error.h"
 
-//#define DEBUG_LEVEL_2
-
-#ifdef DEBUG_LEVEL_2 
-    #define DBG(a, b) { std::cout << a << " : " << b << std::endl; }
-#else
-    #define DBG(a, b)
-#endif
-
-typedef std::map<std::string, std::string> db_attr_type;
+typedef std::map<std::string, std::string>              db_attr_type;
 typedef std::map<std::string, std::vector<std::string>> db_tag_type;
 
 class htmlAttribute

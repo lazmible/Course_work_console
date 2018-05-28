@@ -3,6 +3,7 @@
     #include <string>
 	#include "Document.h"
     #include "utils.h"
+    #include "debug.h"
 
     #pragma warning( disable:4996 )
     #pragma warning( disable:5033 )
@@ -26,11 +27,21 @@ CLOSING_TAG_BRACKET
 SLASH 
 ASSIGNMENT 
 DOCTYPE
-DOCTYPEPART2
-DOCTYPEPART3
-DOCTYPEPART4
-DOCTYPEPART5
-DOCTYPE5
+DOCTYPE_HTML_5
+DOCTYPE_STRICT_1
+DOCTYPE_STRICT_2
+DOCTYPE_TRANS_1
+DOCTYPE_TRANS_2
+DOCTYPE_FRAME_1
+DOCTYPE_FRAME_2
+DOCTYPE_XHTML_STRICT_1
+DOCTYPE_XHTML_STRICT_2
+DOCTYPE_XHTML_TRANS_1
+DOCTYPE_XHTML_TRANS_2
+DOCTYPE_XHTML_FRAME_1
+DOCTYPE_XHTML_FRAME_2
+DOCTYPE_XHTML_1_1_1
+DOCTYPE_XHTML_1_1_2
 
 %token<string_t> 
 DOUBLE_QUOTE_STRING 
@@ -50,14 +61,17 @@ begin
     : 
     | htmlDoctype htmlDocument
     | htmlDocument
-    | error htmlDocument { return yyerror("Invalid doctype"); }
     ;
 
-htmlDoctype 
-    : OPENING_TAG_BRACKET DOCTYPE DOCTYPEPART2 DOCTYPEPART3 CLOSING_TAG_BRACKET
-    | OPENING_TAG_BRACKET DOCTYPE5 CLOSING_TAG_BRACKET
-    | OPENING_TAG_BRACKET DOCTYPE DOCTYPEPART4 DOCTYPEPART5 CLOSING_TAG_BRACKET
-    | OPENING_TAG_BRACKET DOCTYPE CLOSING_TAG_BRACKET
+htmlDoctype
+    : OPENING_TAG_BRACKET DOCTYPE_HTML_5 CLOSING_TAG_BRACKET
+    | OPENING_TAG_BRACKET DOCTYPE DOCTYPE_STRICT_1 DOCTYPE_STRICT_2 CLOSING_TAG_BRACKET
+    | OPENING_TAG_BRACKET DOCTYPE DOCTYPE_TRANS_1 DOCTYPE_TRANS_2 CLOSING_TAG_BRACKET
+    | OPENING_TAG_BRACKET DOCTYPE DOCTYPE_FRAME_1 DOCTYPE_FRAME_2 CLOSING_TAG_BRACKET
+    | OPENING_TAG_BRACKET DOCTYPE DOCTYPE_XHTML_STRICT_1 DOCTYPE_XHTML_STRICT_2 CLOSING_TAG_BRACKET
+    | OPENING_TAG_BRACKET DOCTYPE DOCTYPE_XHTML_TRANS_1 DOCTYPE_XHTML_TRANS_2 CLOSING_TAG_BRACKET
+    | OPENING_TAG_BRACKET DOCTYPE DOCTYPE_XHTML_FRAME_1 DOCTYPE_XHTML_FRAME_2 CLOSING_TAG_BRACKET
+    | OPENING_TAG_BRACKET DOCTYPE DOCTYPE_XHTML_1_1_1 DOCTYPE_XHTML_1_1_2 CLOSING_TAG_BRACKET
     ; 
 
 htmlDocument  
@@ -74,17 +88,18 @@ htmlElement
     ;
 
 htmlTagOpen
-    : OPENING_TAG_BRACKET TEXT htmlAttributeList CLOSING_TAG_BRACKET { DBG_PRINT("\t[parser]: found opening tag",*((std::string*)($2)), yylineno); doc.AddOpeningTag(*((std::string*)($2)),*((std::list<htmlAttribute>*)($3)), yylineno); }
-    | OPENING_TAG_BRACKET TEXT CLOSING_TAG_BRACKET                   { DBG_PRINT("\t[parser]: found opening tag",*((std::string*)($2)), yylineno); doc.AddOpeningTag(*((std::string*)($2)), yylineno);                                      }
+    : OPENING_TAG_BRACKET TEXT htmlAttributeList CLOSING_TAG_BRACKET { DEBUG_MESSAGE("found opening tag : " + *((std::string*)($2)), DEBUG_CODE_PARSER, yylineno); doc.AddOpeningTag(*((std::string*)($2)),*((std::list<htmlAttribute>*)($3)), yylineno); }
+    | OPENING_TAG_BRACKET TEXT CLOSING_TAG_BRACKET                   { DEBUG_MESSAGE("found opening tag : " + *((std::string*)($2)), DEBUG_CODE_PARSER, yylineno); doc.AddOpeningTag(*((std::string*)($2)), yylineno);                                      }
     ;
 
 htmlTagClose
-    : OPENING_TAG_BRACKET SLASH TEXT CLOSING_TAG_BRACKET   { DBG_PRINT("\t[parser]: found closing tag",*((std::string*)($3)),yylineno); doc.AddClosingTag(*((std::string*)($3)), yylineno); }
+    : OPENING_TAG_BRACKET SLASH TEXT CLOSING_TAG_BRACKET            { DEBUG_MESSAGE("found closing tag : " + *((std::string*)($3)), DEBUG_CODE_PARSER, yylineno); doc.AddClosingTag(*((std::string*)($3)), yylineno); }
+    | OPENING_TAG_BRACKET SLASH TEXT htmlText CLOSING_TAG_BRACKET   { ERROR_MESSAGE("Syntax error on closing tag <" + *((std::string*)($3)) + ">" + " There can be only 1 part of html text in closing tag element", ERROR_CODE_PARSER, yylineno); doc.AddClosingTag(*((std::string*)($3)), yylineno); } 
     ;
 
 htmlTagSingle
-    : OPENING_TAG_BRACKET TEXT htmlAttributeList SLASH CLOSING_TAG_BRACKET { DBG_PRINT("\t[parser]: found single tag",*((std::string*)($2)),yylineno); doc.AddSingleTag(*((std::string*)($2)), yylineno); } 
-    | OPENING_TAG_BRACKET TEXT SLASH CLOSING_TAG_BRACKET
+    : OPENING_TAG_BRACKET TEXT htmlAttributeList SLASH CLOSING_TAG_BRACKET { DEBUG_MESSAGE("found single tag : " + *((std::string*)($2)), DEBUG_CODE_PARSER, yylineno); doc.AddSingleTag(*((std::string*)($2)), yylineno); } 
+    | OPENING_TAG_BRACKET TEXT SLASH CLOSING_TAG_BRACKET                   { DEBUG_MESSAGE("found single tag : " + *((std::string*)($2)), DEBUG_CODE_PARSER, yylineno); doc.AddSingleTag(*((std::string*)($2)), yylineno); }
     ;
 
 htmlAttributeList
@@ -93,8 +108,8 @@ htmlAttributeList
     ;
 
 htmlAttribute 
-    : TEXT ASSIGNMENT htmlAttributeValue { DBG_PRINT("\t[parser]: found attribute with value",*((std::string*)($1)) + " = " + *((std::string*)($3)), yylineno); ($$) = GenNewAttr(*((std::string*)($1)), *((std::string*)($3))); }
-    | TEXT                               { DBG_PRINT("\t[parser]: found attribute",*((std::string*)($1)), yylineno); ($$) = GenNewAttr(*((std::string*)($1))); }
+    : TEXT ASSIGNMENT htmlAttributeValue { DEBUG_MESSAGE("found attribute with value : " + *((std::string*)($1)) + " = " + *((std::string*)($3)), DEBUG_CODE_PARSER, yylineno); ($$) = GenNewAttr(*((std::string*)($1)), *((std::string*)($3))); }
+    | TEXT                               { DEBUG_MESSAGE("found attribute : " + *((std::string*)($1)), DEBUG_CODE_PARSER, yylineno); ($$) = GenNewAttr(*((std::string*)($1))); }
     ;
 
 htmlAttributeValue
@@ -109,5 +124,10 @@ htmlContent
     | TEXT
     | SINGLE_QUOTE_STRING
     | DOUBLE_QUOTE_STRING
+    ;
+
+htmlText
+    : TEXT
+    | htmlText TEXT
     ;
 %%

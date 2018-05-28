@@ -9,16 +9,27 @@ private:
 	std::stack<htmlTag>   state_stack;
 	db_attr_type          available_attributes;
 	db_tag_type           available_tags;
+
+	bool html_was = false;
+	bool title_was = false;
 	
 	bool tag_name_is_correct(std::string name);
-	void check_previous_state(htmlTag tag);
+	void check_previous_state(htmlTag tag, int line);
 
 public:
 	htmlDocument(std::string file, db_attr_type attr_db, db_tag_type tag_db)
 		: available_attributes(attr_db), available_tags(tag_db)
 	{}
 
-	~htmlDocument() {}
+	~htmlDocument() 
+	{
+	}
+
+	void end()
+	{
+		if (!html_was) { std::cout << "Error, missing html tag\n"; }
+		if (!title_was) { std::cout << "Error, missing title tag\n"; }
+	}
 
 	void AddOpeningTag(std::string tag_name, int line);
 	void AddOpeningTag(std::string tag_name, std::list<htmlAttribute> attrs, int line);
