@@ -21,17 +21,34 @@ std::string StrToken(int token)
 {
 	switch (token)
 	{
-	    case OPENING_TAG_BRACKET  :  { return "OPENING_TAG_BRACKET";  }
-	    case CLOSING_TAG_BRACKET  :  { return "CLOSING_TAG_BRACKET";  }
-	    case ASSIGNMENT           :  { return "ASSIGNMENT";           }
-	    case SLASH                :  { return "SLASH";                }
-	    case SINGLE_QUOTE_STRING  :  { return "SINGLE_QUOTE_STRING";  }
-	    case DOUBLE_QUOTE_STRING  :  { return "DOUBLE_QUOTE_STRING";  }
-	    case TEXT                 :  { return "TEXT";                 }
-	    case SCRIPT_STARTED       :  { return "SCRIPT_STARTED";       }
-	    case STYLE_STARTED        :  { return "STYLE_STARTED";        }
-	    case XML_STARTED          :  { return "XML_STARTED";          }
-		default                   :  { return "";                     }
+	    case OPENING_TAG_BRACKET    : { return "OPENING_TAG_BRACKET";    }
+	    case CLOSING_TAG_BRACKET    : { return "CLOSING_TAG_BRACKET";    }
+	    case ASSIGNMENT             : { return "ASSIGNMENT";             }
+	    case SLASH                  : { return "SLASH";                  }
+	    case SINGLE_QUOTE_STRING    : { return "SINGLE_QUOTE_STRING";    }
+	    case DOUBLE_QUOTE_STRING    : { return "DOUBLE_QUOTE_STRING";    }
+	    case TEXT                   : { return "TEXT";                   }
+	    case SCRIPT_STARTED         : { return "SCRIPT_STARTED";         }
+	    case STYLE_STARTED          : { return "STYLE_STARTED";          }
+	    case XML_STARTED            : { return "XML_STARTED";            }
+		case DOCTYPE                : { return "DOCTYPE";                }
+		case DOCTYPE_HTML_5         : { return "DOCTYPE_HTML_5";         }
+		case DOCTYPE_STRICT_1       : { return "DOCTYPE_STRICT_1";       }
+		case DOCTYPE_STRICT_2       : { return "DOCTYPE_STRICT_2";       }
+		case DOCTYPE_TRANS_1        : { return "DOCTYPE_TRANS_1";        }
+		case DOCTYPE_TRANS_2        : { return "DOCTYPE_TRANS_2";        }
+		case DOCTYPE_FRAME_1        : { return "DOCTYPE_FRAME_1";        }
+		case DOCTYPE_FRAME_2        : { return "DOCTYPE_FRAME_2";        }
+		case DOCTYPE_XHTML_STRICT_1 : { return "DOCTYPE_XHTML_STRICT_1"; }
+		case DOCTYPE_XHTML_STRICT_2 : { return "DOCTYPE_XHTML_STRICT_2"; }
+		case DOCTYPE_XHTML_TRANS_1  : { return "DOCTYPE_XHTML_TRANS_1";  }
+		case DOCTYPE_XHTML_TRANS_2  : { return "DOCTYPE_XHTML_TRANS_2";  }
+		case DOCTYPE_XHTML_FRAME_1  : { return "DOCTYPE_XHTML_FRAME_1";  }
+		case DOCTYPE_XHTML_FRAME_2  : { return "DOCTYPE_XHTML_FRAME_2";  }
+		case DOCTYPE_XHTML_1_1_1    : { return "DOCTYPE_XHTML_1_1_1";    }
+		case DOCTYPE_XHTML_1_1_2    : { return "DOCTYPE_XHTML_1_1_2";    }
+		case DOCTYPE_XHTML          : { return "DOCTYPE_XHTML";          }
+		default                     : { return "UNKNOWN TOKEN";          }
 	}
 }
 

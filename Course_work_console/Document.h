@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Tag.h"
+#include "debug.h"
 
 class htmlDocument
 {
@@ -27,8 +28,8 @@ public:
 
 	void end()
 	{
-		if (!html_was) { std::cout << "Error, missing html tag\n"; }
-		if (!title_was) { std::cout << "Error, missing title tag\n"; }
+		if (!html_was)  { ERROR_MESSAGE("Missing <html> tag", ERROR_CODE_DOCUMENT, 0); }
+		if (!title_was) { ERROR_MESSAGE("Missing <title> tag", ERROR_CODE_DOCUMENT, 0); }
 	}
 
 	void AddOpeningTag(std::string tag_name, int line);

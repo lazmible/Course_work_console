@@ -10,23 +10,24 @@
 #define	ASSIGNMENT	261
 #define	DOCTYPE	262
 #define	DOCTYPE_HTML_5	263
-#define	DOCTYPE_STRICT_1	264
-#define	DOCTYPE_STRICT_2	265
-#define	DOCTYPE_TRANS_1	266
-#define	DOCTYPE_TRANS_2	267
-#define	DOCTYPE_FRAME_1	268
-#define	DOCTYPE_FRAME_2	269
-#define	DOCTYPE_XHTML_STRICT_1	270
-#define	DOCTYPE_XHTML_STRICT_2	271
-#define	DOCTYPE_XHTML_TRANS_1	272
-#define	DOCTYPE_XHTML_TRANS_2	273
-#define	DOCTYPE_XHTML_FRAME_1	274
-#define	DOCTYPE_XHTML_FRAME_2	275
-#define	DOCTYPE_XHTML_1_1_1	276
-#define	DOCTYPE_XHTML_1_1_2	277
-#define	DOUBLE_QUOTE_STRING	278
-#define	SINGLE_QUOTE_STRING	279
-#define	TEXT	280
+#define	DOCTYPE_XHTML	264
+#define	DOCTYPE_STRICT_1	265
+#define	DOCTYPE_STRICT_2	266
+#define	DOCTYPE_TRANS_1	267
+#define	DOCTYPE_TRANS_2	268
+#define	DOCTYPE_FRAME_1	269
+#define	DOCTYPE_FRAME_2	270
+#define	DOCTYPE_XHTML_STRICT_1	271
+#define	DOCTYPE_XHTML_STRICT_2	272
+#define	DOCTYPE_XHTML_TRANS_1	273
+#define	DOCTYPE_XHTML_TRANS_2	274
+#define	DOCTYPE_XHTML_FRAME_1	275
+#define	DOCTYPE_XHTML_FRAME_2	276
+#define	DOCTYPE_XHTML_1_1_1	277
+#define	DOCTYPE_XHTML_1_1_2	278
+#define	DOUBLE_QUOTE_STRING	279
+#define	SINGLE_QUOTE_STRING	280
+#define	TEXT	281
 
 #line 1 "grammar.y"
 
@@ -77,11 +78,11 @@ typedef
 
 
 
-#define	YYFINAL		67
+#define	YYFINAL		68
 #define	YYFLAG		-32768
-#define	YYNTBASE	26
+#define	YYNTBASE	27
 
-#define YYTRANSLATE(x) ((unsigned)(x) <= 280 ? yytranslate[x] : 38)
+#define YYTRANSLATE(x) ((unsigned)(x) <= 281 ? yytranslate[x] : 39)
 
 static const char yytranslate[] = {     0,
      2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -111,95 +112,98 @@ static const char yytranslate[] = {     0,
      2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
      2,     2,     2,     2,     2,     1,     2,     3,     4,     5,
      6,     7,     8,     9,    10,    11,    12,    13,    14,    15,
-    16,    17,    18,    19,    20,    21,    22,    23,    24,    25
+    16,    17,    18,    19,    20,    21,    22,    23,    24,    25,
+    26
 };
 
 #if YYDEBUG != 0
 static const short yyprhs[] = {     0,
-     0,     1,     4,     6,    10,    16,    22,    28,    34,    40,
-    46,    52,    54,    57,    59,    62,    64,    66,    68,    73,
-    77,    82,    88,    94,    99,   101,   104,   108,   110,   112,
-   114,   116,   118,   120,   122,   124,   126,   128
+     0,     1,     4,     6,     8,    12,    18,    24,    30,    36,
+    42,    48,    54,    56,    59,    61,    64,    66,    68,    70,
+    75,    79,    84,    90,    96,   101,   103,   106,   110,   112,
+   114,   116,   118,   120,   122,   124,   126,   128,   130
 };
 
 static const short yyrhs[] = {    -1,
-    27,    28,     0,    28,     0,     3,     8,     4,     0,     3,
-     7,     9,    10,     4,     0,     3,     7,    11,    12,     4,
-     0,     3,     7,    13,    14,     4,     0,     3,     7,    15,
-    16,     4,     0,     3,     7,    17,    18,     4,     0,     3,
-     7,    19,    20,     4,     0,     3,     7,    21,    22,     4,
-     0,    29,     0,    28,    29,     0,    36,     0,    28,    36,
-     0,    30,     0,    31,     0,    32,     0,     3,    25,    33,
-     4,     0,     3,    25,     4,     0,     3,     5,    25,     4,
-     0,     3,     5,    25,    37,     4,     0,     3,    25,    33,
-     5,     4,     0,     3,    25,     5,     4,     0,    34,     0,
-    33,    34,     0,    25,     6,    35,     0,    25,     0,    24,
-     0,    23,     0,    25,     0,     6,     0,     5,     0,    25,
-     0,    24,     0,    23,     0,    25,     0,    37,    25,     0
+    28,    29,     0,    29,     0,    28,     0,     3,     8,     3,
+     0,     3,     7,    10,    11,     4,     0,     3,     7,    12,
+    13,     4,     0,     3,     7,    14,    15,     4,     0,     3,
+     9,    16,    17,     4,     0,     3,     9,    18,    19,     4,
+     0,     3,     9,    20,    21,     4,     0,     3,     9,    22,
+    23,     4,     0,    30,     0,    29,    30,     0,    37,     0,
+    29,    37,     0,    31,     0,    32,     0,    33,     0,     3,
+    26,    34,     4,     0,     3,    26,     4,     0,     3,     5,
+    26,     4,     0,     3,     5,    26,    38,     4,     0,     3,
+    26,    34,     5,     4,     0,     3,    26,     5,     4,     0,
+    35,     0,    34,    35,     0,    26,     6,    36,     0,    26,
+     0,    25,     0,    24,     0,    26,     0,     6,     0,     5,
+     0,    26,     0,    25,     0,    24,     0,    26,     0,    38,
+    26,     0
 };
 
 #endif
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    61,    62,    63,    67,    68,    69,    70,    71,    72,    73,
-    74,    78,    79,    80,    81,    85,    86,    87,    91,    92,
-    96,    97,   101,   102,   106,   107,   111,   112,   116,   117,
-   118,   122,   123,   124,   125,   126,   130,   131
+    62,    63,    64,    65,    69,    70,    71,    72,    73,    74,
+    75,    76,    80,    81,    82,    83,    87,    88,    89,    93,
+    94,    98,    99,   103,   104,   108,   109,   113,   114,   118,
+   119,   120,   124,   125,   126,   127,   128,   132,   133
 };
 
 static const char * const yytname[] = {   "$","error","$undefined.","OPENING_TAG_BRACKET",
-"CLOSING_TAG_BRACKET","SLASH","ASSIGNMENT","DOCTYPE","DOCTYPE_HTML_5","DOCTYPE_STRICT_1",
-"DOCTYPE_STRICT_2","DOCTYPE_TRANS_1","DOCTYPE_TRANS_2","DOCTYPE_FRAME_1","DOCTYPE_FRAME_2",
-"DOCTYPE_XHTML_STRICT_1","DOCTYPE_XHTML_STRICT_2","DOCTYPE_XHTML_TRANS_1","DOCTYPE_XHTML_TRANS_2",
-"DOCTYPE_XHTML_FRAME_1","DOCTYPE_XHTML_FRAME_2","DOCTYPE_XHTML_1_1_1","DOCTYPE_XHTML_1_1_2",
-"DOUBLE_QUOTE_STRING","SINGLE_QUOTE_STRING","TEXT","begin","htmlDoctype","htmlDocument",
-"htmlElement","htmlTagOpen","htmlTagClose","htmlTagSingle","htmlAttributeList",
-"htmlAttribute","htmlAttributeValue","htmlContent","htmlText",""
+"CLOSING_TAG_BRACKET","SLASH","ASSIGNMENT","DOCTYPE","DOCTYPE_HTML_5","DOCTYPE_XHTML",
+"DOCTYPE_STRICT_1","DOCTYPE_STRICT_2","DOCTYPE_TRANS_1","DOCTYPE_TRANS_2","DOCTYPE_FRAME_1",
+"DOCTYPE_FRAME_2","DOCTYPE_XHTML_STRICT_1","DOCTYPE_XHTML_STRICT_2","DOCTYPE_XHTML_TRANS_1",
+"DOCTYPE_XHTML_TRANS_2","DOCTYPE_XHTML_FRAME_1","DOCTYPE_XHTML_FRAME_2","DOCTYPE_XHTML_1_1_1",
+"DOCTYPE_XHTML_1_1_2","DOUBLE_QUOTE_STRING","SINGLE_QUOTE_STRING","TEXT","begin",
+"htmlDoctype","htmlDocument","htmlElement","htmlTagOpen","htmlTagClose","htmlTagSingle",
+"htmlAttributeList","htmlAttribute","htmlAttributeValue","htmlContent","htmlText",
+""
 };
 #endif
 
 static const short yyr1[] = {     0,
-    26,    26,    26,    27,    27,    27,    27,    27,    27,    27,
-    27,    28,    28,    28,    28,    29,    29,    29,    30,    30,
-    31,    31,    32,    32,    33,    33,    34,    34,    35,    35,
-    35,    36,    36,    36,    36,    36,    37,    37
+    27,    27,    27,    27,    28,    28,    28,    28,    28,    28,
+    28,    28,    29,    29,    29,    29,    30,    30,    30,    31,
+    31,    32,    32,    33,    33,    34,    34,    35,    35,    36,
+    36,    36,    37,    37,    37,    37,    37,    38,    38
 };
 
 static const short yyr2[] = {     0,
-     0,     2,     1,     3,     5,     5,     5,     5,     5,     5,
-     5,     1,     2,     1,     2,     1,     1,     1,     4,     3,
-     4,     5,     5,     4,     1,     2,     3,     1,     1,     1,
-     1,     1,     1,     1,     1,     1,     1,     2
+     0,     2,     1,     1,     3,     5,     5,     5,     5,     5,
+     5,     5,     1,     2,     1,     2,     1,     1,     1,     4,
+     3,     4,     5,     5,     4,     1,     2,     3,     1,     1,
+     1,     1,     1,     1,     1,     1,     1,     1,     2
 };
 
 static const short yydefact[] = {     1,
-     0,    33,    32,    36,    35,    34,     0,     3,    12,    16,
-    17,    18,    14,     0,     0,     0,     0,     0,     2,    13,
-    15,     0,     0,     0,     0,     0,     0,     0,     0,     4,
-    20,     0,    28,     0,    25,    21,    37,     0,     0,     0,
-     0,     0,     0,     0,     0,    24,     0,    19,     0,    26,
-    22,    38,     5,     6,     7,     8,     9,    10,    11,    30,
-    29,    31,    27,    23,     0,     0,     0
+     0,    34,    33,    37,    36,    35,     4,     3,    13,    17,
+    18,    19,    15,     0,     0,     0,     0,     0,     0,     2,
+    14,    16,     0,     0,     0,     0,     5,     0,     0,     0,
+     0,    21,     0,    29,     0,    26,    22,    38,     0,     0,
+     0,     0,     0,     0,     0,     0,    25,     0,    20,     0,
+    27,    23,    39,     6,     7,     8,     9,    10,    11,    12,
+    31,    30,    32,    28,    24,     0,     0,     0
 };
 
-static const short yydefgoto[] = {    65,
-     7,     8,     9,    10,    11,    12,    34,    35,    63,    13,
-    38
+static const short yydefgoto[] = {    66,
+     7,     8,     9,    10,    11,    12,    35,    36,    64,    13,
+    39
 };
 
 static const short yypact[] = {    -3,
     10,-32768,-32768,-32768,-32768,-32768,     1,     1,-32768,-32768,
--32768,-32768,-32768,   -24,    28,    15,     4,    11,     1,-32768,
--32768,     8,    -5,     2,    14,     7,    12,    22,    24,-32768,
--32768,    40,    26,     6,-32768,-32768,-32768,     9,    44,    46,
-    51,    52,    53,    54,    55,-32768,    29,-32768,    56,-32768,
+-32768,-32768,-32768,   -25,    33,     2,    26,     4,    11,     1,
+-32768,-32768,     8,     3,     7,    16,-32768,    22,     5,    12,
+    15,-32768,    48,    47,     6,-32768,-32768,-32768,     9,    50,
+    51,    52,    53,    54,    55,    56,-32768,    25,-32768,    57,
 -32768,-32768,-32768,-32768,-32768,-32768,-32768,-32768,-32768,-32768,
--32768,-32768,-32768,-32768,    61,    62,-32768
+-32768,-32768,-32768,-32768,-32768,    62,    63,-32768
 };
 
 static const short yypgoto[] = {-32768,
--32768,    57,    19,-32768,-32768,-32768,-32768,    31,-32768,    32,
+-32768,    58,    20,-32768,-32768,-32768,-32768,    29,-32768,    21,
 -32768
 };
 
@@ -208,23 +212,23 @@ static const short yypgoto[] = {-32768,
 
 
 static const short yytable[] = {     1,
-    22,     2,     3,    18,    39,     2,     3,    31,    32,    48,
-    49,    36,    51,    40,    14,    14,    15,    16,    30,     4,
-     5,     6,    42,     4,     5,     6,    20,    41,    33,    43,
-    33,    47,    37,    52,    17,    17,    23,    20,    24,    21,
-    25,    44,    26,    46,    27,    45,    28,    53,    29,    54,
-    21,    60,    61,    62,    55,    56,    57,    58,    59,    64,
-    66,    67,     0,    19,    50
+    23,     2,     3,    19,    27,     2,     3,    32,    33,    49,
+    50,    37,    52,    40,    14,    14,    15,    16,    17,    41,
+     4,     5,     6,    44,     4,     5,     6,    21,    22,    34,
+    42,    34,    45,    38,    53,    18,    18,    46,    43,    21,
+    22,    28,    24,    29,    25,    30,    26,    31,    61,    62,
+    63,    47,    48,    54,    55,    56,    57,    58,    59,    60,
+    65,    67,    68,    51,    20
 };
 
 static const short yycheck[] = {     3,
-    25,     5,     6,     3,    10,     5,     6,     4,     5,     4,
-     5,     4,     4,    12,     5,     5,     7,     8,     4,    23,
-    24,    25,    16,    23,    24,    25,     8,    14,    25,    18,
-    25,     6,    25,    25,    25,    25,     9,    19,    11,     8,
-    13,    20,    15,     4,    17,    22,    19,     4,    21,     4,
-    19,    23,    24,    25,     4,     4,     4,     4,     4,     4,
-     0,     0,    -1,     7,    34
+    26,     5,     6,     3,     3,     5,     6,     4,     5,     4,
+     5,     4,     4,    11,     5,     5,     7,     8,     9,    13,
+    24,    25,    26,    19,    24,    25,    26,     8,     8,    26,
+    15,    26,    21,    26,    26,    26,    26,    23,    17,    20,
+    20,    16,    10,    18,    12,    20,    14,    22,    24,    25,
+    26,     4,     6,     4,     4,     4,     4,     4,     4,     4,
+     4,     0,     0,    35,     7
 };
 /* -*-C-*-  Note some compilers choke on comments on `#line' lines.  */
 #line 3 "bison.simple"
@@ -718,44 +722,64 @@ yyreduce:
 
   switch (yyn) {
 
-case 19:
-#line 91 "grammar.y"
-{ DEBUG_MESSAGE("found opening tag : " + *((std::string*)(yyvsp[-2].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddOpeningTag(*((std::string*)(yyvsp[-2].string_t)),*((std::list<htmlAttribute>*)(yyvsp[-1].string_t)), yylineno); ;
+case 5:
+#line 69 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype", WARNING_CODE_DOCUMENT, yylineno); ;
+    break;}
+case 9:
+#line 73 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno); ;
+    break;}
+case 10:
+#line 74 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno); ;
+    break;}
+case 11:
+#line 75 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno); ;
+    break;}
+case 12:
+#line 76 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno); ;
     break;}
 case 20:
-#line 92 "grammar.y"
-{ DEBUG_MESSAGE("found opening tag : " + *((std::string*)(yyvsp[-1].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddOpeningTag(*((std::string*)(yyvsp[-1].string_t)), yylineno);                                      ;
+#line 93 "grammar.y"
+{ DEBUG_MESSAGE("found opening tag : " + *((std::string*)(yyvsp[-2].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddOpeningTag(*((std::string*)(yyvsp[-2].string_t)),*((std::list<htmlAttribute>*)(yyvsp[-1].string_t)), yylineno); ;
     break;}
 case 21:
-#line 96 "grammar.y"
-{ DEBUG_MESSAGE("found closing tag : " + *((std::string*)(yyvsp[-1].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddClosingTag(*((std::string*)(yyvsp[-1].string_t)), yylineno); ;
+#line 94 "grammar.y"
+{ DEBUG_MESSAGE("found opening tag : " + *((std::string*)(yyvsp[-1].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddOpeningTag(*((std::string*)(yyvsp[-1].string_t)), yylineno);                                      ;
     break;}
 case 22:
-#line 97 "grammar.y"
-{ ERROR_MESSAGE("Syntax error on closing tag <" + *((std::string*)(yyvsp[-2].string_t)) + ">" + " There can be only 1 part of html text in closing tag element", ERROR_CODE_PARSER, yylineno); doc.AddClosingTag(*((std::string*)(yyvsp[-2].string_t)), yylineno); ;
+#line 98 "grammar.y"
+{ DEBUG_MESSAGE("found closing tag : " + *((std::string*)(yyvsp[-1].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddClosingTag(*((std::string*)(yyvsp[-1].string_t)), yylineno); ;
     break;}
 case 23:
-#line 101 "grammar.y"
-{ DEBUG_MESSAGE("found single tag : " + *((std::string*)(yyvsp[-3].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddSingleTag(*((std::string*)(yyvsp[-3].string_t)), yylineno); ;
+#line 99 "grammar.y"
+{ ERROR_MESSAGE("Syntax error on closing tag <" + *((std::string*)(yyvsp[-2].string_t)) + ">" + " There can be only 1 part of html text in closing tag element", ERROR_CODE_PARSER, yylineno); doc.AddClosingTag(*((std::string*)(yyvsp[-2].string_t)), yylineno); ;
     break;}
 case 24:
-#line 102 "grammar.y"
-{ DEBUG_MESSAGE("found single tag : " + *((std::string*)(yyvsp[-2].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddSingleTag(*((std::string*)(yyvsp[-2].string_t)), yylineno); ;
+#line 103 "grammar.y"
+{ DEBUG_MESSAGE("found single tag : " + *((std::string*)(yyvsp[-3].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddSingleTag(*((std::string*)(yyvsp[-3].string_t)), yylineno); ;
     break;}
 case 25:
-#line 106 "grammar.y"
-{ (yyval.string_t) = GenNewAttrList(((htmlAttribute*)(yyvsp[0].string_t)));                                       ;
+#line 104 "grammar.y"
+{ DEBUG_MESSAGE("found single tag : " + *((std::string*)(yyvsp[-2].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddSingleTag(*((std::string*)(yyvsp[-2].string_t)), yylineno); ;
     break;}
 case 26:
-#line 107 "grammar.y"
-{ (yyval.string_t) = AppendAttrInList(((htmlAttribute*)(yyvsp[0].string_t)), ((std::list<htmlAttribute>*)(yyvsp[-1].string_t)));  ;
+#line 108 "grammar.y"
+{ (yyval.string_t) = GenNewAttrList(((htmlAttribute*)(yyvsp[0].string_t)));                                       ;
     break;}
 case 27:
-#line 111 "grammar.y"
-{ DEBUG_MESSAGE("found attribute with value : " + *((std::string*)(yyvsp[-2].string_t)) + " = " + *((std::string*)(yyvsp[0].string_t)), DEBUG_CODE_PARSER, yylineno); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[-2].string_t)), *((std::string*)(yyvsp[0].string_t))); ;
+#line 109 "grammar.y"
+{ (yyval.string_t) = AppendAttrInList(((htmlAttribute*)(yyvsp[0].string_t)), ((std::list<htmlAttribute>*)(yyvsp[-1].string_t)));  ;
     break;}
 case 28:
-#line 112 "grammar.y"
+#line 113 "grammar.y"
+{ DEBUG_MESSAGE("found attribute with value : " + *((std::string*)(yyvsp[-2].string_t)) + " = " + *((std::string*)(yyvsp[0].string_t)), DEBUG_CODE_PARSER, yylineno); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[-2].string_t)), *((std::string*)(yyvsp[0].string_t))); ;
+    break;}
+case 29:
+#line 114 "grammar.y"
 { DEBUG_MESSAGE("found attribute : " + *((std::string*)(yyvsp[0].string_t)), DEBUG_CODE_PARSER, yylineno); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[0].string_t))); ;
     break;}
 }
@@ -956,4 +980,4 @@ yyerrhandle:
   yystate = yyn;
   goto yynewstate;
 }
-#line 133 "grammar.y"
+#line 135 "grammar.y"
