@@ -190,16 +190,16 @@ multipart/x-zip)"
 [0-9]{4}\-[0-9]{2}\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\+|\-)[0-2][0-4]:[0-5][0-9])"
 #pragma endregion
 
+#define ANY_TEXT            ".*"
 #define CHAR_SET            "(iso 646|ISO 646|ascii|ASCII|bcdic||BCDIC|ebcdic|EBCDIC|windows-125[0-8]|WINDOWS-125[0-8]|koi8|KOI8|iscii|ISCII|viscii|VISCII|big5|utf-8|UTF-8|utf-16|UTF-16|utf-32|UTF-32|unicode|UNICODE)"
 #define PATH                "^(.*/)?(?:$|(.+?)(?:(\.[^.]*$)|$))" 
-#define COLOR               "(#[a-f0-9A-F]{1,6}|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow)"
+#define COLOR               "(#[a-f0-9A-F]{1,6}|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow|)"
 #define INTEGER             "-?[0-9]+"
 #define POSITIVE_INTEGER    "[0-9]+"
-#define URL                 R"(^(([^:\/?#]+):)?(//([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?)" 
+#define URL                 ANY_TEXT 
 #define IDENTIFIER          "[a-zA-Z][a-zA-Zа-€ј-я0-9_-]*"         
-#define ANY_TEXT            ".*"
 #define INTEGER_OR_PERCENT  "[0-9%]+"
-#define SCRIPT              ANY_TEXT //"[a-zA-Z]+:[a-zA-Z][a-zA-Z0-9_]*"
+#define SCRIPT              ANY_TEXT 
 
 #pragma region attribute_values
 
@@ -241,7 +241,7 @@ multipart/x-zip)"
 #define ATTR_ALIGN_VALS               ("(bottom|left|middle|right|top)")  
 #define ATTR_ALINK_VALS               COLOR
 #define ATTR_ALLOWTRANSPARENCY_VALS   ("(allowtransparency|)"          ) 
-#define ATTR_ALT_VALS                 ("[a-zA-Z ]+"                    ) // ќб€зательно должно прийти в двойных кавычках
+#define ATTR_ALT_VALS                 ANY_TEXT
 #define ATTR_ARCHIVE_VALS             PATH                               
 #define ATTR_ASYNC_VALS               ("(async|)"                      ) 
 #define ATTR_AUTOCOMPLETE_VALS        ("(on|off)"                      )
@@ -296,7 +296,7 @@ multipart/x-zip)"
 #define ATTR_FORMTARGET_VALS          ("([a-zA-Z]|_blank|_self|_parent|_top)")
 #define ATTR_GUTTER_VALS              ANY_TEXT 
 #define ATTR_HEADERS_VALS             IDENTIFIER  
-#define ATTR_HEIGHT_VALS              ("[0-9]+[px]?")
+#define ATTR_HEIGHT_VALS              ANY_TEXT
 #define ATTR_HREF_VALS                URL
 #define ATTR_HREFLANG_VALS            LANGUAGE_CODE
 #define ATTR_HSPACE_VALS              POSITIVE_INTEGER
@@ -370,7 +370,7 @@ multipart/x-zip)"
 #define ATTR_TEXT_VALS                COLOR
 #define ATTR_TOPMARGIN_VALS           POSITIVE_INTEGER
 #define ATTR_TRUESPEED_VALS           ("(truespeed|)") 
-#define ATTR_TYPE_VALS                ("(button|checkbox|file|hidden|image|password|radio|reset|submit|text|color|date|datetime|datetime|email|number|range|search|tel|time|url|month|week|internal/link|text/javascript|text/css)")
+#define ATTR_TYPE_VALS                ("(button|checkbox|file|hidden|image|password|radio|reset|submit|text|color|date|datetime|datetime|email|number|range|search|tel|time|url|month|week|internal/link|text/javascript|text/css|A|a|I|i|1)")
 #define ATTR_USEMAP_VALS              ("#[a-zA-Z]+")
 #define ATTR_VALIGN_VALS              ("(top|middle|bottom|baseline)")
 #define ATTR_VALUE_VALS               ANY_TEXT
@@ -378,7 +378,7 @@ multipart/x-zip)"
 #define ATTR_VLINK_VALS               COLOR
 #define ATTR_VOLUME_VALS              INTEGER	      
 #define ATTR_VSPACE_VALS              INTEGER
-#define ATTR_WIDTH_VALS               ("[0-9]+[px]*")	      
+#define ATTR_WIDTH_VALS               ANY_TEXT	      
 #define ATTR_WRAP_VALS                ("(soft|hard|off|)")
 #define ATTR_XMLNS_VALS               URL
 #define ATTR_ABBR_VALS                ANY_TEXT

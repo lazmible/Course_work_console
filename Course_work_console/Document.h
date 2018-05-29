@@ -14,7 +14,7 @@ private:
 	bool html_was = false;
 	bool title_was = false;
 	
-	bool tag_name_is_correct(std::string name);
+	//bool tag_name_is_correct(std::string name);
 	void check_previous_state(htmlTag tag, int line);
 
 public:
@@ -26,11 +26,7 @@ public:
 	{
 	}
 
-	void end()
-	{
-		if (!html_was)  { ERROR_MESSAGE("Missing <html> tag", ERROR_CODE_DOCUMENT, 0); }
-		if (!title_was) { ERROR_MESSAGE("Missing <title> tag", ERROR_CODE_DOCUMENT, 0); }
-	}
+	void end();
 
 	void AddOpeningTag(std::string tag_name, int line);
 	void AddOpeningTag(std::string tag_name, std::list<htmlAttribute> attrs, int line);

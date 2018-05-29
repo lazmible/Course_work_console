@@ -18,7 +18,7 @@ void htmlTag::init()
 	}
 	else
 	{
-		ERROR_MESSAGE("Unexpexted Tag name + " + this->name + ">", ERROR_CODE_TAG, this->line);
+		ERROR_MESSAGE("Unexpexted Tag name <" + this->name + ">", ERROR_CODE_TAG, this->line);
 	}
 }
 

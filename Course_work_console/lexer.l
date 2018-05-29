@@ -112,5 +112,5 @@
 "/"                                                           {  return Token(yytext, SLASH);                     }
 \'(?:[^\\']+|\\.)*\'                                          {  return Token(yytext, SINGLE_QUOTE_STRING);       }
 \"(?:[^\\"]+|\\.)*\"                                          {  return Token(yytext, DOUBLE_QUOTE_STRING);       }
-[^<>/= ]*                                                     {  return Token(yytext, TEXT);                      }
+[^<>/= \n]*                                                   {  return Token(yytext, TEXT);                      }
 %%

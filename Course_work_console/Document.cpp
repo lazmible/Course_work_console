@@ -25,10 +25,6 @@ void htmlDocument::AddOpeningTag(std::string tag_name, int line)
 
 	DEBUG_MESSAGE("Processing opening tag - " + tag_name, DEBUG_CODE_ENGINE, line);
 
-	if (!tag_name_is_correct(tag_name)) 
-	{
-		ERROR_MESSAGE("Tag with name <" + tag_name + "> does not exist", ERROR_CODE_DOCUMENT, line);
-	}
 	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
 	check_previous_state(tag, line);
 	if (std::find(TagsWithNoClosing.begin(), TagsWithNoClosing.end(), tag_name) == TagsWithNoClosing.end())
@@ -41,15 +37,11 @@ void htmlDocument::AddOpeningTag(std::string tag_name, int line)
 void htmlDocument::AddOpeningTag(std::string tag_name, std::list<htmlAttribute> attrs, int line)
 {
 	tag_name = str_tolower(tag_name);
+
 	if (tag_name == "html") { this->html_was = true; }
 	if (tag_name == "title") { this->title_was = true; }
 
 	DEBUG_MESSAGE("Processing opening tag - " + tag_name, DEBUG_CODE_ENGINE, line);
-
-	if (!tag_name_is_correct(tag_name)) 
-	{
-		ERROR_MESSAGE("Tag with name <" + tag_name + "> does not exist", ERROR_CODE_DOCUMENT, line);
-	}
 
 	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
 	for (auto it : attrs)
@@ -109,10 +101,6 @@ void htmlDocument::AddSingleTag(std::string tag_name, int line)
 
 	DEBUG_MESSAGE("Processing single tag - " + tag_name, DEBUG_CODE_ENGINE, line);
 
-	if (!tag_name_is_correct(tag_name))
-	{
-		ERROR_MESSAGE("Unexpected tag name: <" + tag_name + ">", ERROR_CODE_DOCUMENT, line);
-	}
 	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
 	check_previous_state(tag, line);
 	CleanUpUtilsStructures();
@@ -124,22 +112,12 @@ void htmlDocument::AddSingleTag(std::string tag_name, std::list<htmlAttribute> a
 
 	DEBUG_MESSAGE("Processing single tag - " + tag_name, DEBUG_CODE_ENGINE, line);
 
-	if (!tag_name_is_correct(tag_name))
-	{
-		ERROR_MESSAGE("Unexpected tag name: <" + tag_name + ">", ERROR_CODE_DOCUMENT, line);
-	}
 	htmlTag tag(tag_name, this->available_attributes, this->available_tags, line);
-	for (auto it : attrs)
-	{
-		tag.AddAttribute(it.GetName(), it.GetValue());
-	}
+
+	for (auto it : attrs) { tag.AddAttribute(it.GetName(), it.GetValue()); }
+
 	check_previous_state(tag, line);	
 	CleanUpUtilsStructures();
-}
-
-bool htmlDocument::tag_name_is_correct(std::string name)
-{
-	return (this->available_tags.find(name) != available_tags.end());
 }
 
 void htmlDocument::check_previous_state(htmlTag tag, int line)
@@ -198,4 +176,10 @@ void htmlDocument::check_previous_state(htmlTag tag, int line)
 		}
 		return;
 	}
+}
+
+void htmlDocument::end()
+{
+	if (!html_was) { ERROR_MESSAGE("Missing <html> tag", ERROR_CODE_DOCUMENT, yylineno); }
+	if (!title_was) { ERROR_MESSAGE("Missing <title> tag", ERROR_CODE_DOCUMENT, yylineno); }
 }
