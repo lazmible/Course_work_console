@@ -76,6 +76,7 @@ void htmlDocument::AddClosingTag(std::string tag_name, int line)
 			if (tag_name != previous_tag_name && !tag_can_not_be_closed(previous_tag_name))
 			{
 				ERROR_MESSAGE("Unequal closing tag <" + tag_name + "> for <" + previous_tag_name + ">", ERROR_CODE_TAG, line);
+				this->state_stack.pop();
 				break;
 			}
 			else
@@ -168,11 +169,11 @@ void htmlDocument::check_previous_state(htmlTag tag, int line)
 		}
 		if (!html_found && tag.GetName() != "html")
 		{
-			ERROR_MESSAGE("Tag <" + tag.GetName() + "> " + "must be strictly inside element <html>", ERROR_CODE_DOCUMENT, line);
+			ERROR_MESSAGE("Tag <" + tag.GetName() + "> " + "must be inside element <html>", ERROR_CODE_DOCUMENT, line);
 		}
 		if (bad_head_found)
 		{
-			ERROR_MESSAGE("Tag <" + tag.GetName() + "> " + "must be strictly inside element <head>", ERROR_CODE_DOCUMENT, line);
+			ERROR_MESSAGE("Tag <" + tag.GetName() + "> " + "can not be inside element <head>", ERROR_CODE_DOCUMENT, line);
 		}
 		return;
 	}
