@@ -782,6 +782,10 @@ case 29:
 #line 114 "grammar.y"
 { DEBUG_MESSAGE("found attribute : " + *((std::string*)(yyvsp[0].string_t)), DEBUG_CODE_PARSER, yylineno); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[0].string_t))); ;
     break;}
+case 32:
+#line 120 "grammar.y"
+{ ERROR_MESSAGE("Unsupported attribute value without quotes (single or double) <" + *((std::string*)(yyvsp[0].string_t)) + ">", ERROR_CODE_DOCUMENT, yylineno); system("pause"); exit(0); ;
+    break;}
 }
    /* the action file gets copied in in place of this dollarsign */
 #line 487 "bison.simple"
