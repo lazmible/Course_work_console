@@ -58,6 +58,10 @@ void htmlDocument::AddOpeningTag(std::string tag_name, std::list<htmlAttribute> 
 
 void htmlDocument::AddClosingTag(std::string tag_name, int line)
 {
+	if (tag_name == "html")
+	{
+		std::cout << "";
+	}
 	tag_name = str_tolower(tag_name);
 
 	DEBUG_MESSAGE("Processing closing tag - " + tag_name, DEBUG_CODE_ENGINE, line);
@@ -87,7 +91,6 @@ void htmlDocument::AddClosingTag(std::string tag_name, int line)
 		}
 		else
 		{
-			ERROR_MESSAGE("Unclosed tag : <" + tag_name + ">", ERROR_CODE_TAG, line);
 			break;
 		}
 	}
