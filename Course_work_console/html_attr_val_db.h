@@ -238,7 +238,7 @@ multipart/x-zip)"
 #define ATTR_ACCEPT_VALS              MIME_TYPE
 #define ATTR_ACCEPTCHARSET_VALS       CHAR_SET
 #define ATTR_ACTION_VALS              URL 
-#define ATTR_ALIGN_VALS               ("(bottom|left|middle|right|top)")  
+#define ATTR_ALIGN_VALS               ("(bottom|left|middle|right|top|center|justify|top)")  
 #define ATTR_ALINK_VALS               COLOR
 #define ATTR_ALLOWTRANSPARENCY_VALS   ("(allowtransparency|)"          ) 
 #define ATTR_ALT_VALS                 ANY_TEXT

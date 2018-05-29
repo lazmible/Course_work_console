@@ -788,7 +788,7 @@ case 32:
     break;}
 case 33:
 #line 121 "grammar.y"
-{ ERROR_MESSAGE("Unsupported attribute value without quotes (single or double) <//>", ERROR_CODE_DOCUMENT, yylineno); system("pause"); exit(0); ;
+{ ERROR_MESSAGE("Unsupported attribute value without quotes (single or double) </>", ERROR_CODE_DOCUMENT, yylineno); system("pause"); exit(0); ;
     break;}
 }
    /* the action file gets copied in in place of this dollarsign */
