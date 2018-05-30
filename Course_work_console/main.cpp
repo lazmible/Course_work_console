@@ -15,6 +15,7 @@ extern int yyparse();
 int yylex();
 
 extern int yylineno;
+extern int g_LexerColumn;
 
 int yyerror(const char * err)
 {
@@ -23,6 +24,7 @@ int yyerror(const char * err)
 	std::cout << "***************************************************************" << std::endl;
 	std::cout << "Parser stopped with fatal syntax error." << std::endl;
 	std::cout << "line: " << yylineno << std::endl;
+	std::cout << "column: " << g_LexerColumn << std::endl;
 	std::cout << "Reason: " << (error_message == "parse error" ? "Unnamed syntax error" : error_message) << std::endl;
 	std::cout << "***************************************************************" << std::endl;
 	return -1;

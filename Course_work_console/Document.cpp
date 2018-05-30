@@ -179,6 +179,6 @@ void htmlDocument::check_previous_state(htmlTag tag, int line, int column)
 
 void htmlDocument::end()
 {
-	if (!html_was) { ERROR_MESSAGE("Missing <html> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); }
-	if (!title_was) { ERROR_MESSAGE("Missing <title> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); }
+	//if (!html_was) { ERROR_MESSAGE("Missing <html> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); }
+	//if (!title_was) { ERROR_MESSAGE("Missing <title> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); }
 }

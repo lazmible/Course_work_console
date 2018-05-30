@@ -84,7 +84,7 @@
     .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                    }
 }
 
-[ \t\r\f\v\a]+                                                { }
+[ \t\r\f\v\a]+                                                {  g_LexerColumn += yyleng; }
 "\n"                                                          {  g_LexerColumn = 0; }
 "\!DOCTYPE html PUBLIC"                                       {  return Token(yytext, DOCTYPE_XHTML);             }
 "\!DOCTYPE HTML PUBLIC"                                       {  return Token(yytext, DOCTYPE);                   }

@@ -1326,7 +1326,7 @@ YY_RULE_SETUP
 case 25:
 YY_RULE_SETUP
 #line 87 "lexer.l"
-{ }
+{  g_LexerColumn += yyleng; }
 	YY_BREAK
 case 26:
 /* rule 26 can match eol */
