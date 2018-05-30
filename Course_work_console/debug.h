@@ -3,9 +3,9 @@
 #include <iomanip>
 #include <iostream>
 
-/*#define DEBUG_LEVEL_PARSER   
+#define DEBUG_LEVEL_PARSER   
 #define DEBUG_LEVEL_LEXER  
-#define DEBUG_LEVEL_ENGINE  */ 
+#define DEBUG_LEVEL_ENGINE   
 							     
 #define DEBUG_CODE_PARSER        1
 #define DEBUG_CODE_LEXER         2

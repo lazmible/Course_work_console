@@ -291,7 +291,7 @@ multipart/x-zip)"
 #define ATTR_FORM_VALS                IDENTIFIER
 #define ATTR_FORMACTION_VALS          URL
 #define ATTR_FORMENCTYPE_VALS         ("(application/x-www-form-urlencoded|multipart/form-data|text/plain|)")
-#define ATTR_FORMMETHOD_VALS          ("(get|post)")
+#define ATTR_FORMMETHOD_VALS          ("(get|post|GET|POST)")
 #define ATTR_FORMOVALIDATE_VALS       ANY_TEXT 
 #define ATTR_FORMTARGET_VALS          ("([a-zA-Z]|_blank|_self|_parent|_top)")
 #define ATTR_GUTTER_VALS              ANY_TEXT 
