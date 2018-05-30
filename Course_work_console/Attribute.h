@@ -20,6 +20,7 @@ private:
 	std::string name;
 	std::string value;
 	std::size_t line;
+	std::size_t column;
 
 	std::vector<std::string> names_database;
 	std::map<std::string, std::string> values_database;
@@ -30,8 +31,8 @@ private:
 public:
 
 	htmlAttribute(std::string _name, const std::map<std::string, std::string> & val_db,
-		std::string err, std::string val, int _line)
-		: name(_name), values_database(val_db), value(val), line(_line)
+		std::string err, std::string val, int _line, int _column)
+		: name(_name), values_database(val_db), value(val), line(_line), column(_column)
 	{}
 
 	void CheckState();
@@ -39,5 +40,17 @@ public:
 	const std::string GetValue() const { return (value); }
 	void SetName(std::string _name) { name = _name; }
 	void SetValue(std::string _value) { value = _value; }
+
+	htmlAttribute & operator = (const htmlAttribute & other)
+	{
+		name = other.name;
+		value = other.value;
+		line = other.line;
+		column = other.column;
+		names_database = other.names_database;
+		values_database = other.values_database;
+
+		return (*this);
+	}
 };
 

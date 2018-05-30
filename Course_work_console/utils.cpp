@@ -9,6 +9,8 @@ std::list<std::list<htmlAttribute>>   attributes_lists;
 std::list<htmlAttribute>              attributes;
 
 extern int yylineno;
+extern int yyleng;
+extern int g_LexerColumn;
 
 void CleanUpUtilsStructures()
 {
@@ -60,7 +62,8 @@ int Token(void * text, int value)
 	    case (DOUBLE_QUOTE_STRING)  : { yylval.string_t = GenNewStrW((char*)text); break; }
 	    case (TEXT)                 : { yylval.string_t = GenNewStr((char*)text);  break; }
 	}
-	DEBUG_MESSAGE(StrToken(value), DEBUG_CODE_LEXER, yylineno);
+	DEBUG_MESSAGE(StrToken(value), DEBUG_CODE_LEXER, yylineno, g_LexerColumn);
+	g_LexerColumn += yyleng;
 	return (value);
 }
 
@@ -82,7 +85,7 @@ void * GenNewStrW(char * str) // returns pointer to std::string
 
 void * GenNewAttr(std::string attr, std::string val) // returns pointer to htmlAttribute 
 {
-	htmlAttribute instance(attr, ATTR_DATABASE, "", val, yylineno);
+	htmlAttribute instance(attr, ATTR_DATABASE, "", val, yylineno, g_LexerColumn);
 	attributes.push_back(instance);
 
 	return (&(*(--attributes.end())));
@@ -90,7 +93,7 @@ void * GenNewAttr(std::string attr, std::string val) // returns pointer to htmlA
 
 void * GenNewAttr(std::string attr) // returns pointer to htmlAttribute 
 {
-	htmlAttribute instance(attr, ATTR_DATABASE, "", "", yylineno);
+	htmlAttribute instance(attr, ATTR_DATABASE, "", "", yylineno, g_LexerColumn);
 	attributes.push_back(instance);
 	return (&(*(--attributes.end())));
 }

@@ -18,7 +18,7 @@ void htmlTag::init()
 	}
 	else
 	{
-		ERROR_MESSAGE("Unexpexted Tag name <" + this->name + ">", ERROR_CODE_TAG, this->line);
+		ERROR_MESSAGE("Unexpexted Tag name <" + this->name + ">", ERROR_CODE_TAG, this->line, this->column);
 	}
 }
 
@@ -41,11 +41,11 @@ void htmlTag::AddAttribute(std::string name, std::string val)
 {
 	if (check_attr_name(name) || is_user_defined_attribute(name))
 	{
-		htmlAttribute attribute(name, this->attribute_database, "", val, this->line);
+		htmlAttribute attribute(name, this->attribute_database, "", val, this->line, this->column);
 		attribute.CheckState();
 	}
 	else
 	{
-		ERROR_MESSAGE("Unexpected Attribute name <" + name + ">" + " for tag <" + this->name + ">", ERROR_CODE_ATTRIBUTE, this->line);
+		ERROR_MESSAGE("Unexpected Attribute name <" + name + ">" + " for tag <" + this->name + ">", ERROR_CODE_ATTRIBUTE, this->line, this->column);
 	}
 }

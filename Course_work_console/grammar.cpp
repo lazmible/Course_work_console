@@ -44,9 +44,10 @@
     int  yylex   ();
 	extern FILE  * yyin;
     extern int yylineno;
+    extern int g_LexerColumn;
     extern htmlDocument doc;
 
-#line 18 "grammar.y"
+#line 19 "grammar.y"
 typedef union
 {
     void *  string_t     ;
@@ -145,10 +146,10 @@ static const short yyrhs[] = {    -1,
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    62,    63,    64,    65,    69,    70,    71,    72,    73,    74,
-    75,    76,    80,    81,    82,    83,    87,    88,    89,    93,
-    94,    98,    99,   103,   104,   108,   109,   113,   114,   118,
-   119,   120,   121,   125,   126,   127,   128,   129,   133,   134
+    63,    64,    65,    66,    70,    71,    72,    73,    74,    75,
+    76,    77,    81,    82,    83,    84,    88,    89,    90,    94,
+    95,    99,   100,   104,   105,   109,   110,   114,   115,   119,
+   120,   121,   122,   126,   127,   128,   129,   130,   134,   135
 };
 
 static const char * const yytname[] = {   "$","error","$undefined.","OPENING_TAG_BRACKET",
@@ -723,71 +724,71 @@ yyreduce:
   switch (yyn) {
 
 case 5:
-#line 69 "grammar.y"
-{ WARNING_MESSAGE("Unsupported doctype", WARNING_CODE_DOCUMENT, yylineno); ;
+#line 70 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno, g_LexerColumn); ;
     break;}
 case 9:
-#line 73 "grammar.y"
-{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno); ;
+#line 74 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno, g_LexerColumn); ;
     break;}
 case 10:
-#line 74 "grammar.y"
-{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno); ;
+#line 75 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno, g_LexerColumn); ;
     break;}
 case 11:
-#line 75 "grammar.y"
-{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno); ;
+#line 76 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno, g_LexerColumn); ;
     break;}
 case 12:
-#line 76 "grammar.y"
-{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno); ;
+#line 77 "grammar.y"
+{ WARNING_MESSAGE("Unsupported doctype, this can cause lots of Tag and Attribute errors", WARNING_CODE_DOCUMENT, yylineno, g_LexerColumn); ;
     break;}
 case 20:
-#line 93 "grammar.y"
-{ DEBUG_MESSAGE("found opening tag : " + *((std::string*)(yyvsp[-2].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddOpeningTag(*((std::string*)(yyvsp[-2].string_t)),*((std::list<htmlAttribute>*)(yyvsp[-1].string_t)), yylineno); ;
+#line 94 "grammar.y"
+{ DEBUG_MESSAGE("found opening tag : " + *((std::string*)(yyvsp[-2].string_t)), DEBUG_CODE_PARSER, yylineno, g_LexerColumn); doc.AddOpeningTag(*((std::string*)(yyvsp[-2].string_t)),*((std::list<htmlAttribute>*)(yyvsp[-1].string_t)), yylineno, g_LexerColumn); ;
     break;}
 case 21:
-#line 94 "grammar.y"
-{ DEBUG_MESSAGE("found opening tag : " + *((std::string*)(yyvsp[-1].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddOpeningTag(*((std::string*)(yyvsp[-1].string_t)), yylineno);                                      ;
+#line 95 "grammar.y"
+{ DEBUG_MESSAGE("found opening tag : " + *((std::string*)(yyvsp[-1].string_t)), DEBUG_CODE_PARSER, yylineno, g_LexerColumn); doc.AddOpeningTag(*((std::string*)(yyvsp[-1].string_t)), yylineno, g_LexerColumn);                                      ;
     break;}
 case 22:
-#line 98 "grammar.y"
-{ DEBUG_MESSAGE("found closing tag : " + *((std::string*)(yyvsp[-1].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddClosingTag(*((std::string*)(yyvsp[-1].string_t)), yylineno); ;
+#line 99 "grammar.y"
+{ DEBUG_MESSAGE("found closing tag : " + *((std::string*)(yyvsp[-1].string_t)), DEBUG_CODE_PARSER, yylineno, g_LexerColumn); doc.AddClosingTag(*((std::string*)(yyvsp[-1].string_t)), yylineno, g_LexerColumn); ;
     break;}
 case 23:
-#line 99 "grammar.y"
-{ ERROR_MESSAGE("Syntax error on closing tag <" + *((std::string*)(yyvsp[-2].string_t)) + ">" + " There can be only 1 part of html text in closing tag element", ERROR_CODE_PARSER, yylineno); doc.AddClosingTag(*((std::string*)(yyvsp[-2].string_t)), yylineno); ;
+#line 100 "grammar.y"
+{ ERROR_MESSAGE("Syntax error on closing tag <" + *((std::string*)(yyvsp[-2].string_t)) + ">" + " There can be only 1 part of html text in closing tag element", ERROR_CODE_PARSER, yylineno, g_LexerColumn); doc.AddClosingTag(*((std::string*)(yyvsp[-2].string_t)), yylineno, g_LexerColumn); ;
     break;}
 case 24:
-#line 103 "grammar.y"
-{ DEBUG_MESSAGE("found single tag : " + *((std::string*)(yyvsp[-3].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddSingleTag(*((std::string*)(yyvsp[-3].string_t)), yylineno); ;
+#line 104 "grammar.y"
+{ DEBUG_MESSAGE("found single tag : " + *((std::string*)(yyvsp[-3].string_t)), DEBUG_CODE_PARSER, yylineno, g_LexerColumn); doc.AddSingleTag(*((std::string*)(yyvsp[-3].string_t)), yylineno, g_LexerColumn); ;
     break;}
 case 25:
-#line 104 "grammar.y"
-{ DEBUG_MESSAGE("found single tag : " + *((std::string*)(yyvsp[-2].string_t)), DEBUG_CODE_PARSER, yylineno); doc.AddSingleTag(*((std::string*)(yyvsp[-2].string_t)), yylineno); ;
+#line 105 "grammar.y"
+{ DEBUG_MESSAGE("found single tag : " + *((std::string*)(yyvsp[-2].string_t)), DEBUG_CODE_PARSER, yylineno, g_LexerColumn); doc.AddSingleTag(*((std::string*)(yyvsp[-2].string_t)), yylineno, g_LexerColumn); ;
     break;}
 case 26:
-#line 108 "grammar.y"
+#line 109 "grammar.y"
 { (yyval.string_t) = GenNewAttrList(((htmlAttribute*)(yyvsp[0].string_t)));                                       ;
     break;}
 case 27:
-#line 109 "grammar.y"
+#line 110 "grammar.y"
 { (yyval.string_t) = AppendAttrInList(((htmlAttribute*)(yyvsp[0].string_t)), ((std::list<htmlAttribute>*)(yyvsp[-1].string_t)));  ;
     break;}
 case 28:
-#line 113 "grammar.y"
-{ DEBUG_MESSAGE("found attribute with value : " + *((std::string*)(yyvsp[-2].string_t)) + " = " + *((std::string*)(yyvsp[0].string_t)), DEBUG_CODE_PARSER, yylineno); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[-2].string_t)), *((std::string*)(yyvsp[0].string_t))); ;
+#line 114 "grammar.y"
+{ DEBUG_MESSAGE("found attribute with value : " + *((std::string*)(yyvsp[-2].string_t)) + " = " + *((std::string*)(yyvsp[0].string_t)), DEBUG_CODE_PARSER, yylineno, g_LexerColumn); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[-2].string_t)), *((std::string*)(yyvsp[0].string_t))); ;
     break;}
 case 29:
-#line 114 "grammar.y"
-{ DEBUG_MESSAGE("found attribute : " + *((std::string*)(yyvsp[0].string_t)), DEBUG_CODE_PARSER, yylineno); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[0].string_t))); ;
+#line 115 "grammar.y"
+{ DEBUG_MESSAGE("found attribute : " + *((std::string*)(yyvsp[0].string_t)), DEBUG_CODE_PARSER, yylineno, g_LexerColumn); (yyval.string_t) = GenNewAttr(*((std::string*)(yyvsp[0].string_t))); ;
     break;}
 case 32:
-#line 120 "grammar.y"
+#line 121 "grammar.y"
 { return yyerror("Unsupported attribute value without quotes (single or double)");  ;
     break;}
 case 33:
-#line 121 "grammar.y"
+#line 122 "grammar.y"
 { return yyerror("Unsupported attribute value without quotes (single or double)");  ;
     break;}
 }
@@ -988,4 +989,4 @@ yyerrhandle:
   yystate = yyn;
   goto yynewstate;
 }
-#line 136 "grammar.y"
+#line 137 "grammar.y"

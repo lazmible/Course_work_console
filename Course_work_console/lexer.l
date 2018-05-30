@@ -13,6 +13,7 @@
     #pragma warning( disable:5033 )
 
     extern int yyerror(const char * err);
+    int g_LexerColumn = 0;
 %}
 
 %x comment
@@ -26,64 +27,65 @@
 %%
 <comment>
 {
-    "-->"	    { DEBUG_MESSAGE("COMMENT ENDED", DEBUG_CODE_LEXER, yylineno);  BEGIN(INITIAL);                  }
-    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed comment", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
-    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                              }
+    "-->"	    { DEBUG_MESSAGE("COMMENT ENDED", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);  BEGIN(INITIAL);                  }
+    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed comment", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); return (EOF);               }
+    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                              }
 }
 
 <script>
 {
-    "/>"        { DEBUG_MESSAGE("SCRIPT SINGLE ENDED", DEBUG_CODE_LEXER, yylineno);  BEGIN(INITIAL);                 }
-    ">"	        { DEBUG_MESSAGE("SCRIPT PAIRED START", DEBUG_CODE_LEXER, yylineno); BEGIN(script_paired);            }
-    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                     }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
-    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                   }
+    "/>"        { DEBUG_MESSAGE("SCRIPT SINGLE ENDED", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);  BEGIN(INITIAL);                 }
+    ">"	        { DEBUG_MESSAGE("SCRIPT PAIRED START", DEBUG_CODE_LEXER, yylineno, g_LexerColumn); BEGIN(script_paired);            }
+    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                     }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); return (EOF);               }
+    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                   }
 }
 
 <style>
 {
-    "/>"        { DEBUG_MESSAGE("STYLE SINGLE ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                  }
-    ">"	        { DEBUG_MESSAGE("SCRIPT PAIRED START", DEBUG_CODE_LEXER, yylineno); BEGIN(style_paired);            }
-    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                    }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
-    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                  }
+    "/>"        { DEBUG_MESSAGE("STYLE SINGLE ENDED", DEBUG_CODE_LEXER, yylineno, g_LexerColumn); BEGIN(INITIAL);                  }
+    ">"	        { DEBUG_MESSAGE("SCRIPT PAIRED START", DEBUG_CODE_LEXER, yylineno, g_LexerColumn); BEGIN(style_paired);            }
+    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                    }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); return (EOF);               }
+    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                  }
 }
 
 <xml>
 {
-    "/>"        { DEBUG_MESSAGE("XML SINGLE ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                   }
-    ">"	        { DEBUG_MESSAGE("XML PAIRED START", DEBUG_CODE_LEXER, yylineno); BEGIN(xml_paired);                }
-    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                   }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);                }
-    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                 }
+    "/>"        { DEBUG_MESSAGE("XML SINGLE ENDED", DEBUG_CODE_LEXER, yylineno, g_LexerColumn); BEGIN(INITIAL);                   }
+    ">"	        { DEBUG_MESSAGE("XML PAIRED START", DEBUG_CODE_LEXER, yylineno, g_LexerColumn); BEGIN(xml_paired);                }
+    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                   }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); return (EOF);                }
+    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                 }
 }
 
 <script_paired>
 {
-    "</script>"	{ DEBUG_MESSAGE("SCRIPT PAIRED ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                  }
-    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                     }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
-    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                   }
+    "</script>"	{ DEBUG_MESSAGE("SCRIPT PAIRED ENDED", DEBUG_CODE_LEXER, yylineno, g_LexerColumn); BEGIN(INITIAL);                  }
+    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                     }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); return (EOF);               }
+    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                   }
 }
 
 <style_paired>
 {
-    "</style>"	{ DEBUG_MESSAGE("STYLE PAIRED ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                  }
-    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                    }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
-    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                  }
+    "</style>"	{ DEBUG_MESSAGE("STYLE PAIRED ENDED", DEBUG_CODE_LEXER, yylineno, g_LexerColumn); BEGIN(INITIAL);                  }
+    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                    }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); return (EOF);               }
+    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                  }
 }
 
 <xml_paired>
 {
-    "</xml>"	{ DEBUG_MESSAGE("XML PAIRED ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                      }
-    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                      }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);                   }
-    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                    }
+    "</xml>"	{ DEBUG_MESSAGE("XML PAIRED ENDED", DEBUG_CODE_LEXER, yylineno, g_LexerColumn); BEGIN(INITIAL);                      }
+    \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                      }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno, g_LexerColumn); return (EOF);                   }
+    .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno, g_LexerColumn);                                    }
 }
 
-[ \t\r\f\v\a\n]+                                              { }
+[ \t\r\f\v\a]+                                                { }
+"\n"                                                          {  g_LexerColumn = 0; }
 "\!DOCTYPE html PUBLIC"                                       {  return Token(yytext, DOCTYPE_XHTML);             }
 "\!DOCTYPE HTML PUBLIC"                                       {  return Token(yytext, DOCTYPE);                   }
 "\!DOCTYPE html"                                              {  return Token(yytext, DOCTYPE_HTML_5);            }
