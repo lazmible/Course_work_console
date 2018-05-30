@@ -784,11 +784,11 @@ case 29:
     break;}
 case 32:
 #line 120 "grammar.y"
-{ ERROR_MESSAGE("Unsupported attribute value without quotes (single or double) <" + *((std::string*)(yyvsp[0].string_t)) + ">", ERROR_CODE_DOCUMENT, yylineno); system("pause"); exit(0); ;
+{ return yyerror(std::string("Unsupported attribute value without quotes (single or double) <" + *((std::string*)(yyvsp[0].string_t)) + ">").c_str());  ;
     break;}
 case 33:
 #line 121 "grammar.y"
-{ ERROR_MESSAGE("Unsupported attribute value without quotes (single or double) </>", ERROR_CODE_DOCUMENT, yylineno); system("pause"); exit(0); ;
+{ return yyerror(std::string("Unsupported attribute value without quotes (single or double) </>").c_str());  ;
     break;}
 }
    /* the action file gets copied in in place of this dollarsign */

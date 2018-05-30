@@ -28,7 +28,7 @@
 {
     "-->"	    { DEBUG_MESSAGE("COMMENT ENDED", DEBUG_CODE_LEXER, yylineno);  BEGIN(INITIAL);                  }
     \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed comment", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed comment", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
     .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                              }
 }
 
@@ -37,7 +37,7 @@
     "/>"        { DEBUG_MESSAGE("SCRIPT SINGLE ENDED", DEBUG_CODE_LEXER, yylineno);  BEGIN(INITIAL);                 }
     ">"	        { DEBUG_MESSAGE("SCRIPT PAIRED START", DEBUG_CODE_LEXER, yylineno); BEGIN(script_paired);            }
     \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                     }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
     .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                   }
 }
 
@@ -46,7 +46,7 @@
     "/>"        { DEBUG_MESSAGE("STYLE SINGLE ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                  }
     ">"	        { DEBUG_MESSAGE("SCRIPT PAIRED START", DEBUG_CODE_LEXER, yylineno); BEGIN(style_paired);            }
     \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                    }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
     .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                  }
 }
 
@@ -55,7 +55,7 @@
     "/>"        { DEBUG_MESSAGE("XML SINGLE ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                   }
     ">"	        { DEBUG_MESSAGE("XML PAIRED START", DEBUG_CODE_LEXER, yylineno); BEGIN(xml_paired);                }
     \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                   }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);   }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);                }
     .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                 }
 }
 
@@ -63,7 +63,7 @@
 {
     "</script>"	{ DEBUG_MESSAGE("SCRIPT PAIRED ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                  }
     \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                     }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
     .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                   }
 }
 
@@ -71,7 +71,7 @@
 {
     "</style>"	{ DEBUG_MESSAGE("STYLE PAIRED ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                  }
     \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                    }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
     .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                  }
 }
 
@@ -79,7 +79,7 @@
 {
     "</xml>"	{ DEBUG_MESSAGE("XML PAIRED ENDED", DEBUG_CODE_LEXER, yylineno); BEGIN(INITIAL);                      }
     \n			{ DEBUG_MESSAGE("INGNORE NEW LINE", DEBUG_CODE_LEXER, yylineno);                                      }
-    <<EOF>>		{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);      }
+    <<EOF>>		{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);                   }
     .			{ DEBUG_MESSAGE("INGORING SOMETHING", DEBUG_CODE_LEXER, yylineno);                                    }
 }
 

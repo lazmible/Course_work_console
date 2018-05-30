@@ -1165,7 +1165,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(comment):
 #line 31 "lexer.l"
-{ ERROR_MESSAGE("Unclosed comment", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+{ ERROR_MESSAGE("Unclosed comment", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
@@ -1193,7 +1193,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(script):
 #line 40 "lexer.l"
-{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
@@ -1221,7 +1221,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(style):
 #line 49 "lexer.l"
-{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
@@ -1249,7 +1249,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(xml):
 #line 58 "lexer.l"
-{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);   }
+{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);                }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
@@ -1272,7 +1272,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(script_paired):
 #line 66 "lexer.l"
-{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+{ ERROR_MESSAGE("Unclosed <script> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
@@ -1295,7 +1295,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(style_paired):
 #line 74 "lexer.l"
-{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);  }
+{ ERROR_MESSAGE("Unclosed <style> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);               }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
@@ -1318,7 +1318,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(xml_paired):
 #line 82 "lexer.l"
-{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno);  system("pause"); exit(0);      }
+{ ERROR_MESSAGE("Unclosed <xml> tag", ERROR_CODE_DOCUMENT, yylineno); return (EOF);                   }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP

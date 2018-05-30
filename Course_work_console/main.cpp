@@ -18,13 +18,20 @@ extern int yylineno;
 
 int yyerror(const char * err)
 {
-	std::cout << std::endl << err << " on line: " << yylineno <<std::endl;
+	std::string error_message(err);
+
+	std::cout << "***************************************************************" << std::endl;
+	std::cout << "Parser stopped with fatal syntax error." << std::endl;
+	std::cout << "line: " << yylineno << std::endl;
+	std::cout << "Reason: " << (error_message == "parse error" ? "Unnamed syntax error" : error_message) << std::endl;
+	std::cout << "***************************************************************" << std::endl;
 	return -1;
 }
 
 extern FILE * yyin;
 
 htmlDocument doc("l", ATTR_DATABASE, TAG_DB);
+
 
 int main(int argc, char * argv[])
 {
