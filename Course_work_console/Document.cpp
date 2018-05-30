@@ -65,22 +65,22 @@ void htmlDocument::AddClosingTag(std::string tag_name, int line, int column)
 		return;
 	}
 	std::string previous_tag_name;
-	std::stack<htmlTag> temp_state_stack(this->state_stack);
+	//std::stack<htmlTag> temp_state_stack(this->state_stack);
 	while (true)
 	{
 		if (!state_stack.empty())
 		{
-			previous_tag_name = temp_state_stack.top().GetName();
+			previous_tag_name = this->state_stack.top().GetName();
 			if (tag_name != previous_tag_name && !tag_can_not_be_closed(previous_tag_name))
 			{
 				ERROR_MESSAGE("Unequal closing tag <" + tag_name + "> for <" + previous_tag_name + ">", ERROR_CODE_TAG, line, column);
-				temp_state_stack.pop();
+				this->state_stack.pop();
 				break;
 			}
 			else
 			{
 				this->state_stack.pop();
-				this->state_stack = temp_state_stack;
+			//	this->state_stack = temp_state_stack;
 				break;
 			}
 		}
