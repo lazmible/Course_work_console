@@ -89,6 +89,9 @@
 "\!DOCTYPE html PUBLIC"                                       {  return Token(yytext, DOCTYPE_XHTML);             }
 "\!DOCTYPE HTML PUBLIC"                                       {  return Token(yytext, DOCTYPE);                   }
 "\!DOCTYPE html"                                              {  return Token(yytext, DOCTYPE_HTML_5);            }
+"\!doctype html PUBLIC"                                       {  return Token(yytext, DOCTYPE_XHTML);             }
+"\!doctype HTML PUBLIC"                                       {  return Token(yytext, DOCTYPE);                   }
+"\!doctype html"                                              {  return Token(yytext, DOCTYPE_HTML_5);            }
 "\"-//W3C//DTD HTML 4.01//EN"\"                               {  return Token(yytext, DOCTYPE_STRICT_1);          }
 "\"http://www.w3.org/TR/html4/strict.dtd"\"                   {  return Token(yytext, DOCTYPE_STRICT_2);          }
 "\"-//W3C//DTD HTML 4.01 Transitional//EN"\"                  {  return Token(yytext, DOCTYPE_TRANS_1);           }
