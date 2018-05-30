@@ -117,8 +117,8 @@ htmlAttribute
 htmlAttributeValue
     : SINGLE_QUOTE_STRING 
     | DOUBLE_QUOTE_STRING 
-    | TEXT  { return yyerror(std::string("Unsupported attribute value without quotes (single or double) <" + *((std::string*)($1)) + ">").c_str());  }
-    | SLASH { return yyerror(std::string("Unsupported attribute value without quotes (single or double) </>").c_str());  }
+    | TEXT  { return yyerror("Unsupported attribute value without quotes (single or double)");  }
+    | SLASH { return yyerror("Unsupported attribute value without quotes (single or double)");  }
     ;
 
 htmlContent
